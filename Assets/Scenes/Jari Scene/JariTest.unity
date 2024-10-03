@@ -267,6 +267,7 @@ MonoBehaviour:
     m_Bits: 64
   PlayerHeight: 2
   GroundDrag: 5
+  FallMultiplier: 2
   JumpForce: 6
   JumpCooldown: 0.25
   AirMultiplier: 0.4

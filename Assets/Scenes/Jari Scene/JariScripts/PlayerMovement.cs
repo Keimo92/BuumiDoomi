@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float GroundDrag;
     bool IsGrounded;
 
+    public float FallMultiplier;
     public float JumpForce;
     public float JumpCooldown;
     public float AirMultiplier;
@@ -61,6 +62,12 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerMove();
+        
+        //This if statements its just for experimenting. This is just creating fall after jump.
+        if ( Rigidbody.velocity.y < 0 )
+        {
+            Rigidbody.velocity += Vector3.up * Physics.gravity.y * FallMultiplier * Time.deltaTime;
+        }
     }
 
     private void PlayerInput()
@@ -123,6 +130,5 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         ReadyToJump = true;
-        
     }
 }
