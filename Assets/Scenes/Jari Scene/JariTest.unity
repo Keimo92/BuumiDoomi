@@ -375,7 +375,7 @@ MonoBehaviour:
   FallMultiplier: 1
   JumpForce: 6
   JumpCooldown: 0.25
-  AirMultiplier: 0.4
+  AirMultiplier: 1
   JumpKey: 32
 --- !u!1 &1318560821
 GameObject:
