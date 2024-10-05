@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-public abstract class CasperEntity : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
     [Header("Basic Setup")]
     [SerializeField] float currentHealth; //Will be overridden by maxHealth on Start()
