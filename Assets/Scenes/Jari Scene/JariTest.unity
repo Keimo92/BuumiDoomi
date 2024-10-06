@@ -693,7 +693,7 @@ MonoBehaviour:
   JumpForce: 6
   JumpCooldown: 0.1
   AirMultiplier: 1
-  MaxJumpHeight: 1.8
+  MaxJumpHeight: 3
   JumpKey: 32
 --- !u!1 &1270128037
 GameObject:

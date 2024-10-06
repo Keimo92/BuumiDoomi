@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Calling the methods from update
-        ClampHorizontalVelocity();
+        
         ClampJumpHeight();
     }
 
@@ -141,20 +141,6 @@ public class PlayerMovement : MonoBehaviour
     {
         ReadyToJump = true;
     }
-
-    //Horizontal Clamping
-    private void ClampHorizontalVelocity()
-    {
-        if ( !IsGrounded )
-        {
-            float clampedX = Mathf.Clamp(Rigidbody.velocity.x, -MovementSpeed, MovementSpeed);
-            float clampedZ = Mathf.Clamp(Rigidbody.velocity.z, -MovementSpeed, MovementSpeed);
-
-            Rigidbody.velocity = new Vector3(clampedX, Rigidbody.velocity.y, clampedZ);
-
-        }
-    }
-
     // Using Clamp to ensure the player doesn't exceed MaxJumpHeight
     private void ClampJumpHeight()
     {
