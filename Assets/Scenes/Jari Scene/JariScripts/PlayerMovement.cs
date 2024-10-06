@@ -24,7 +24,9 @@ public class PlayerMovement : MonoBehaviour
     public float JumpCooldown;
     public float AirMultiplier;
     public float MaxJumpHeight; 
-    bool ReadyToJump;
+    public bool ReadyToJump;
+
+    public float PlayerYAxis;
 
     [Header("KeyBinds")]
     public KeyCode JumpKey = KeyCode.Space;
@@ -41,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
         Rigidbody.freezeRotation = true;
         ReadyToJump = true;
+        
     }
 
     private void Update()
@@ -65,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
             Rigidbody.drag = 0f;
         }
 
+        if ( transform.position.y > PlayerYAxis ) PlayerYAxis = transform.position.y;
         PlayerInput();
         SpeedControl();
     }
@@ -90,17 +94,12 @@ public class PlayerMovement : MonoBehaviour
         VerticalInput = Input.GetAxisRaw("Vertical");
 
         // Jump when pressing the space bar and ready to jump
-        if ( Input.GetKeyDown(JumpKey) && ReadyToJump && CoyoteTimeCounter > 0f )
+        if ( Input.GetKey(JumpKey) && ReadyToJump && CoyoteTimeCounter > 0f )
         {
             ReadyToJump = false;
             Jump();
 
             Invoke(nameof(ResetJump), JumpCooldown); //Cooldown for next jump
-        }
-
-        if ( Input.GetKeyUp(KeyCode.Space) )
-        {
-            CoyoteTimeCounter = 0f;
         }
     }
 
@@ -132,14 +131,16 @@ public class PlayerMovement : MonoBehaviour
     {
         Rigidbody.velocity = new Vector3(Rigidbody.velocity.x, 0f, Rigidbody.velocity.z);
 
-        Rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+        Rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.VelocityChange);
 
         Debug.Log("Player is Jumping");
     }
 
     private void ResetJump()
     {
+        CoyoteTimeCounter = 0f;
         ReadyToJump = true;
+
     }
     // Using Clamp to ensure the player doesn't exceed MaxJumpHeight
     private void ClampJumpHeight()
