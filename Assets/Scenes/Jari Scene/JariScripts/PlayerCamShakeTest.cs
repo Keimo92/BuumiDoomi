@@ -1,31 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class PlayerCamShakeTest : MonoBehaviour
 {
-   public ICameraShaker Shaker;
+    public ICameraShaker CameraShake;
+    public int health = 100;
 
-    private void Awake()
+    private void Start()
     {
-        Shaker = FindObjectOfType<CameraController>();
+        CameraShake = FindObjectOfType<CameraController>();
     }
 
-    void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        if ( Shaker != null )
+
+        if ( health > 0 )
         {
-            Shaker.ShakeCamera(4, 0.4f);
-            Debug.Log("Cam Shaking");
+            if ( CameraShake != null )
+            {
+                CameraShake.ShakeCamera(2f, 0.5f);
+            }
         }
+
     }
 
-
-    private void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        if  ( Input.GetKeyDown(KeyCode.K) )
+        if ( collision.gameObject.CompareTag("EnemyBullet") )
         {
-            TakeDamage();
+            Debug.Log("Collided with player");
+            TakeDamage(10);
         }
     }
 }
+
