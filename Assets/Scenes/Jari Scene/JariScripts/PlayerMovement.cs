@@ -7,21 +7,26 @@ public class PlayerMovement : MonoBehaviour
     [Header("PlayerMovement")]
     public float MovementSpeed;
 
+    [SerializeField] private float CoyoteTime = 0.2f;
+    [SerializeField] private float CoyoteTimeCounter;
+
     public Transform Orientation;
-    
+
     [Header("Grounded")]
     public LayerMask GroundedMask;
-    
     public float PlayerHeight;
-    
     public float GroundDrag;
     bool IsGrounded;
 
+    [Header("Jump Variables")]
     public float FallMultiplier;
-    public float JumpForce;
+    public float JumpForce; 
     public float JumpCooldown;
     public float AirMultiplier;
-    bool ReadyToJump;
+    public float MaxJumpHeight; 
+    public bool ReadyToJump;
+
+    public float PlayerYAxis;
 
     [Header("KeyBinds")]
     public KeyCode JumpKey = KeyCode.Space;
@@ -38,23 +43,32 @@ public class PlayerMovement : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
         Rigidbody.freezeRotation = true;
         ReadyToJump = true;
+        
     }
 
     private void Update()
     {
-        //GroundCheck
+        // GroundCheck
         IsGrounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, GroundedMask);
-        
-        //Make drag to player
-        if (IsGrounded )
+        if ( IsGrounded )
+        {
+            CoyoteTimeCounter = CoyoteTime;
+        }
+        else
+        {
+            CoyoteTimeCounter -= Time.deltaTime;
+        }
+        // Apply drag when grounded
+        if ( IsGrounded )
         {
             Rigidbody.drag = GroundDrag;
         }
         else
         {
-            Rigidbody.drag = 0f;        
+            Rigidbody.drag = 0f;
         }
-        
+
+        if ( transform.position.y > PlayerYAxis ) PlayerYAxis = transform.position.y;
         PlayerInput();
         SpeedControl();
     }
@@ -62,12 +76,16 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerMove();
-        
-        //This if statements its just for experimenting. This is just creating fall after jump.
+
+        // Apply the FallMultiplier
         if ( Rigidbody.velocity.y < 0 )
         {
             Rigidbody.velocity += Vector3.up * Physics.gravity.y * FallMultiplier * Time.deltaTime;
         }
+
+        // Calling the methods from update
+        
+        ClampJumpHeight();
     }
 
     private void PlayerInput()
@@ -75,41 +93,33 @@ public class PlayerMovement : MonoBehaviour
         HorizontalInput = Input.GetAxisRaw("Horizontal");
         VerticalInput = Input.GetAxisRaw("Vertical");
 
-        //Check Jumping
-        if(Input.GetKey(JumpKey) && ReadyToJump && IsGrounded )
+        // Jump when pressing the space bar and ready to jump
+        if ( Input.GetKey(JumpKey) && ReadyToJump && CoyoteTimeCounter > 0f )
         {
             ReadyToJump = false;
             Jump();
 
-            Invoke(nameof(ResetJump),JumpCooldown);
+            Invoke(nameof(ResetJump), JumpCooldown); //Cooldown for next jump
         }
     }
 
     private void PlayerMove()
     {
         MoveDir = Orientation.forward * VerticalInput + Orientation.right * HorizontalInput;
-        
-        //On ground
-        if (IsGrounded )
-        {
-           Rigidbody.AddForce(MoveDir.normalized * MovementSpeed * 10f, ForceMode.Force);
-        }
-        
-        
-        //Air 
-        else if(!IsGrounded )
-        {
-          Rigidbody.AddForce(MoveDir.normalized * MovementSpeed * 10f * AirMultiplier, ForceMode.Force);
-        }
-        
-        
-       
-    }
 
+        if ( IsGrounded )
+        {
+            Rigidbody.AddForce(MoveDir.normalized * MovementSpeed * 10f, ForceMode.Force);
+        }
+        else if ( !IsGrounded )
+        {
+            Rigidbody.AddForce(MoveDir.normalized * MovementSpeed * 10f * AirMultiplier, ForceMode.Force);
+        }
+    }
     private void SpeedControl()
     {
         Vector3 FlatVelocity = new Vector3(Rigidbody.velocity.x, 0f, Rigidbody.velocity.z);
-        // Limit the speed
+
         if ( FlatVelocity.magnitude > MovementSpeed )
         {
             Vector3 limitedVel = FlatVelocity.normalized * MovementSpeed;
@@ -119,16 +129,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        //Reset y velocity!!
         Rigidbody.velocity = new Vector3(Rigidbody.velocity.x, 0f, Rigidbody.velocity.z);
-       
 
-        Rigidbody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
+        Rigidbody.AddForce(Vector3.up * JumpForce, ForceMode.VelocityChange);
+
         Debug.Log("Player is Jumping");
     }
 
     private void ResetJump()
     {
+        CoyoteTimeCounter = 0f;
         ReadyToJump = true;
+
+    }
+    // Using Clamp to ensure the player doesn't exceed MaxJumpHeight
+    private void ClampJumpHeight()
+    {
+        if ( transform.position.y >= MaxJumpHeight )
+        {
+            // When reaching MaxJumpHeight, clamp the vertical velocity
+            float clampedY = Mathf.Clamp(Rigidbody.velocity.y, float.NegativeInfinity, 0f);
+            Rigidbody.velocity = new Vector3(Rigidbody.velocity.x, clampedY, Rigidbody.velocity.z);
+        }
     }
 }
