@@ -5,13 +5,13 @@ using Cinemachine;
 
 public class CameraController : MonoBehaviour, ICameraShaker
 {
-    public CinemachineVirtualCamera virtualCamera; // Assign this in the inspector
+    public CinemachineVirtualCamera virtualCamera;
     private CinemachineBasicMultiChannelPerlin cinemachinePerlin;
     private float shakeTimer;
 
     void Start()
     {
-        // Get the CinemachinePerlin noise component from the virtual camera
+       
         cinemachinePerlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         ResetIntensity();
     }
@@ -25,13 +25,13 @@ public class CameraController : MonoBehaviour, ICameraShaker
 
     void Update()
     {
-        // Reduce shake intensity over time
+        //TESTING
         if ( shakeTimer > 0 )
         {
             shakeTimer -= Time.deltaTime;
             if ( shakeTimer <= 0f )
             {
-                // Reset the shake once the time is over
+                // Reset the shake
                 cinemachinePerlin.m_AmplitudeGain = 0f;
             }
         }
