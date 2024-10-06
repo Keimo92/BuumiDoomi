@@ -7,7 +7,9 @@ public class CasperPlayerLook : MonoBehaviour
     [SerializeField] float lookSensitivity;
     [SerializeField] Transform playerBody;
 
-    Vector2 mouseInput;
+    private float xRotation = 0f; // Track pitch
+    private Vector2 mouseInput;
+
     private void Start()
     {
         InputManager.Instance.onLookChanged += OnLookChanged;
@@ -21,10 +23,18 @@ public class CasperPlayerLook : MonoBehaviour
 
     private void Update()
     {
+        // Calculate the mouse input for look sensitivity and delta time
         Vector2 input = mouseInput * lookSensitivity * Time.deltaTime;
-        float xRotation = -input.y;
+
+        // Update xRotation based on mouse input, clamped to avoid flipping
+        xRotation -= input.y;
         xRotation = Mathf.Clamp(xRotation, -89.9f, 89.9f);
-        transform.eulerAngles += new Vector3(xRotation, 0, 0);
-        playerBody.eulerAngles += new Vector3(0, input.x, 0);
+
+        // Apply rotations using Quaternion
+        Quaternion rotation = Quaternion.Euler(xRotation, 0f, 0f);
+        transform.localRotation = rotation; // Apply the rotation to the camera
+
+        // Rotate the player body around the Y axis (yaw)
+        playerBody.Rotate(Vector3.up * input.x);
     }
 }
