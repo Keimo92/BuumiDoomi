@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("PlayerMovement")]
     public float MovementSpeed;
 
+    [SerializeField] private float CoyoteTime = 0.2f;
+    [SerializeField] private float CoyoteTimeCounter;
+
     public Transform Orientation;
 
     [Header("Grounded")]
@@ -44,7 +47,14 @@ public class PlayerMovement : MonoBehaviour
     {
         // GroundCheck
         IsGrounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, GroundedMask);
-
+        if ( IsGrounded )
+        {
+            CoyoteTimeCounter = CoyoteTime;
+        }
+        else
+        {
+            CoyoteTimeCounter -= Time.deltaTime;
+        }
         // Apply drag when grounded
         if ( IsGrounded )
         {
@@ -80,12 +90,17 @@ public class PlayerMovement : MonoBehaviour
         VerticalInput = Input.GetAxisRaw("Vertical");
 
         // Jump when pressing the space bar and ready to jump
-        if ( Input.GetKeyDown(JumpKey) && ReadyToJump && IsGrounded )
+        if ( Input.GetKeyDown(JumpKey) && ReadyToJump && CoyoteTimeCounter > 0f )
         {
             ReadyToJump = false;
             Jump();
 
             Invoke(nameof(ResetJump), JumpCooldown); //Cooldown for next jump
+        }
+
+        if ( Input.GetKeyUp(KeyCode.Space) )
+        {
+            CoyoteTimeCounter = 0f;
         }
     }
 

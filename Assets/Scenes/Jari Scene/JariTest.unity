@@ -681,6 +681,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 5
+  CoyoteTime: 1
+  CoyoteTimeCounter: 0
   Orientation: {fileID: 535637048}
   GroundedMask:
     serializedVersion: 2
