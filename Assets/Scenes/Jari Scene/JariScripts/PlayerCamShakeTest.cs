@@ -24,9 +24,9 @@ public class PlayerCamShakeTest : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if ( collision.gameObject.CompareTag("EnemyBullet") )
+        if ( other.gameObject.tag == "EnemyBullet" )
         {
             Debug.Log("Collided with player");
             TakeDamage(10);

@@ -12,22 +12,23 @@ public class EnemyBullet : MonoBehaviour
         Shaker = FindObjectOfType<CameraController>();
     }
 
-    
+
 
     void Damage(int damage)
     {
-        if (Shaker != null)
+        if ( Shaker != null )
         {
             Shaker.ShakeCamera(3f, 0.3f);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if ( collision.gameObject.CompareTag("Player"))
+        if ( other.gameObject.tag == "Player" )
         {
             Debug.Log("Collided with player");
             Damage(1);
+
         }
     }
 }
