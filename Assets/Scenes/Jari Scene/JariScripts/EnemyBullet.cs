@@ -29,6 +29,7 @@ public class EnemyBullet : MonoBehaviour
         {
             Debug.Log("Collided with player");
             Damage(1);
+            Destroy(this.gameObject);
 
         }
     }
