@@ -22,9 +22,10 @@ public class EnemyBullet : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if ( collision.gameObject.CompareTag("Player"))
+        Debug.Log(other);
+        if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Collided with player");
             Damage(1);
