@@ -24,7 +24,8 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ( other.gameObject.tag == "Player" )
+        Debug.Log(other);
+        if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Collided with player");
             Damage(1);
