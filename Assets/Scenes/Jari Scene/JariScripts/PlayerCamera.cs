@@ -30,7 +30,7 @@ public class PlayerCamera : MonoBehaviour
         //Clamp Values of your XRotation
         XRot = Mathf.Clamp(XRot, -90, 90);
 
-        //Rotate camera and Orientation
+        //Rotate camera and Orientatione
         transform.rotation = Quaternion.Euler(XRot, YRot, 0);
         Orientation.rotation = Quaternion.Euler(0, YRot, 0);
 
