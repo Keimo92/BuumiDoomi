@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 6036768091056017018}
   - component: {fileID: 3736393157402188579}
   - component: {fileID: 3228773717609618987}
+  - component: {fileID: 7033691762434821950}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -327,6 +328,7 @@ MonoBehaviour:
   fireRate: 5
   nextShot: 0
   canShoot: 1
+  entityMask: 5
   ReloadKey: 114
   reloading: 0
   bulletImpact: {fileID: 5397320338250886365, guid: 675ddc728c34b5b41a82c3974d5a5432, type: 3}
@@ -335,6 +337,25 @@ MonoBehaviour:
   weaponMuzzle: {fileID: 4448735376035903253}
   muzzleFlash: {fileID: 5530413171097351562, guid: a51926c8157180f48870b3b07ec7a5e5, type: 3}
   gunAnimator: {fileID: 2302607194425964921}
+--- !u!114 &7033691762434821950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4924087106482084766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8b77ebcac0f71449dc09af9da23955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+  entityGfx: {fileID: 779238894880284942}
+  entityType: 2
+  onDeathPrefabs: []
+  onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
+  onHitMaterialTime: 0.1
 --- !u!1 &5431913496525201725
 GameObject:
   m_ObjectHideFlags: 0

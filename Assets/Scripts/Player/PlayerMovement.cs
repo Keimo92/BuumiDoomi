@@ -4,7 +4,7 @@ using System.Diagnostics.Contracts;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class CasperPlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Controller")]
     [SerializeField] CharacterController controller;

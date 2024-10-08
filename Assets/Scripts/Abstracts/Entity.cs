@@ -4,12 +4,15 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+
+
 public abstract class Entity : MonoBehaviour
 {
     [Header("Basic Setup")]
     [SerializeField] float currentHealth; //Will be overridden by maxHealth on Start()
     [SerializeField] float maxHealth;
     [SerializeField] MeshRenderer entityGfx;
+    public EntityMask entityType; //Holds the entity type so we can filter entities based on the type. DON'T SET MULTIPLE TYPES OTHERWISE THIS WONT WORK CORRECTLY
 
     [Header("On Death Instantiated Prefabs")]
     [SerializeField] List<GameObject> onDeathPrefabs = new List<GameObject>();
@@ -17,6 +20,15 @@ public abstract class Entity : MonoBehaviour
     [Header("On Hit Material")]
     [SerializeField] Material onHitMaterial;
     [SerializeField] float onHitMaterialTime;
+
+    [System.Flags]
+    public enum EntityMask
+    {
+        None    = 0,
+        Enemy   = 1,
+        Player  = 2,
+        Object  = 4
+    }
 
     private void Start()
     {
