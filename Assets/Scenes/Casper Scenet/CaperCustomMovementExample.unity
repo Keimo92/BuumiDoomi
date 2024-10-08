@@ -864,6 +864,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1030,6 +1031,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1388,6 +1390,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1468,6 +1471,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1702,6 +1706,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1810778359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4924087106482084766, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+  m_PrefabInstance: {fileID: 5921796618016715404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1810778363 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 779238894880284942, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+  m_PrefabInstance: {fileID: 5921796618016715404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1810778366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810778359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8b77ebcac0f71449dc09af9da23955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+  entityGfx: {fileID: 1810778363}
+  entityType: 2
+  onDeathPrefabs: []
+  onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
+  onHitMaterialTime: 0.1
 --- !u!1 &1841548735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,6 +1772,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1905,6 +1939,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -2207,6 +2242,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -2550,6 +2586,18 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 41246040}
+    - target: {fileID: 3228773717609618987, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      propertyPath: entityMask
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228773717609618987, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      propertyPath: dealDamageToEntities
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736393157402188579, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      propertyPath: playerGravity
+      value: 25.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4924087106482084766, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2597,7 +2645,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4924087106482084766, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1810778366}
   m_SourcePrefab: {fileID: 100100000, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

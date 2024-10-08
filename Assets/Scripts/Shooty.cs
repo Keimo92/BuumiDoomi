@@ -15,6 +15,7 @@ public class Shooty : MonoBehaviour
     public float fireRate;
     public float nextShot;
     public bool canShoot = true;
+    public Entity.EntityMask entityMask;
 
     public KeyCode ReloadKey = KeyCode.R;
     public bool reloading;
@@ -117,7 +118,7 @@ public class Shooty : MonoBehaviour
             Debug.DrawRay(transform.position, shootDirection * target.distance, Color.green, 1f);
             if (target.transform.TryGetComponent<Entity>(out Entity entity))
             {
-                entity.Damage(5f);
+                if(entityMask.HasFlag(entity.entityType)) entity.Damage(5f);
             }
 
         }
