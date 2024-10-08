@@ -13,7 +13,7 @@ public class NavAgentController : MonoBehaviour
     {
         if (agent == null) agent = GetComponent<NavMeshAgent>();
     }
-
+    
     public void MoveToPosition(Vector3 position)
     {
         agent.SetDestination(position);
