@@ -10,13 +10,20 @@ using MBT;
 public class EnemyRoamRndDestination : Leaf
 {
     [SerializeField] NavAgentController NavController;
+    public float RoamRadius;
+
     public override NodeResult Execute()
     {
         if ( NavController != null )
         {
-            NavController.MoveToRandomPositionInRadius(20f);
+            NavController.MoveToRandomPositionInRadius(RoamRadius);
         }
         return NodeResult.success;
+    }
+
+    public override void OnExit()
+    {
+        
     }
 
 }
