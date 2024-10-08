@@ -9,6 +9,8 @@ public class NavAgentController : MonoBehaviour
     [Header("NavAgent")]
     [SerializeField] NavMeshAgent agent;
 
+    [SerializeField] float AgentSpeed = 10f;
+
     private void Start()
     {
         if (agent == null) agent = GetComponent<NavMeshAgent>();
@@ -29,5 +31,10 @@ public class NavAgentController : MonoBehaviour
     public void StopMovement()
     {
         agent.Stop();
+    }
+    public void MoveToPlayer(Transform playerPos)
+    {
+        float step = AgentSpeed * Time.deltaTime; 
+        transform.position = Vector3.MoveTowards(transform.position, playerPos.position, step);
     }
 }

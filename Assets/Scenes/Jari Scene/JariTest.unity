@@ -528,7 +528,9 @@ GameObject:
   - component: {fileID: 510907781}
   - component: {fileID: 510907780}
   - component: {fileID: 510907782}
-  - component: {fileID: 510907783}
+  - component: {fileID: 510907784}
+  - component: {fileID: 510907785}
+  - component: {fileID: 510907786}
   m_Layer: 0
   m_Name: BehaviorTree
   m_TagString: Untagged
@@ -557,8 +559,9 @@ MonoBehaviour:
     height: 45
   parent: {fileID: 510907775}
   children:
-  - {fileID: 510907782}
-  - {fileID: 510907783}
+  - {fileID: 510907786}
+  - {fileID: 510907784}
+  - {fileID: 510907785}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
@@ -628,7 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 510907783}
+  selectedEditorNode: {fileID: 510907782}
   repeatOnFinish: 0
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -689,7 +692,41 @@ MonoBehaviour:
   title: EnemyShootPlayer
   rect:
     serializedVersion: 2
-    x: 200
+    x: 640
+    y: 520
+    width: 160
+    height: 45
+  parent: {fileID: 510907785}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  Player: {fileID: 1148299328}
+  BulletSpawn: {fileID: 1741009598}
+  Agent: {fileID: 1496697406}
+  EnemyObj: {fileID: 1496697398}
+  Bullet: {fileID: 3626157568821188391, guid: cdd3d0b86d260cc4fbd0b04c0708234b, type: 3}
+  shootingRange: 10
+  shootingInterval: 1
+  DistanceToPlayer: 0
+  bulletSpeed: 50
+  nextShotTime: 0.5
+--- !u!114 &510907784
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510907770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 364199156ca363645830a5bb70de1b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: EnemyRoamRandomPos
+  rect:
+    serializedVersion: 2
+    x: 460
     y: 400
     width: 160
     height: 45
@@ -698,13 +735,43 @@ MonoBehaviour:
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
-  Player: {fileID: 1148299328}
-  BulletSpawn: {fileID: 1741009598}
-  Bullet: {fileID: 3626157568821188391, guid: cdd3d0b86d260cc4fbd0b04c0708234b, type: 3}
-  shootingRange: 5
-  shootingInterval: 2
-  bulletSpeed: 50
---- !u!114 &510907783
+  NavController: {fileID: 1496697405}
+--- !u!114 &510907785
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510907770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb0b7cfe3e9cfba47a378c725cf5d0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Distance Condition
+  rect:
+    serializedVersion: 2
+    x: 640
+    y: 400
+    width: 160
+    height: 45
+  parent: {fileID: 510907773}
+  children:
+  - {fileID: 510907782}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  comparator: 1
+  distance:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 10
+  transform1: {fileID: 1496697398}
+  transform2: {fileID: 1148299328}
+  Agent: {fileID: 1496697406}
+--- !u!114 &510907786
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
@@ -719,7 +786,7 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 400
+    x: 280
     y: 400
     width: 160
     height: 45
@@ -733,7 +800,7 @@ MonoBehaviour:
     mode: 0
     blackboard: {fileID: 0}
     key: 
-    constantValue: 2
+    constantValue: 5
   randomDeviation: 0
   continueOnRestart: 0
 --- !u!1 &575059540
@@ -974,7 +1041,7 @@ Transform:
   m_GameObject: {fileID: 784498322}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0.296, z: -0.47099972}
+  m_LocalPosition: {x: 0.35, y: 0.296, z: 0.624}
   m_LocalScale: {x: 0.10390927, y: 0.112, z: 0.7580563}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1294,7 +1361,6 @@ GameObject:
   - component: {fileID: 1496697398}
   - component: {fileID: 1496697401}
   - component: {fileID: 1496697400}
-  - component: {fileID: 1496697402}
   - component: {fileID: 1496697404}
   - component: {fileID: 1496697403}
   - component: {fileID: 1496697406}
@@ -1374,27 +1440,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496697397}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &1496697402
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1496697397}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 35dd02ff0e2402845af719f0183da42a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1496697403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1410,6 +1455,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 20
   entityGfx: {fileID: 0}
+  entityType: 0
   onDeathPrefabs:
   - {fileID: 1741009597}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1450,6 +1496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1496697406}
+  AgentSpeed: 10
 --- !u!195 &1496697406
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1825,7 +1872,7 @@ Transform:
   m_GameObject: {fileID: 1741009597}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35000002, y: 0.296, z: -0.97662354}
+  m_LocalPosition: {x: 0.35000002, y: 0.296, z: 1.245}
   m_LocalScale: {x: 0.10390927, y: 0.112, z: 0.7580563}
   m_ConstrainProportionsScale: 0
   m_Children: []
