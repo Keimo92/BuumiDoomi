@@ -80,4 +80,14 @@ public abstract class Entity : MonoBehaviour
         materials.Remove(onHitMaterial);
         entityGfx.materials = materials.ToArray();
     }
+
+    public virtual void AddHealth(float health)
+    {
+        currentHealth += health;
+
+        if ( currentHealth > maxHealth )
+        {
+            currentHealth = 100;
+        }
+    }
 }
