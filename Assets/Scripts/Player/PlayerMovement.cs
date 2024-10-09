@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Controller")]
-    [SerializeField] CharacterController controller;
+    [SerializeField] public CharacterController controller;
 
     [Header("Horizontal Movement Settings")]
     [SerializeField] float maxHorizontalVelocity;
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector3 velocity;
     [SerializeField] Vector3 horizontalVelocity;
     [SerializeField] float verticalVelocity;
+    [SerializeField] Vector3 externalMovement;
     [SerializeField] bool jumpPressed;
     [SerializeField] bool isJumping;
     [SerializeField] bool isGrounded;
@@ -53,13 +54,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        velocity = Vector3.zero;
         GroundCheck();
         CalculateHorizontalVelocity();
         CalculateVerticalVelocity();
 
-        velocity = horizontalVelocity;
-        velocity.y = verticalVelocity;
-        controller.Move(velocity * Time.deltaTime);
+        //velocity += externalVelocity;
+        velocity += horizontalVelocity;
+        velocity.y += verticalVelocity;
+        controller.Move(velocity * Time.deltaTime + externalMovement);
     }
 
     private void CalculateHorizontalVelocity()
@@ -116,6 +119,11 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public void SetExternalMovement (Vector3 _externalVelocity)
+    {
+        externalMovement = _externalVelocity;
     }
 
     private void OnDrawGizmosSelected()
