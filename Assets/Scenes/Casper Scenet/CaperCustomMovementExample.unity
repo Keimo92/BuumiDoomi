@@ -864,6 +864,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1030,6 +1031,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1388,6 +1390,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1468,6 +1471,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1739,6 +1743,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -1905,6 +1910,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
@@ -2207,6 +2213,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 0
   entityGfx: {fileID: 0}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 8299379192480959366, guid: e236a6724bd66fe4286717a74e0bf5db, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CasperPlayerLook : MonoBehaviour
+public class PlayerLook : MonoBehaviour
 {
     [SerializeField] float lookSensitivity;
     [SerializeField] Transform playerBody;
