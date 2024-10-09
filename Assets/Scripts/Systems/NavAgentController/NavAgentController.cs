@@ -8,12 +8,14 @@ public class NavAgentController : MonoBehaviour
 {
     [Header("NavAgent")]
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] GameObject EnemyObj;
+    [SerializeField] float AgentSpeed = 10f;
 
     private void Start()
     {
         if (agent == null) agent = GetComponent<NavMeshAgent>();
     }
-
+    
     public void MoveToPosition(Vector3 position)
     {
         agent.SetDestination(position);
@@ -29,5 +31,10 @@ public class NavAgentController : MonoBehaviour
     public void StopMovement()
     {
         agent.Stop();
+    }
+    public void MoveToPlayer(Transform playerPos)
+    {
+        float step = AgentSpeed * Time.deltaTime; 
+        EnemyObj.transform.position = Vector3.MoveTowards(transform.position, playerPos.position, step);
     }
 }

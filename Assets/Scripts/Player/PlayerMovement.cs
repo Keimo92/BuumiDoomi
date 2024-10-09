@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool jumpPressed;
     [SerializeField] bool isJumping;
     [SerializeField] bool isGrounded;
-    
 
     private void Start()
     {

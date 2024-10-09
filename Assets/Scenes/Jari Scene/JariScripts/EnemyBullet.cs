@@ -12,11 +12,11 @@ public class EnemyBullet : MonoBehaviour
         Shaker = FindObjectOfType<CameraController>();
     }
 
-    
+
 
     void Damage(int damage)
     {
-        if (Shaker != null)
+        if ( Shaker != null )
         {
             Shaker.ShakeCamera(3f, 0.3f);
         }
@@ -29,6 +29,16 @@ public class EnemyBullet : MonoBehaviour
         {
             Debug.Log("Collided with player");
             Damage(1);
+            Destroy(this.gameObject);
+
+        }
+        if ( other.gameObject.CompareTag("Wall") )
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject,0.4f);
         }
     }
 }
