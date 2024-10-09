@@ -6,6 +6,8 @@ TagManager:
   tags:
   - EnemyBullet
   - Wall
+  - Legs
+  - Ravines
   layers:
   - Default
   - TransparentFX
