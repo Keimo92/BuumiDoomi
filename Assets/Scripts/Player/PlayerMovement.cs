@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float groundCheckLength;
     [SerializeField] LayerMask groundLayerMask;
 
+    [Header("Input")]
+    [SerializeField] float jumpCoyoteTime;
+
     [Header("Debug")]
     [SerializeField] Vector2 moveInput;
     [SerializeField] Vector3 velocity;
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector3 externalMovement;
     [SerializeField] bool jumpPressed;
     [SerializeField] bool isJumping;
+    [SerializeField] bool coyoteActive;
     [SerializeField] bool isGrounded;
 
     private void Start()
@@ -48,7 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnJumpPressed()
     {
-        if(isGrounded) jumpPressed = true;
+        if (isGrounded || coyoteActive)
+        {
+            jumpPressed = true;
+            coyoteActive = false;
+        }
     }
 
     private void Update()
@@ -86,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         if (jumpPressed) //If jump pressed we set velocity to jumpForce. We do not accelerate
         {
             jumpPressed = false;
+            coyoteActive = false;
             isJumping = true;
             verticalVelocity = jumpForce;
             return;
@@ -114,10 +123,18 @@ public class PlayerMovement : MonoBehaviour
                 isGrounded = true;
             }
         }
-        else
+        else if(isGrounded) //If we were previously grounded we set isgrounded false and start coyote time
         {
             isGrounded = false;
+            StartCoroutine(CoyoteTimeRoutine());
         }
+    }
+
+    IEnumerator CoyoteTimeRoutine()
+    {
+        coyoteActive = true;
+        yield return new WaitForSeconds(jumpCoyoteTime);
+        coyoteActive = false;
     }
 
     public void SetExternalMovement (Vector3 _externalVelocity)
