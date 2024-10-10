@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Controller")]
-    [SerializeField] CharacterController controller;
+    [SerializeField] public CharacterController controller;
 
     [Header("Horizontal Movement Settings")]
     [SerializeField] float maxHorizontalVelocity;
@@ -23,13 +23,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float groundCheckLength;
     [SerializeField] LayerMask groundLayerMask;
 
+    [Header("Input")]
+    [SerializeField] float jumpCoyoteTime;
+
     [Header("Debug")]
     [SerializeField] Vector2 moveInput;
     [SerializeField] Vector3 velocity;
     [SerializeField] Vector3 horizontalVelocity;
     [SerializeField] float verticalVelocity;
+    [SerializeField] Vector3 externalMovement;
     [SerializeField] bool jumpPressed;
     [SerializeField] bool isJumping;
+    [SerializeField] bool coyoteActive;
     [SerializeField] bool isGrounded;
 
     private void Start()
@@ -47,18 +52,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnJumpPressed()
     {
-        if(isGrounded) jumpPressed = true;
+        if (isGrounded || coyoteActive)
+        {
+            jumpPressed = true;
+            coyoteActive = false;
+        }
     }
 
     private void Update()
     {
+        velocity = Vector3.zero;
         GroundCheck();
         CalculateHorizontalVelocity();
         CalculateVerticalVelocity();
 
-        velocity = horizontalVelocity;
-        velocity.y = verticalVelocity;
-        controller.Move(velocity * Time.deltaTime);
+        //velocity += externalVelocity;
+        velocity += horizontalVelocity;
+        velocity.y += verticalVelocity;
+        controller.Move(velocity * Time.deltaTime + externalMovement);
     }
 
     private void CalculateHorizontalVelocity()
@@ -83,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         if (jumpPressed) //If jump pressed we set velocity to jumpForce. We do not accelerate
         {
             jumpPressed = false;
+            coyoteActive = false;
             isJumping = true;
             verticalVelocity = jumpForce;
             return;
@@ -111,10 +123,23 @@ public class PlayerMovement : MonoBehaviour
                 isGrounded = true;
             }
         }
-        else
+        else if(isGrounded) //If we were previously grounded we set isgrounded false and start coyote time
         {
             isGrounded = false;
+            StartCoroutine(CoyoteTimeRoutine());
         }
+    }
+
+    IEnumerator CoyoteTimeRoutine()
+    {
+        coyoteActive = true;
+        yield return new WaitForSeconds(jumpCoyoteTime);
+        coyoteActive = false;
+    }
+
+    public void SetExternalMovement (Vector3 _externalVelocity)
+    {
+        externalMovement = _externalVelocity;
     }
 
     private void OnDrawGizmosSelected()

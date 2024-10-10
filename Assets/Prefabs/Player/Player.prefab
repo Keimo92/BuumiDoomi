@@ -301,13 +301,16 @@ MonoBehaviour:
   groundCheckLength: 0.2
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 115
+  jumpCoyoteTime: 0.2
   moveInput: {x: 0, y: 0}
   velocity: {x: 0, y: 0, z: 0}
   horizontalVelocity: {x: 0, y: 0, z: 0}
   verticalVelocity: 0
+  externalMovement: {x: 0, y: 0, z: 0}
   jumpPressed: 0
   isJumping: 0
+  coyoteActive: 0
   isGrounded: 0
 --- !u!114 &3228773717609618987
 MonoBehaviour:
