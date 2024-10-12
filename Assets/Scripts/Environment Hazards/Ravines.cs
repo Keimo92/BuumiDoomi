@@ -10,10 +10,5 @@ public class Ravines : MonoBehaviour
         {
             entity.Kill();
         }
-
-        if ( other.gameObject.CompareTag("Legs") )
-        {
-            Destroy(gameObject);
-        }
     }
 }
