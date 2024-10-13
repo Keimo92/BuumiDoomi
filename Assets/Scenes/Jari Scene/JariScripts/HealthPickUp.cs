@@ -8,8 +8,6 @@ public class HealthPickUp : MonoBehaviour
 {
     public HealthPack Healthpack;
 
-    public DialogueData HealthPackInfo;
-
     public DialogueManager DialogueManager;
 
     public ScreenFlash ScreenFlash;
@@ -18,7 +16,7 @@ public class HealthPickUp : MonoBehaviour
         if (other.TryGetComponent<Entity>(out Entity entity))
         {
             entity.AddHealth(Healthpack.healingAmount);
-            DialogueManager.StartDialogue(HealthPackInfo);
+            DialogueManager.StartHealthPackInfo(Healthpack);
             StartCoroutine(ScreenFlash.SetColorAlpha());
             Destroy(gameObject, 0.3f);
 

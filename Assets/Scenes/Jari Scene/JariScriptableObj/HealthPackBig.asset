@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0cd0f82ff2d6447b5e0d78e5802d6b, type: 3}
   m_Name: HealthPackBig
   m_EditorClassIdentifier: 
-  packName: Big health pack
-  description: This heals you
   healingAmount: 50
+  HealthPackInfo:
+  - This heals you 50 hp
