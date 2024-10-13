@@ -5,6 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Healing", menuName = "ScriptableObjects/HealthPacks")]
 public class HealthPack : ScriptableObject
 {
-    public string Health;
-    public float HealingAmount;
+    public int healingAmount;  
 }

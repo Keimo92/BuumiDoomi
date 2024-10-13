@@ -6,10 +6,11 @@ public class EnemyBullet : MonoBehaviour
 {
 
     ICameraShaker Shaker;
-
+    ScreenFlash ScreenFlash;
     private void Start()
     {
         Shaker = FindObjectOfType<CameraController>();
+        ScreenFlash = FindAnyObjectByType<ScreenFlash>();
     }
 
 
@@ -19,26 +20,25 @@ public class EnemyBullet : MonoBehaviour
         if ( Shaker != null )
         {
             Shaker.ShakeCamera(3f, 0.3f);
+            StartCoroutine(ScreenFlash.SetColorToRed());
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Collided with player");
             Damage(1);
-            Destroy(this.gameObject);
+            Destroy(gameObject,0.4f);
 
         }
         if ( other.gameObject.CompareTag("Wall") )
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
-            Destroy(this.gameObject,0.4f);
+            Destroy(gameObject,0.4f);
         }
     }
 }
