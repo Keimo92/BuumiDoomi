@@ -20,7 +20,7 @@ public class HealthPickUp : MonoBehaviour
             entity.AddHealth(Healthpack.healingAmount);
             DialogueManager.StartDialogue(HealthPackInfo);
             StartCoroutine(ScreenFlash.SetColorAlpha());
-            Destroy(gameObject,0.3f);
+            Destroy(gameObject, 0.3f);
 
         }
     }

@@ -25,7 +25,7 @@ public class ScreenFlash : MonoBehaviour
         {
             
             elapsedTime += Time.deltaTime; 
-            float alpha = Mathf.Lerp(0.4f, 0.0f, elapsedTime / fadeDuration); 
+            float alpha = Mathf.Lerp(0.3f, 0.0f, elapsedTime / fadeDuration); 
 
             Image.color = new Color(color.r, color.g, color.b, alpha); 
 
@@ -36,7 +36,6 @@ public class ScreenFlash : MonoBehaviour
     }
     public IEnumerator SetColorToRed()
     {
-        Debug.Log("Setting starts");
         Color color = Color.red;
         Image.color = color;
 
