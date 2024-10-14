@@ -80,7 +80,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator WaitForEnterKey()
     {
-        while (!Input.GetKeyDown(KeyCode.Return))
+        while (!Input.GetMouseButton(1))
         {
             yield return null;
         }
