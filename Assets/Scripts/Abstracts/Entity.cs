@@ -19,7 +19,8 @@ public abstract class Entity : MonoBehaviour
 
     [Header("On Hit Material")]
     [SerializeField] Material onHitMaterial;
-    [SerializeField] float onHitMaterialTime;
+    [SerializeField] private float onHitMaterialTime;
+    protected bool OnHitMaterialEnabled = false;
 
     [System.Flags]
     public enum EntityMask
@@ -32,6 +33,7 @@ public abstract class Entity : MonoBehaviour
 
     private void Awake()
     {
+        OnHitMaterialEnabled = false;
         currentHealth = maxHealth;
     }
     private void Start()
@@ -50,7 +52,7 @@ public abstract class Entity : MonoBehaviour
     public virtual void Damage(float damage)
     {
         //Add the onhitmaterial to the object if we have access to mesh renderer and onHitMaterial
-        if(onHitMaterial && entityGfx) StartCoroutine(HitMaterialEnable());
+        if(onHitMaterial && entityGfx && !OnHitMaterialEnabled) StartCoroutine(HitMaterialEnable());
         
         //If current health reaches 0 or below we kill this entity
         currentHealth -= damage;
@@ -80,11 +82,13 @@ public abstract class Entity : MonoBehaviour
     IEnumerator HitMaterialEnable()
     {
         //Add onhit material to the object
+        OnHitMaterialEnabled = true;
         List<Material> materials = entityGfx.materials.ToList();
         materials.Add(onHitMaterial);
         entityGfx.materials = materials.ToArray();
         yield return new WaitForSeconds(onHitMaterialTime); //Wait for onHitMaterialTime and remove the material
         materials.Remove(onHitMaterial);
+        OnHitMaterialEnabled = false;
         entityGfx.materials = materials.ToArray();
     }
 

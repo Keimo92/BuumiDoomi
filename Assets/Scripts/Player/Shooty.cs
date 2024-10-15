@@ -46,7 +46,7 @@ public class Shooty : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AmmoCount = 20;
+        AmmoCount = 200;
     }
 
     // Update is called once per frame

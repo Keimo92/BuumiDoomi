@@ -279,9 +279,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3228773717609618987, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      propertyPath: AmmoCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228773717609618987, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 220606793}
+    - target: {fileID: 3228773717609618987, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      propertyPath: ReloadAmount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3736393157402188579, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
       propertyPath: Player
       value: 
@@ -649,7 +657,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: currentHealth
@@ -835,7 +843,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: currentHealth
@@ -1635,7 +1643,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: currentHealth
@@ -1821,7 +1829,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: currentHealth
@@ -2071,7 +2079,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: currentHealth
@@ -2622,7 +2630,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: currentHealth
