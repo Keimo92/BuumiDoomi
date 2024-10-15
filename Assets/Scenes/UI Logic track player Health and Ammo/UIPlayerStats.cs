@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPlayerStats : PlayerEntity
+public class UIPlayerStats : MonoBehaviour
 {
     Shooty Shooty;
     PlayerEntity Player;
@@ -14,8 +14,8 @@ public class UIPlayerStats : PlayerEntity
 
     private void Start()
     {
-        Player = FindAnyObjectByType<PlayerEntity>();
-        Shooty = FindAnyObjectByType<Shooty>();
+        Player = FindFirstObjectByType<PlayerEntity>();
+        Shooty = FindFirstObjectByType<Shooty>();
         
     }
 
