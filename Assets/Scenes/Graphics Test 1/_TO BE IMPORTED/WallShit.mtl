@@ -1,0 +1,5 @@
+newmtl Wallshit
+map_Kd -o 0 0 -s 1 1 C:/Program Files/Unity/_Nightmare SuperHighway/Assets/Textures/ModelTextures/Wallshit.png
+Kd 1 1 1
+d 1
+
