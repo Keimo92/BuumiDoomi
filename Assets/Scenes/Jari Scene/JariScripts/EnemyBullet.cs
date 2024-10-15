@@ -7,6 +7,7 @@ public class EnemyBullet : MonoBehaviour
 
     ICameraShaker Shaker;
     ScreenFlash ScreenFlash;
+    Entity Player;
     private void Start()
     {
         Shaker = FindObjectOfType<CameraController>();
@@ -15,7 +16,7 @@ public class EnemyBullet : MonoBehaviour
 
 
 
-    void Damage(int damage)
+    void ShakeCameraOnHit()
     {
         if ( Shaker != null )
         {
@@ -26,9 +27,10 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.TryGetComponent<Entity>(out Entity entity))
         {
-            Damage(1);
+            entity.Damage(5);
+            ShakeCameraOnHit();
             Destroy(gameObject,0.4f);
 
         }

@@ -30,6 +30,10 @@ public abstract class Entity : MonoBehaviour
         Object  = 4
     }
 
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
     private void Start()
     {
         //Set current health
@@ -52,8 +56,11 @@ public abstract class Entity : MonoBehaviour
         currentHealth -= damage;
         if(currentHealth <= 0)
         {
+            currentHealth = 0;
             Kill();
         }
+
+        
     }
 
     //Kill function. Can be also called by other scripts if we want to kill this entity.
@@ -89,5 +96,10 @@ public abstract class Entity : MonoBehaviour
         {
             currentHealth = 100;
         }
+    }
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+        set { currentHealth = value; }
     }
 }

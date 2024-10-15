@@ -7,7 +7,10 @@ public class Shooty : MonoBehaviour
 
     public GunType gunType;
     //We'll use these eventually.
-    //public int bullets;
+    
+    public int AmmoCount;
+
+    public int ReloadAmount = 20;
 
     public KeyCode ShootKey = KeyCode.Mouse0;
     public bool shooting;
@@ -43,7 +46,7 @@ public class Shooty : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        AmmoCount = 20;
     }
 
     // Update is called once per frame
@@ -98,12 +101,16 @@ public class Shooty : MonoBehaviour
         //weaponSoundSource.pitch = Random.Range(0.9f, 1.1f);
         //weaponSoundSource.PlayOneShot(weaponSoundSource.clip);
 
+        if ( AmmoCount > 0 )
+        {
 
         //The actual bullet comes straight out of the player's face, Trail itself comes out of the gun.
         gunAnimator.SetTrigger("Fire");
         Vector3 shootDirection = playerCam.transform.forward;
         if (Physics.Raycast(playerCam.transform.position, shootDirection, out target, 200f))
         {
+            AmmoCount--;
+
             //We can use this to make bullet holes and such.
             GameObject bulletImpactLocation = Instantiate(bulletImpact, target.point, Quaternion.LookRotation(Vector3.up, target.normal));
             Destroy(bulletImpactLocation, 1f);
@@ -123,6 +130,8 @@ public class Shooty : MonoBehaviour
 
         }
         timer = 0;
+        }
+
     }
 
 
@@ -133,6 +142,7 @@ public class Shooty : MonoBehaviour
         yield return new WaitForSeconds(1);
         gunAnimator.SetBool("Reload", false);
         canShoot = true;
+        
 
     }
 

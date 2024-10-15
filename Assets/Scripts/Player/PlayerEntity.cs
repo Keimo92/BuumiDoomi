@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class PlayerEntity : Entity
 {
+    
     public override void Kill()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //This needs to be fixed ASAP. I keep close eye on you you mmhhmh
+       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void Start()
+    {
+        base.GetHealth();
     }
 }
