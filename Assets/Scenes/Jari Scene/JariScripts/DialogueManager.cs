@@ -73,12 +73,12 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            yield return StartCoroutine(WaitForEnterKey());
+            yield return StartCoroutine(WaitForMouseButton());
             DisplayNextLine();
         }
     }
 
-    IEnumerator WaitForEnterKey()
+    IEnumerator WaitForMouseButton()
     {
         while (!Input.GetMouseButton(1))
         {
