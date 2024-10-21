@@ -15,18 +15,22 @@ public class HealthPickUp : MonoBehaviour
     private void Start()
     {
         // This finds the components in the scene from gameobjects. Its not necessary to assing them!
-       DialogueManager = FindAnyObjectByType<DialogueManager>();
-       ScreenFlash = FindAnyObjectByType<ScreenFlash>();
+        DialogueManager = FindAnyObjectByType<DialogueManager>();
+        ScreenFlash = FindAnyObjectByType<ScreenFlash>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Entity>(out Entity entity))
+        if ( other.TryGetComponent<Entity>(out Entity entity) )
         {
-            entity.AddHealth(Healthpack.healingAmount);
-            DialogueManager.StartHealthPackInfo(Healthpack);
-            StartCoroutine(ScreenFlash.SetColorAlpha());
-            Destroy(gameObject, 0.3f);
+            if ( entity.CurrentHealth < 100 )
+            {
+                entity.AddHealth(Healthpack.healingAmount);
+                DialogueManager.StartHealthPackInfo(Healthpack);
+                StartCoroutine(ScreenFlash.SetColorAlpha());
+                Destroy(gameObject, 0.3f);
+
+            }
 
         }
     }
