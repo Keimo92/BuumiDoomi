@@ -6,39 +6,41 @@ public class EnemyBullet : MonoBehaviour
 {
 
     ICameraShaker Shaker;
-
+    ScreenFlash ScreenFlash;
+    Entity Player;
     private void Start()
     {
         Shaker = FindObjectOfType<CameraController>();
+        ScreenFlash = FindAnyObjectByType<ScreenFlash>();
     }
 
 
 
-    void Damage(int damage)
+    void ShakeCameraOnHit()
     {
         if ( Shaker != null )
         {
             Shaker.ShakeCamera(3f, 0.3f);
+            StartCoroutine(ScreenFlash.SetColorToRed());
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
-        if (other.gameObject.CompareTag("Player"))
+        if (other.TryGetComponent<Entity>(out Entity entity))
         {
-            Debug.Log("Collided with player");
-            Damage(1);
-            Destroy(this.gameObject);
+            entity.Damage(5);
+            ShakeCameraOnHit();
+            Destroy(gameObject,0.4f);
 
         }
         if ( other.gameObject.CompareTag("Wall") )
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
-            Destroy(this.gameObject,0.4f);
+            Destroy(gameObject,0.4f);
         }
     }
 }
