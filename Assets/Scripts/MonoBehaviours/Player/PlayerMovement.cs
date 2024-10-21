@@ -126,7 +126,8 @@ public class PlayerMovement : MonoBehaviour
         else if(isGrounded) //If we were previously grounded we set isgrounded false and start coyote time
         {
             isGrounded = false;
-            StartCoroutine(CoyoteTimeRoutine());
+            if(!isJumping) StartCoroutine(CoyoteTimeRoutine()); //If we have left the ground and we have not jumped -> Coyote time
+
         }
     }
 
