@@ -11,6 +11,14 @@ public class HealthPickUp : MonoBehaviour
     public DialogueManager DialogueManager;
 
     public ScreenFlash ScreenFlash;
+
+    private void Start()
+    {
+        // This finds the components in the scene from gameobjects. Its not necessary to assing them!
+       DialogueManager = FindAnyObjectByType<DialogueManager>();
+       ScreenFlash = FindAnyObjectByType<ScreenFlash>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Entity>(out Entity entity))
