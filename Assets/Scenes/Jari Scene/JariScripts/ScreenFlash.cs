@@ -8,10 +8,6 @@ public class ScreenFlash : MonoBehaviour
 
     public Image Image;
     public float fadeDuration = 1.0f;  
-    private void Start()
-    {   
-        Image = FindAnyObjectByType<Image>();
-    }
 
    public IEnumerator SetColorAlpha()
     {
@@ -53,13 +49,5 @@ public class ScreenFlash : MonoBehaviour
         }
 
         Image.color = new Color(color.r, color.g, color.b, 0f);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            StartCoroutine(SetColorToRed());
-        }
     }
 }
