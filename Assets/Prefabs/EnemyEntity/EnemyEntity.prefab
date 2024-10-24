@@ -222,6 +222,7 @@ MonoBehaviour:
   breakpoint: 0
   Player: {fileID: 0}
   BulletSpawn: {fileID: 3054980723547277970}
+  NavController: {fileID: 0}
   Agent: {fileID: 4158833185382258113}
   EnemyObj: {fileID: 7653766720202916669}
   Bullet: {fileID: 3626157568821188391, guid: cdd3d0b86d260cc4fbd0b04c0708234b, type: 3}
@@ -229,7 +230,7 @@ MonoBehaviour:
   shootingInterval: 1
   DistanceToPlayer: 0
   bulletSpeed: 25
-  nextShotTime: 0.5
+  nextShotTime: 0.2
 --- !u!114 &6274394779615362647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +286,7 @@ MonoBehaviour:
     mode: 0
     blackboard: {fileID: 0}
     key: 
-    constantValue: 0.5
+    constantValue: 2
   randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &6612501695952020779
@@ -331,6 +332,7 @@ GameObject:
   - component: {fileID: 3217192648767143981}
   - component: {fileID: 4158833185382258113}
   - component: {fileID: 7235870815317646435}
+  - component: {fileID: 9197667803099340169}
   m_Layer: 0
   m_Name: EnemyEntity
   m_TagString: Untagged
@@ -485,3 +487,30 @@ MonoBehaviour:
   agent: {fileID: 4158833185382258113}
   EnemyObj: {fileID: 7459022683295406367}
   AgentSpeed: 10
+--- !u!114 &9197667803099340169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459022683295406367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94f78644485c98478d26b0fb766d722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NavController: {fileID: 0}
+  agent: {fileID: 0}
+  Player: {fileID: 0}
+  EnemyObj: {fileID: 0}
+  Bullet: {fileID: 0}
+  BulletSpawn: {fileID: 0}
+  detectionRange: 10
+  fieldOfView: 120
+  bulletSpeed: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0

@@ -12,7 +12,7 @@ public class CustomTask : Leaf
 
     public Transform Player;
     public Transform BulletSpawn;
-
+    [SerializeField] NavAgentController NavController;
     [SerializeField] NavMeshAgent Agent;
     public Transform EnemyObj;
     public GameObject Bullet;
@@ -31,21 +31,12 @@ public class CustomTask : Leaf
             // Check if the player is within shooting range
             if ( DistanceToPlayer <= shootingRange )
             {
-                ShootAtPlayer();
+                NavController.MoveToPlayer( Player );
             }
      
         }
 
         return NodeResult.success;
     }
-    private void ShootAtPlayer()
-    {
-        EnemyObj.transform.LookAt(Player.position);
-        GameObject bulletInstance = Instantiate(Bullet, BulletSpawn.transform.position, Quaternion.identity);
-
-        Vector3 directionToPlayer = (Player.position - transform.position).normalized;
-
-        Rigidbody bulletRb = bulletInstance.GetComponent<Rigidbody>();
-        bulletRb.velocity = directionToPlayer * bulletSpeed;
-    }
+ 
 }
