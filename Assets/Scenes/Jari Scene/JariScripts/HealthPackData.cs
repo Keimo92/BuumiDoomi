@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Healing", menuName = "ScriptableObjects/HealthPacks")]
-public class HealthPack : ScriptableObject
+public class HealthPackData : ScriptableObject
 {
     public int healingAmount;
-    public string[] HealthPackInfo;
 }

@@ -4,34 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem.XInput;
 
-public class HealthPickUp : MonoBehaviour
+public class HealthPickUp : Pickupable
 {
-    public HealthPack Healthpack;
+    public HealthPackData healthPack;
 
-    public DialogueManager DialogueManager;
-
-    public ScreenFlash ScreenFlash;
-
-    private void Start()
+    public override void OnPickup(Entity entity)
     {
-        // This finds the components in the scene from gameobjects. Its not necessary to assing them!
-        DialogueManager = FindAnyObjectByType<DialogueManager>();
-        ScreenFlash = FindAnyObjectByType<ScreenFlash>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if ( other.TryGetComponent<Entity>(out Entity entity) )
-        {
-            if ( entity.CurrentHealth < 100 )
-            {
-                entity.AddHealth(Healthpack.healingAmount);
-                DialogueManager.StartHealthPackInfo(Healthpack);
-                StartCoroutine(ScreenFlash.SetColorAlpha());
-                Destroy(gameObject, 0.3f);
-
-            }
-
-        }
+        base.OnPickup(entity);
+        entity.AddHealth(healthPack.healingAmount);
+        Destroy(gameObject, 0.3f);
     }
 }

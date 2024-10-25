@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
     public float clearTextDelay = 2.0f; 
 
     private Queue<string> dialogueQueue;
-    private bool isHealthPackInfo = false; 
+    private bool autoSkip = false; 
 
     private void Start()
     {
@@ -20,23 +20,10 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueData dialogueData)
     {
-        isHealthPackInfo = false;
+        autoSkip = dialogueData.autoSkip;
         dialogueQueue.Clear();
 
         foreach (string line in dialogueData.dialogueLines)
-        {
-            dialogueQueue.Enqueue(line);
-        }
-
-        DisplayNextLine();
-    }
-
-    public void StartHealthPackInfo(HealthPack health)
-    {
-        isHealthPackInfo = true;
-        dialogueQueue.Clear();
-
-        foreach (string line in health.HealthPackInfo)
         {
             dialogueQueue.Enqueue(line);
         }
@@ -66,7 +53,7 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
 
-        if (isHealthPackInfo)
+        if (autoSkip)
         {
             yield return new WaitForSeconds(1.0f);
             DisplayNextLine();

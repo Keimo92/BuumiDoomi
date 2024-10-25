@@ -8,6 +8,7 @@ public class EnemyBullet : MonoBehaviour
     ICameraShaker Shaker;
     ScreenFlash ScreenFlash;
     Entity Player;
+    public Entity.EntityMask entityMask;
     private void Start()
     {
         Shaker = FindObjectOfType<CameraController>();
@@ -21,7 +22,7 @@ public class EnemyBullet : MonoBehaviour
         if ( Shaker != null )
         {
             Shaker.ShakeCamera(3f, 0.3f);
-            StartCoroutine(ScreenFlash.SetColorToRed());
+            //StartCoroutine(ScreenFlash.SetColorToRed());
         }
     }
 
@@ -29,9 +30,13 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.TryGetComponent<Entity>(out Entity entity))
         {
-            entity.Damage(5);
-            ShakeCameraOnHit();
-            Destroy(gameObject,0.4f);
+            if(entityMask.HasFlag(entity.entityType))
+            {
+                entity.Damage(5);
+                ShakeCameraOnHit();
+                Destroy(gameObject,0.4f);
+            }
+
 
         }
         if ( other.gameObject.CompareTag("Wall") )
