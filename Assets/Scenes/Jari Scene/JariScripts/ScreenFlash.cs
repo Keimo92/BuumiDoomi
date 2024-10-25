@@ -5,49 +5,30 @@ using UnityEngine.UI;
 
 public class ScreenFlash : MonoBehaviour
 {
+    public Image screenFlashImage;
 
-    public Image Image;
-    public float fadeDuration = 1.0f;  
-
-   public IEnumerator SetColorAlpha()
+    public IEnumerator FlashColorRoutine(Color color, float duration)
     {
-        Debug.Log("Setting starts");
-        Color color = Color.green;
-        Image.color = color; 
-
-        float elapsedTime = 0f; 
-
-        while (elapsedTime < fadeDuration)
-        {
-            
-            elapsedTime += Time.deltaTime; 
-            float alpha = Mathf.Lerp(0.3f, 0.0f, elapsedTime / fadeDuration); 
-
-            Image.color = new Color(color.r, color.g, color.b, alpha); 
-
-            yield return null; // Wait for the next frame
-        }
-
-        Image.color = new Color(color.r, color.g, color.b, 0f);
-    }
-    public IEnumerator SetColorToRed()
-    {
-        Color color = Color.red;
-        Image.color = color;
+        screenFlashImage.color = color;
 
         float elapsedTime = 0f;
 
-        while (elapsedTime < fadeDuration)
+        while (elapsedTime < duration)
         {
 
             elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(0.3f, 0.0f, elapsedTime / fadeDuration);
+            float alpha = Mathf.Lerp(0.3f, 0.0f, elapsedTime / duration);
 
-            Image.color = new Color(color.r, color.g, color.b, alpha);
+            screenFlashImage.color = new Color(color.r, color.g, color.b, alpha);
 
             yield return null; // Wait for the next frame
         }
 
-        Image.color = new Color(color.r, color.g, color.b, 0f);
+        screenFlashImage.color = new Color(color.r, color.g, color.b, 0f);
+    }
+
+    public void FlashColor(Color color, float duration)
+    {
+        StartCoroutine(FlashColorRoutine(color, duration));
     }
 }
