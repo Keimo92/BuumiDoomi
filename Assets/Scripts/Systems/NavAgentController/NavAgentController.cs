@@ -10,10 +10,18 @@ public class NavAgentController : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject EnemyObj;
     [SerializeField] float AgentSpeed = 10f;
+    [SerializeField] ExampleEntity ExampleEntity;
+    [SerializeField] private Transform PlayerPosition;
+    [SerializeField] private EntityFov Fov;
+
+    public float AggroTime;
+
+    //public bool HasTakenDamage = false;
 
     private void Start()
     {
         if (agent == null) agent = GetComponent<NavMeshAgent>();
+        //HasTakenDamage = false;
     }
     
     public void MoveToPosition(Vector3 position)
@@ -36,5 +44,22 @@ public class NavAgentController : MonoBehaviour
     {
         float step = AgentSpeed * Time.deltaTime; 
         EnemyObj.transform.position = Vector3.MoveTowards(transform.position, playerPos.position, step);
+    }
+
+    private void Update()
+    {
+        if ( ExampleEntity.HasTakenDamage )
+        {
+           StartCoroutine(AggroCoroutine());
+        }
+    }
+
+    private IEnumerator AggroCoroutine()
+    {
+        //TODO:  Fix Aggro time
+        MoveToPlayer(PlayerPosition);
+        Fov.ShootAtPlayer();
+        yield return new WaitForSeconds(AggroTime);
+        ExampleEntity.HasTakenDamage = false;
     }
 }

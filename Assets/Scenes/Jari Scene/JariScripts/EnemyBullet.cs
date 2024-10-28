@@ -22,7 +22,6 @@ public class EnemyBullet : MonoBehaviour
         if ( Shaker != null )
         {
             Shaker.ShakeCamera(3f, 0.3f);
-            //StartCoroutine(ScreenFlash.SetColorToRed());
         }
     }
 
@@ -35,6 +34,7 @@ public class EnemyBullet : MonoBehaviour
                 entity.Damage(5);
                 ShakeCameraOnHit();
                 Destroy(gameObject,0.4f);
+                ScreenFlash.FlashColor(Color.red, 0.2f);
             }
 
 

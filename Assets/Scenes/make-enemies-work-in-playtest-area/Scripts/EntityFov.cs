@@ -91,7 +91,7 @@ public class EntityFov : MonoBehaviour
             
             lastShootTime = Time.time;
 
-            
+            //TODO: This needs to have smoother transform! Slerp?
             EnemyObj.transform.LookAt(Player.position);
 
            
