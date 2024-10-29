@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Input")]
     [SerializeField] float jumpCoyoteTime;
 
+    [Header("Animations")]
+    [SerializeField] Animator weaponHolderAnimator;
+
     [Header("Debug")]
     [SerializeField] Vector2 moveInput;
     [SerializeField] Vector3 velocity;
@@ -39,10 +42,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        controller = GetComponent<CharacterController>();
+    }
+
+    private void OnEnable()
+    {
         InputManager.Instance.onMoveChanged += OnMoveChanged;
         InputManager.Instance.onJumpPressed += OnJumpPressed;
+    }
 
-        controller = GetComponent<CharacterController>();
+    private void OnDisable()
+    {
+        InputManager.Instance.onMoveChanged -= OnMoveChanged;
+        InputManager.Instance.onJumpPressed -= OnJumpPressed;
     }
 
     private void OnMoveChanged(Vector2 _moveInput)
@@ -66,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
         CalculateHorizontalVelocity();
         CalculateVerticalVelocity();
 
-        //velocity += externalVelocity;
         velocity += horizontalVelocity;
         velocity.y += verticalVelocity;
         controller.Move(velocity * Time.deltaTime + externalMovement);

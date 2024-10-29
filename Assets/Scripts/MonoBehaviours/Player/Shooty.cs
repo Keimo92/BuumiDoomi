@@ -29,11 +29,11 @@ public class Shooty : MonoBehaviour
     [SerializeField] private Transform weaponMuzzle;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Animator gunAnimator;
+    [SerializeField] private Animator weaponHolderAnimator;
     //For the shooting sounds.
     //public AudioSource weaponSoundSource;
     private RaycastHit target;
     private float timer;
-
 
     public enum GunType
     {
@@ -47,6 +47,23 @@ public class Shooty : MonoBehaviour
     void Start()
     {
         AmmoCount = 200;
+    }
+
+    private void OnEnable()
+    {
+        InputManager.Instance.onMoveChanged += OnMoveChanged;
+    }
+
+    private void OnMoveChanged(Vector2 _moveInput)
+    {
+        if(_moveInput != Vector2.zero)
+        {
+            weaponHolderAnimator.SetBool("Moving", true);
+        }
+        else
+        {
+            weaponHolderAnimator.SetBool("Moving", false);
+        }
     }
 
     // Update is called once per frame
@@ -93,7 +110,6 @@ public class Shooty : MonoBehaviour
         {
             StartCoroutine(Reload());
         }
-
     }
 
     private void Shoot()
