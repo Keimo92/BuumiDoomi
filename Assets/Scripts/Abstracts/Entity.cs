@@ -12,7 +12,9 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] float currentHealth; //Will be overridden by maxHealth on Start()
     [SerializeField] float maxHealth;
     [SerializeField] MeshRenderer entityGfx;
+    [SerializeField] EntityFov EntityFov;
     public EntityMask entityType; //Holds the entity type so we can filter entities based on the type. DON'T SET MULTIPLE TYPES OTHERWISE THIS WONT WORK CORRECTLY
+
 
     [Header("On Death Instantiated Prefabs")]
     [SerializeField] List<GameObject> onDeathPrefabs = new List<GameObject>();
@@ -45,6 +47,15 @@ public abstract class Entity : MonoBehaviour
         if(entityGfx == null)
         {
             entityGfx = GetComponent<MeshRenderer>();
+        }
+
+        if ( EntityFov == null )
+        {
+            EntityFov = GetComponent<EntityFov>();
+        }
+        else
+        {
+            Debug.LogWarning("EntityFov has not been assigned");
         }
     }
 
@@ -105,5 +116,10 @@ public abstract class Entity : MonoBehaviour
     {
         get { return currentHealth; }
         set { currentHealth = value; }
+    }
+
+    public virtual void AggressiveState()
+    {
+        EntityFov.detectionRange = 150;
     }
 }

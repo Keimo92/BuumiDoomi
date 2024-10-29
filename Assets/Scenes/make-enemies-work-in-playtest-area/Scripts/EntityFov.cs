@@ -24,7 +24,7 @@ public class EntityFov : MonoBehaviour
     public LayerMask obstacleMask;
     public LayerMask playerMask;
 
-    private bool playerInSight;
+    public bool playerInSight;
 
     void Start()
     {
@@ -40,6 +40,7 @@ public class EntityFov : MonoBehaviour
         {
             ShootAtPlayer();
         }
+
     }
 
     void CheckPlayerInSight()

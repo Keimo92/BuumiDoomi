@@ -13,5 +13,6 @@ public class ExampleEntity : Entity
     {
         base.Damage(damage);
         HasTakenDamage = true;
+        AggressiveState();
     }
 }
