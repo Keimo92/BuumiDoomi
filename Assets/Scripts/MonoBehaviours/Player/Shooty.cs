@@ -49,23 +49,6 @@ public class Shooty : MonoBehaviour
         AmmoCount = 200;
     }
 
-    private void OnEnable()
-    {
-        InputManager.Instance.onMoveChanged += OnMoveChanged;
-    }
-
-    private void OnMoveChanged(Vector2 _moveInput)
-    {
-        if(_moveInput != Vector2.zero)
-        {
-            weaponHolderAnimator.SetBool("Moving", true);
-        }
-        else
-        {
-            weaponHolderAnimator.SetBool("Moving", false);
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
