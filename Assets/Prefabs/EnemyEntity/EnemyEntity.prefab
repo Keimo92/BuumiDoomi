@@ -491,8 +491,8 @@ MonoBehaviour:
   ExampleEntity: {fileID: 0}
   PlayerPosition: {fileID: 0}
   Fov: {fileID: 0}
-  AggroTime: 0
-  ResetAggro: 0
+  AggroTime: 5
+  ResetAggro: 10
 --- !u!114 &9197667803099340169
 MonoBehaviour:
   m_ObjectHideFlags: 0
