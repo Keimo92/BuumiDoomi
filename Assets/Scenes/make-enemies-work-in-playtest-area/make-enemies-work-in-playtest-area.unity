@@ -178183,10 +178183,6 @@ PrefabInstance:
       propertyPath: visionBlockLayer.m_Bits
       value: 192
       objectReference: {fileID: 0}
-    - target: {fileID: 6020635897409773854, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6612501695952020779, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: rect.x
       value: 600
@@ -178342,8 +178338,17 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4195768090943356266, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
     - {fileID: 9197667803099340169, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 6020635897409773854, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    - {fileID: 1349916174204933379, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    - {fileID: 7043621440280461977, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    - {fileID: 6099354940792104602, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    - {fileID: 2453755456432085380, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    - {fileID: 3786522947029861811, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    - {fileID: 4484660653541923552, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    - {fileID: 6856287748459647531, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    - {fileID: 6274394779615362647, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    - {fileID: 9162806684741999718, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    - {fileID: 6612501695952020779, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}

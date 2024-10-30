@@ -25,298 +25,12 @@ Transform:
   m_GameObject: {fileID: 4527006242752851873}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35000002, y: 0.296, z: 1.48}
+  m_LocalPosition: {x: 0, y: 0.296, z: 0}
   m_LocalScale: {x: 0.10390927, y: 0.112, z: 0.7580563}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7653766720202916669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6020635897409773854
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 43697846285403713}
-  - component: {fileID: 1349916174204933379}
-  - component: {fileID: 7043621440280461977}
-  - component: {fileID: 6099354940792104602}
-  - component: {fileID: 2453755456432085380}
-  - component: {fileID: 3786522947029861811}
-  - component: {fileID: 4484660653541923552}
-  - component: {fileID: 6856287748459647531}
-  - component: {fileID: 6274394779615362647}
-  - component: {fileID: 9162806684741999718}
-  - component: {fileID: 6612501695952020779}
-  m_Layer: 0
-  m_Name: BehaviorTree
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &43697846285403713
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.74, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7653766720202916669}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1349916174204933379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 6856287748459647531}
-  repeatOnFinish: 0
-  maxExecutionsPerTick: 1000
-  parent: {fileID: 0}
---- !u!114 &7043621440280461977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056841afaed742d4e909e76361b5173f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Repeater
-  rect:
-    serializedVersion: 2
-    x: 400
-    y: 240
-    width: 160
-    height: 45
-  parent: {fileID: 6099354940792104602}
-  children:
-  - {fileID: 2453755456432085380}
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  loops: 1
-  infinite: 1
-  breakOnFailure: 0
---- !u!114 &6099354940792104602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 538645f2f9090fd43bc6154b2e89e2d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Root
-  rect:
-    serializedVersion: 2
-    x: 400
-    y: 140
-    width: 160
-    height: 45
-  parent: {fileID: 0}
-  children:
-  - {fileID: 7043621440280461977}
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
---- !u!114 &2453755456432085380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Sequence
-  rect:
-    serializedVersion: 2
-    x: 400
-    y: 300
-    width: 160
-    height: 45
-  parent: {fileID: 7043621440280461977}
-  children:
-  - {fileID: 9162806684741999718}
-  - {fileID: 6274394779615362647}
-  - {fileID: 6856287748459647531}
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  random: 0
---- !u!114 &3786522947029861811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b2217e4d35c0c94ea02cf2166c17e4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  variables: []
-  masterBlackboard: {fileID: 0}
---- !u!114 &4484660653541923552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e5f392bbea2fa2499665ed8b604ff86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monoBehaviourTree: {fileID: 1349916174204933379}
---- !u!114 &6856287748459647531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d01c734c8613d478e15db0b05c7a25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: EnemyShootPlayer
-  rect:
-    serializedVersion: 2
-    x: 580
-    y: 380
-    width: 160
-    height: 45
-  parent: {fileID: 2453755456432085380}
-  children: []
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  Player: {fileID: 0}
-  BulletSpawn: {fileID: 3054980723547277970}
-  NavController: {fileID: 0}
-  Agent: {fileID: 4158833185382258113}
-  EnemyObj: {fileID: 7653766720202916669}
-  Bullet: {fileID: 3626157568821188391, guid: cdd3d0b86d260cc4fbd0b04c0708234b, type: 3}
-  shootingRange: 25
-  shootingInterval: 1
-  DistanceToPlayer: 0
-  bulletSpeed: 25
-  nextShotTime: 0.2
---- !u!114 &6274394779615362647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 364199156ca363645830a5bb70de1b42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: EnemyRoamRandomPos
-  rect:
-    serializedVersion: 2
-    x: 400
-    y: 380
-    width: 160
-    height: 45
-  parent: {fileID: 2453755456432085380}
-  children: []
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  NavController: {fileID: 7235870815317646435}
-  RoamRadius: 30
---- !u!114 &9162806684741999718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58fe7bc6a9b18e148b82820c7c1c0a90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Wait
-  rect:
-    serializedVersion: 2
-    x: 240
-    y: 380
-    width: 160
-    height: 45
-  parent: {fileID: 2453755456432085380}
-  children: []
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  time:
-    useConstant: 1
-    mode: 0
-    blackboard: {fileID: 0}
-    key: 
-    constantValue: 2
-  randomDeviation: 0
-  continueOnRestart: 0
---- !u!114 &6612501695952020779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6020635897409773854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90f1bc3361cd0604cb8e2f3a84773d4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: MoveTowardsPlayer
-  rect:
-    serializedVersion: 2
-    x: 540
-    y: 500
-    width: 160
-    height: 45
-  parent: {fileID: 0}
-  children: []
-  behaviourTree: {fileID: 0}
-  runtimePriority: 0
-  breakpoint: 0
-  NavController: {fileID: 7235870815317646435}
-  PlayerPos: {fileID: 0}
-  EnemyObj: {fileID: 7653766720202916669}
-  shootingRange: 15
 --- !u!1 &7459022683295406367
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +46,6 @@ GameObject:
   - component: {fileID: 3217192648767143981}
   - component: {fileID: 4158833185382258113}
   - component: {fileID: 7235870815317646435}
-  - component: {fileID: 9197667803099340169}
   m_Layer: 0
   m_Name: EnemyEntity
   m_TagString: Untagged
@@ -348,12 +61,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7459022683295406367}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.714031, y: 0.2403514, z: 12.95921}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 43697846285403713}
   - {fileID: 3054980723547277970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -444,13 +156,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 20
-  entityGfx: {fileID: 0}
-  EntityFov: {fileID: 0}
-  entityType: 0
+  entityGfx: {fileID: 2487921532456177461}
+  entityType: 1
   onDeathPrefabs:
   - {fileID: 4527006242752851873}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
   onHitMaterialTime: 0.2
+  playerEntity: {fileID: 0}
+  detectionRadius: 20
+  bulletPf: {fileID: 3626157568821188391, guid: cdd3d0b86d260cc4fbd0b04c0708234b, type: 3}
+  bulletSpawn: {fileID: 3054980723547277970}
+  shootDelay: 2
+  bulletSpeed: 25
+  deAggroTime: 5
+  enemyState: 1
 --- !u!195 &4158833185382258113
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -486,39 +205,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4158833185382258113}
-  EnemyObj: {fileID: 7459022683295406367}
-  AgentSpeed: 10
-  ExampleEntity: {fileID: 0}
-  PlayerPosition: {fileID: 0}
-  Fov: {fileID: 0}
-  AggroTime: 5
-  ResetAggro: 10
---- !u!114 &9197667803099340169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7459022683295406367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f94f78644485c98478d26b0fb766d722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NavController: {fileID: 0}
-  agent: {fileID: 0}
-  Player: {fileID: 0}
-  EnemyObj: {fileID: 0}
-  Bullet: {fileID: 0}
-  BulletSpawn: {fileID: 0}
-  detectionRange: 10
-  fieldOfView: 120
-  shootCooldown: 1
-  bulletSpeed: 0
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  playerInSight: 0
+  AgentSpeed: 5
