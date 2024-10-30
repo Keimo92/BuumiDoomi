@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14707,7 +14707,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1340302061}
+  m_Mesh: {fileID: 2092829516}
 --- !u!33 &128694827
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -62024,7 +62024,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1148414646}
+  m_Mesh: {fileID: 658235904}
 --- !u!33 &651425697
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -72697,7 +72697,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1625252413}
+  m_Mesh: {fileID: 1549695807}
 --- !u!33 &819831528
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -99828,7 +99828,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1833207084}
+  m_Mesh: {fileID: 1340302061}
 --- !u!33 &1133241400
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -123791,7 +123791,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 130784252}
+  m_Mesh: {fileID: 1763830348}
 --- !u!33 &1270949791
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -125807,7 +125807,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 413757008}
+  m_Mesh: {fileID: 985865211}
 --- !u!33 &1283530409
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -148786,7 +148786,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1148414646}
+  m_Mesh: {fileID: 413757008}
 --- !u!33 &1533593468
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -151454,7 +151454,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 413757008}
+  m_Mesh: {fileID: 2053555734}
 --- !u!33 &1538260460
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -199396,7 +199396,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2092829516}
+  m_Mesh: {fileID: 979533939}
 --- !u!33 &1955041515
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -202549,7 +202549,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 985865211}
+  m_Mesh: {fileID: 510740019}
 --- !u!33 &1961893901
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -224545,6 +224545,10 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 41246040}
+    - target: {fileID: 3736393157402188579, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      propertyPath: roofCheckLength
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 4924087106482084766, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
       propertyPath: m_Name
       value: Player
