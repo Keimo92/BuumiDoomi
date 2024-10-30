@@ -12,7 +12,6 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] float currentHealth; //Will be overridden by maxHealth on Start()
     [SerializeField] float maxHealth;
     [SerializeField] MeshRenderer entityGfx;
-    [SerializeField] EntityFov EntityFov;
     public EntityMask entityType; //Holds the entity type so we can filter entities based on the type. DON'T SET MULTIPLE TYPES OTHERWISE THIS WONT WORK CORRECTLY
 
 
@@ -48,15 +47,6 @@ public abstract class Entity : MonoBehaviour
         {
             entityGfx = GetComponent<MeshRenderer>();
         }
-
-        if ( EntityFov == null )
-        {
-            EntityFov = GetComponent<EntityFov>();
-        }
-        else
-        {
-            Debug.LogWarning("EntityFov has not been assigned");
-        }
     }
 
     //Damage function. Called by other scripts when they want to deal damage to entity.
@@ -89,6 +79,15 @@ public abstract class Entity : MonoBehaviour
 
     //Health getter function
     public float GetHealth() { return currentHealth; }
+    public void AddHealth(float amount)
+    {
+        currentHealth += amount;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
 
     IEnumerator HitMaterialEnable()
     {
@@ -101,25 +100,5 @@ public abstract class Entity : MonoBehaviour
         materials.Remove(onHitMaterial);
         OnHitMaterialEnabled = false;
         entityGfx.materials = materials.ToArray();
-    }
-
-    public virtual void AddHealth(float health)
-    {
-        currentHealth += health;
-
-        if ( currentHealth > maxHealth )
-        {
-            currentHealth = 100;
-        }
-    }
-    public float CurrentHealth
-    {
-        get { return currentHealth; }
-        set { currentHealth = value; }
-    }
-
-    public virtual void AggressiveState()
-    {
-        EntityFov.detectionRange = 150;
     }
 }
