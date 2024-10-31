@@ -5,15 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class PlayerEntity : Entity
 {
+    ScreenFlash screenFlash;
+    public bool IsAlive;
     
     public override void Kill()
     {
-        //This needs to be fixed ASAP. I keep close eye on you you mmhhmh
-       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+       IsAlive = false;
+       screenFlash.FadeToBlack();
+       StartCoroutine(ResetLevel());
     }
 
     private void Start()
     {
+        IsAlive = true;
+        screenFlash = FindAnyObjectByType<ScreenFlash>();
         base.GetHealth();
+    }
+
+    // This just testing purposes only.
+    IEnumerator ResetLevel()
+    {
+        yield return new WaitForSeconds(10);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
