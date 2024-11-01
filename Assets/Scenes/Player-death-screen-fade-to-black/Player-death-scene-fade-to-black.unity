@@ -2215,6 +2215,10 @@ PrefabInstance:
       propertyPath: resetTime
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7033691762434821950, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      propertyPath: resetSceneTime
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
