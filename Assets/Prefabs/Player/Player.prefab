@@ -303,6 +303,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 115
   jumpCoyoteTime: 0.2
+  weaponHolderAnimator: {fileID: 5370951813572873668}
   moveInput: {x: 0, y: 0}
   velocity: {x: 0, y: 0, z: 0}
   horizontalVelocity: {x: 0, y: 0, z: 0}
@@ -342,6 +343,7 @@ MonoBehaviour:
   weaponMuzzle: {fileID: 4448735376035903253}
   muzzleFlash: {fileID: 5530413171097351562, guid: a51926c8157180f48870b3b07ec7a5e5, type: 3}
   gunAnimator: {fileID: 2302607194425964921}
+  weaponHolderAnimator: {fileID: 5370951813572873668}
 --- !u!114 &7033691762434821950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3379868863904235535}
+  - component: {fileID: 5370951813572873668}
   m_Layer: 7
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -417,13 +420,34 @@ Transform:
   m_GameObject: {fileID: 6172110602660828463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.53, y: -0.44, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8933510375816283406}
   m_Father: {fileID: 5909402380436568586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &5370951813572873668
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6172110602660828463}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6a058333f0b7c9f4ba8ca91a1dbcb82b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2090948542622443764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -432,6 +456,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3379868863904235535}
     m_Modifications:
+    - target: {fileID: 211681913568825741, guid: 4fa50f0080eb8c749b8ea8e706992712, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4377087803160081914, guid: 4fa50f0080eb8c749b8ea8e706992712, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -450,15 +478,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7421578993119948282, guid: 4fa50f0080eb8c749b8ea8e706992712, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.735
       objectReference: {fileID: 0}
     - target: {fileID: 7421578993119948282, guid: 4fa50f0080eb8c749b8ea8e706992712, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.256
       objectReference: {fileID: 0}
     - target: {fileID: 7421578993119948282, guid: 4fa50f0080eb8c749b8ea8e706992712, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7421578993119948282, guid: 4fa50f0080eb8c749b8ea8e706992712, type: 3}
       propertyPath: m_LocalRotation.w
