@@ -14,6 +14,7 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] MeshRenderer entityGfx;
     public EntityMask entityType; //Holds the entity type so we can filter entities based on the type. DON'T SET MULTIPLE TYPES OTHERWISE THIS WONT WORK CORRECTLY
 
+
     [Header("On Death Instantiated Prefabs")]
     [SerializeField] List<GameObject> onDeathPrefabs = new List<GameObject>();
 
@@ -78,6 +79,15 @@ public abstract class Entity : MonoBehaviour
 
     //Health getter function
     public float GetHealth() { return currentHealth; }
+    public void AddHealth(float amount)
+    {
+        currentHealth += amount;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
 
     IEnumerator HitMaterialEnable()
     {
@@ -90,20 +100,5 @@ public abstract class Entity : MonoBehaviour
         materials.Remove(onHitMaterial);
         OnHitMaterialEnabled = false;
         entityGfx.materials = materials.ToArray();
-    }
-
-    public virtual void AddHealth(float health)
-    {
-        currentHealth += health;
-
-        if ( currentHealth > maxHealth )
-        {
-            currentHealth = 100;
-        }
-    }
-    public float CurrentHealth
-    {
-        get { return currentHealth; }
-        set { currentHealth = value; }
     }
 }

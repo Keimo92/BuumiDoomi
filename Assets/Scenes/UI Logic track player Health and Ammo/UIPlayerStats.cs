@@ -21,7 +21,6 @@ public class UIPlayerStats : MonoBehaviour
 
     private void Update()
     {
-        // Safely access the health value through the public property
         if (Player != null)
         {
             Health.text = "Health = " + Player.GetHealth().ToString();

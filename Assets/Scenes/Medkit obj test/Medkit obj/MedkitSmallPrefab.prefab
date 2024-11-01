@@ -78,6 +78,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f6e0cbbd5adffea46bab07fab360650e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4445769922894823627}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f6e0cbbd5adffea46bab07fab360650e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8651390424017686437}
   m_SourcePrefab: {fileID: 100100000, guid: f6e0cbbd5adffea46bab07fab360650e, type: 3}
 --- !u!1 &4098550315174023361 stripped
 GameObject:
@@ -117,6 +120,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6541cf940abd868488b810af0bc5c15a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Healthpack: {fileID: 11400000, guid: 158b07ea351d57a4e9e6fada934fa395, type: 2}
-  DialogueManager: {fileID: 0}
-  ScreenFlash: {fileID: 0}
+  screenFlash: 0
+  screenFlashColor: {r: 0, g: 0, b: 0, a: 0}
+  screenFlashDuration: 0
+  pickupDialogue: 0
+  onPickupDialogueData: {fileID: 11400000, guid: 98c67299ee88c9f44b89a9ff8e1c7358, type: 2}
+  healthPack: {fileID: 11400000, guid: 158b07ea351d57a4e9e6fada934fa395, type: 2}
+--- !u!54 &8651390424017686437
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4098550315174023361}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

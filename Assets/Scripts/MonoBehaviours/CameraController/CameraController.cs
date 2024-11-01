@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour, ICameraShaker
         cinemachinePerlin.m_AmplitudeGain = 0f;
     }
 
+
     // Implementation of the ShakeCamera method from ICameraShake
     public void ShakeCamera(float intensity, float duration)
     {
