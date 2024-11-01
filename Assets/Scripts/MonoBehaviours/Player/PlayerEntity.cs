@@ -9,8 +9,7 @@ public class PlayerEntity : Entity
     public bool IsAlive;
 
     //Testing purposes only. Will remove this after review.
-    public float resetTime;
-    
+    public float resetSceneTime;
     public override void Kill()
     {
        IsAlive = false;
@@ -28,7 +27,7 @@ public class PlayerEntity : Entity
     // This just testing purposes only.
     IEnumerator ResetLevel()
     {
-        yield return new WaitForSeconds(resetTime);
+        yield return new WaitForSeconds(resetSceneTime);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
