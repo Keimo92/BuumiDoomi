@@ -7,6 +7,9 @@ public class PlayerEntity : Entity
 {
     ScreenFlash screenFlash;
     public bool IsAlive;
+
+    //Testing purposes only. Will remove this after review.
+    public float resetTime;
     
     public override void Kill()
     {
@@ -25,7 +28,7 @@ public class PlayerEntity : Entity
     // This just testing purposes only.
     IEnumerator ResetLevel()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(resetTime);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
