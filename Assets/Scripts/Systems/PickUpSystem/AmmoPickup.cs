@@ -9,7 +9,7 @@ public class AmmoPickup : Pickupable
     public override void OnPickup(Entity entity)
     {
         PlayerWeapon weapon = entity.GetComponent<PlayerWeapon>();
-        weapon.AmmoCount += ammoData.ammoCount;
+        weapon.ammoCount += ammoData.ammoCount;
         base.OnPickup(entity);
         Destroy(gameObject, 0.3f);
     }

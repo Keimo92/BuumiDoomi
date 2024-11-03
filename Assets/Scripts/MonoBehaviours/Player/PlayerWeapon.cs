@@ -4,36 +4,26 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-
     public GunType gunType;
-    //We'll use these eventually.
-
-    public int AmmoCount;
-    public int MaxAmmoCount = 50;
+    public int ammoCount;
+    public int maxAmmo = 50;
     public int ReloadAmount = 20;
-
-    public KeyCode ShootKey = KeyCode.Mouse0;
-    public bool shooting;
-    public bool allowButtonHold;
     public float fireRate;
-    public float nextShot;
+    public bool allowButtonHold;
     public bool canShoot = true;
     public Entity.EntityMask entityMask;
 
-    public KeyCode ReloadKey = KeyCode.R;
-    public bool reloading;
-
     public GameObject bulletImpact;
     public Camera playerCam;
+    private float nextShot;
+
     [SerializeField] private TrailRenderer bulletTracer;
     [SerializeField] private Transform weaponMuzzle;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Animator gunAnimator;
-    //For the shooting sounds.
-    //public AudioSource weaponSoundSource;
+
     private RaycastHit target;
     private float timer;
-
 
     public enum GunType
     {
@@ -42,103 +32,77 @@ public class PlayerWeapon : MonoBehaviour
         Rifle
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        AmmoCount = MaxAmmoCount;
+        ammoCount = maxAmmo;
+        InputManager.Instance.onShootPressed += OnShootPressed;
+        InputManager.Instance.onReloadActionPressed += OnReloadPressed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnShootPressed()
     {
-        CheckShootInput();
-    }
-
-    void CheckShootInput()
-    {
-
-        /*
-
-         switch(gunType)
-         {
-        case Guntype.Pistol
-        break;
-        case Guntype.Shotgun
-        break;
-        case Guntype.Rifle
-       break;
-         }
-
-         */
-        // Check that ammoCount does not go over maxAmmo
-        if ( AmmoCount > MaxAmmoCount )
-        {
-            AmmoCount = MaxAmmoCount;
-        }
-
-        //"allowButtonHold" will later be used to create automatic guns.
-        if (allowButtonHold) shooting = Input.GetKey(ShootKey);
-        else shooting = Input.GetKeyDown(ShootKey);
-
-        if (shooting && canShoot && !allowButtonHold)
+        if ( canShoot && ammoCount > 0 )
         {
             Shoot();
         }
+    }
 
-        //Swear I'll make these better when we get to making multiple weapons
-        timer += Time.deltaTime;
-        nextShot = 1 / fireRate;
-        if (allowButtonHold && shooting && timer >= nextShot)
-        {
-            Shoot();
-        }
-
-        if (reloading = Input.GetKey(ReloadKey))
+    private void OnReloadPressed()
+    {
+        if ( canShoot )
         {
             StartCoroutine(Reload());
         }
+    }
 
+    private void Update()
+    {
+        timer += Time.deltaTime;
+
+        if( ammoCount > maxAmmo )
+        {
+            ammoCount = maxAmmo;
+        }
+
+        if ( allowButtonHold && InputManager.Instance.shootAction.IsPressed() )
+        {
+            if ( timer >= nextShot )
+            {
+                Shoot();
+            }
+        }
+
+        nextShot = 1 / fireRate;
     }
 
     private void Shoot()
     {
-        //weaponSoundSource.pitch = Random.Range(0.9f, 1.1f);
-        //weaponSoundSource.PlayOneShot(weaponSoundSource.clip);
-
-        if ( AmmoCount > 0 )
+        if ( ammoCount > 0 )
         {
+            gunAnimator.SetTrigger("Fire");
+            Vector3 shootDirection = playerCam.transform.forward;
 
-        //The actual bullet comes straight out of the player's face, Trail itself comes out of the gun.
-        gunAnimator.SetTrigger("Fire");
-        Vector3 shootDirection = playerCam.transform.forward;
-        if (Physics.Raycast(playerCam.transform.position, shootDirection, out target, 200f))
-        {
-            AmmoCount--;
-
-            //We can use this to make bullet holes and such.
-            GameObject bulletImpactLocation = Instantiate(bulletImpact, target.point, Quaternion.LookRotation(Vector3.up, target.normal));
-            Destroy(bulletImpactLocation, 1f);
-            //Creating Muzzle Flash
-            GameObject flash = Instantiate(muzzleFlash, weaponMuzzle);
-            Destroy(flash, 0.1f);
-            //Creating the tracer trail
-            TrailRenderer trail = Instantiate(bulletTracer, weaponMuzzle.transform.position, Quaternion.identity);
-            StartCoroutine(SpawnTrail(trail, target));
-            //Debug stuff
-            Debug.Log("Player shot at: " + target.transform.name);
-            Debug.DrawRay(transform.position, shootDirection * target.distance, Color.green, 1f);
-            if (target.transform.TryGetComponent<Entity>(out Entity entity))
+            if ( Physics.Raycast(playerCam.transform.position, shootDirection, out target, 200f) )
             {
-                if(entityMask.HasFlag(entity.entityType)) entity.Damage(5f);
+                ammoCount--;
+
+                // Instantiate bullet impact and other effects
+                GameObject bulletImpactLocation = Instantiate(bulletImpact, target.point, Quaternion.LookRotation(Vector3.up, target.normal));
+                Destroy(bulletImpactLocation, 1f);
+                GameObject flash = Instantiate(muzzleFlash, weaponMuzzle);
+                Destroy(flash, 0.1f);
+                TrailRenderer trail = Instantiate(bulletTracer, weaponMuzzle.transform.position, Quaternion.identity);
+                StartCoroutine(SpawnTrail(trail, target));
+
+                if ( target.transform.TryGetComponent<Entity>(out Entity entity) )
+                {
+                    if ( entityMask.HasFlag(entity.entityType) ) entity.Damage(5f);
+                }
             }
 
+            timer = 0;
         }
-        timer = 0;
-        }
-
     }
-
 
     IEnumerator Reload()
     {
@@ -147,15 +111,13 @@ public class PlayerWeapon : MonoBehaviour
         yield return new WaitForSeconds(1);
         gunAnimator.SetBool("Reload", false);
         canShoot = true;
-        
-
     }
 
     private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit hit)
     {
         float time = 0;
         Vector3 startPosition = Trail.transform.position;
-        while (time < 1f)
+        while ( time < 1f )
         {
             Trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
             time += Time.deltaTime / Trail.time;
@@ -164,5 +126,4 @@ public class PlayerWeapon : MonoBehaviour
         Trail.transform.position = hit.point;
         Destroy(Trail.gameObject, Trail.time);
     }
-
 }
