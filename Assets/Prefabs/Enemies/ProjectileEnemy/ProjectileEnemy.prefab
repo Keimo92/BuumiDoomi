@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 20
-  entityGfx: {fileID: 8447415272668309278}
+  entityGfx: {fileID: 0}
   entityType: 1
   onDeathPrefabs:
   - {fileID: 4527006242752851873}
@@ -148,7 +148,7 @@ MonoBehaviour:
   detectionRadius: 20
   bulletPf: {fileID: 3626157568821188391, guid: cdd3d0b86d260cc4fbd0b04c0708234b, type: 3}
   bulletSpawn: {fileID: 3054980723547277970}
-  shootDelay: 3
+  shootDelay: 2
   bulletSpeed: 25
   deAggroTime: 5
   animatorOnShootTriggerName: StartShoot
@@ -280,10 +280,5 @@ PrefabInstance:
 --- !u!4 &1777228103268576485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2b329ce0b795fac438b2f150a248941f, type: 3}
-  m_PrefabInstance: {fileID: 2243710664941456142}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &8447415272668309278 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -1578373571446707184, guid: 2b329ce0b795fac438b2f150a248941f, type: 3}
   m_PrefabInstance: {fileID: 2243710664941456142}
   m_PrefabAsset: {fileID: 0}
