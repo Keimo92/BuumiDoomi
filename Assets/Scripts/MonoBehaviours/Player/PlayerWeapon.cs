@@ -2,14 +2,14 @@ using System.Collections;
 using System.Threading;
 using UnityEngine;
 
-public class Shooty : MonoBehaviour
+public class PlayerWeapon : MonoBehaviour
 {
 
     public GunType gunType;
     //We'll use these eventually.
-    
-    public int AmmoCount;
 
+    public int AmmoCount;
+    public int MaxAmmoCount = 50;
     public int ReloadAmount = 20;
 
     public KeyCode ShootKey = KeyCode.Mouse0;
@@ -46,7 +46,7 @@ public class Shooty : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AmmoCount = 200;
+        AmmoCount = MaxAmmoCount;
     }
 
     // Update is called once per frame
@@ -71,6 +71,11 @@ public class Shooty : MonoBehaviour
          }
 
          */
+        // Check that ammoCount does not go over maxAmmo
+        if ( AmmoCount > MaxAmmoCount )
+        {
+            AmmoCount = MaxAmmoCount;
+        }
 
         //"allowButtonHold" will later be used to create automatic guns.
         if (allowButtonHold) shooting = Input.GetKey(ShootKey);

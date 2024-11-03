@@ -10,11 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c5878f1dd7eff0489552b1568cb6910, type: 3}
-  m_Name: Testing2
+  m_Name: AmmoPickUpDialogue
   m_EditorClassIdentifier: 
   dialogueLines:
-  - 'This place is very weird.
-
-'
-  - Haven't seen like this before
-  - Is there a way out of this hell hole?
+  - You got 10 bullets in your pistol
+  autoSkip: 1
