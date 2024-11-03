@@ -6,13 +6,6 @@ using UnityEngine.UI;
 public class ScreenFlash : MonoBehaviour
 {
     public Image screenFlashImage;
-    private PlayerEntity playerEntity;
-
-
-    private void Awake()
-    {
-        playerEntity = FindFirstObjectByType<PlayerEntity>();
-    }
 
     public IEnumerator FlashColorRoutine(Color color, float duration)
     {
@@ -33,7 +26,7 @@ public class ScreenFlash : MonoBehaviour
 
         screenFlashImage.color = new Color(color.r, color.g, color.b, 0f);
     }
-    IEnumerator CoroutineFadeToBlack(float duration)
+    IEnumerator FadeToColorRoutine(Color color, float duration)
     {
         while ( screenFlashImage.color.a < 1 )
         {
@@ -44,23 +37,13 @@ public class ScreenFlash : MonoBehaviour
         yield return null;
     }
 
-    public void FadeToBlack()
+    public void FadeToColor(Color color, float duration)
     {
-        if ( !playerEntity.IsAlive )
-        {
-            StartCoroutine(CoroutineFadeToBlack(1));
-        }
+        StartCoroutine(FadeToColorRoutine(color, duration));
     }
 
     public void FlashColor(Color color, float duration)
     {
-        if ( playerEntity.IsAlive )
-        {
-            StartCoroutine(FlashColorRoutine(color, duration));
-        }
-        else
-        {
-            return;
-        }
+        StartCoroutine(FlashColorRoutine(color, duration));
     }
 }

@@ -301,7 +301,7 @@ MonoBehaviour:
   groundCheckLength: 0.2
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 115
+    m_Bits: 627
   jumpCoyoteTime: 0.2
   moveInput: {x: 0, y: 0}
   velocity: {x: 0, y: 0, z: 0}
@@ -325,6 +325,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunType: 0
+  AmmoCount: 0
+  ReloadAmount: 20
   ShootKey: 323
   shooting: 0
   allowButtonHold: 1
@@ -353,12 +355,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 100
+  maxHealth: 10
   entityGfx: {fileID: 779238894880284942}
   entityType: 2
   onDeathPrefabs: []
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
   onHitMaterialTime: 0.1
+  isAlive: 0
+  onDeathFadeDuration: 2
+  onDamageFlashDuration: 0.2
+  onDeathFadeColor: {r: 0, g: 0, b: 0, a: 0}
+  onDamageFlashColor: {r: 0.7169812, g: 0, b: 0, a: 0}
+  resetSceneTime: 4
 --- !u!1 &5431913496525201725
 GameObject:
   m_ObjectHideFlags: 0
