@@ -36946,6 +36946,40 @@ MonoBehaviour:
       m_Action: Jump
       m_Flags: 0
     m_Flags: 0
+  shootAction:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4f5023c6-36cc-40a9-83ab-738547b75ba3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 67a0c44c-80aa-4025-9886-1b1c0635d632
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
+    m_Flags: 0
+  reloadAction:
+    m_Name: Reload
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9e440149-5433-4738-806a-6765a151274a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: a31a03dc-12a0-4637-83ae-d7cefe2913ce
+      m_Path: <Keyboard>/#(R)
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Reload
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &394674140
 GameObject:
   m_ObjectHideFlags: 0
@@ -57607,6 +57641,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MedkitSmallPrefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4445769922894823627, guid: 1bf7c467e6241214993646fd34a485ec, type: 3}
+      propertyPath: healthPack
+      value: 
+      objectReference: {fileID: 11400000, guid: fbd6d63648336714ca6d86cbc6a3f52f, type: 2}
     - target: {fileID: 4445769922894823627, guid: 1bf7c467e6241214993646fd34a485ec, type: 3}
       propertyPath: screenFlash
       value: 1
@@ -178233,7 +178271,7 @@ PrefabInstance:
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: entityGfx
       value: 
-      objectReference: {fileID: 2021358386}
+      objectReference: {fileID: 0}
     - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: enemyState
       value: 1
@@ -208634,11 +208672,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &2021358386 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2487921532456177461, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
-  m_PrefabInstance: {fileID: 1724336726}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2022242781
 Mesh:
   m_ObjectHideFlags: 0

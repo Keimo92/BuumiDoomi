@@ -29,7 +29,7 @@ public abstract class Pickupable : MonoBehaviour
         //If the player walks on this object -> Do pickup logic
         if(other.TryGetComponent<Entity>(out Entity entity))
         {
-            if(entity.entityType == Entity.EntityMask.Player)
+            if(entity.entityType == Entity.EntityMask.Player )
             {
                 OnPickup(entity);
             }
