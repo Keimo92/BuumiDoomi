@@ -1,11 +1,12 @@
-using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
 
-public class Shooty : MonoBehaviour
+public class PlayerWeapon : MonoBehaviour
 {
     public GunType gunType;
-    public int AmmoCount;
+    public int ammoCount;
+    public int maxAmmo = 50;
     public int ReloadAmount = 20;
     public float fireRate;
     public bool allowButtonHold;
@@ -15,12 +16,12 @@ public class Shooty : MonoBehaviour
     public GameObject bulletImpact;
     public Camera playerCam;
     private float nextShot;
-    
+
     [SerializeField] private TrailRenderer bulletTracer;
     [SerializeField] private Transform weaponMuzzle;
     [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private Animator gunAnimator;
-    
+
     private RaycastHit target;
     private float timer;
 
@@ -33,14 +34,14 @@ public class Shooty : MonoBehaviour
 
     void Start()
     {
-        AmmoCount = 200;
+        ammoCount = maxAmmo;
         InputManager.Instance.onShootPressed += OnShootPressed;
         InputManager.Instance.onReloadActionPressed += OnReloadPressed;
     }
 
     private void OnShootPressed()
     {
-        if ( canShoot && AmmoCount > 0 )
+        if ( canShoot && ammoCount > 0 )
         {
             Shoot();
         }
@@ -58,6 +59,11 @@ public class Shooty : MonoBehaviour
     {
         timer += Time.deltaTime;
 
+        if( ammoCount > maxAmmo )
+        {
+            ammoCount = maxAmmo;
+        }
+
         if ( allowButtonHold && InputManager.Instance.shootAction.IsPressed() )
         {
             if ( timer >= nextShot )
@@ -71,14 +77,14 @@ public class Shooty : MonoBehaviour
 
     private void Shoot()
     {
-        if ( AmmoCount > 0 )
+        if ( ammoCount > 0 )
         {
             gunAnimator.SetTrigger("Fire");
             Vector3 shootDirection = playerCam.transform.forward;
 
             if ( Physics.Raycast(playerCam.transform.position, shootDirection, out target, 200f) )
             {
-                AmmoCount--;
+                ammoCount--;
 
                 // Instantiate bullet impact and other effects
                 GameObject bulletImpactLocation = Instantiate(bulletImpact, target.point, Quaternion.LookRotation(Vector3.up, target.normal));

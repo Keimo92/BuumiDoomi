@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueLines:
   - Healed 75
-  AutoSkip: 1
+  autoSkip: 1

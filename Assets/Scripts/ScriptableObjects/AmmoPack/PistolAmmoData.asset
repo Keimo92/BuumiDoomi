@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c5878f1dd7eff0489552b1568cb6910, type: 3}
-  m_Name: Testing
+  m_Script: {fileID: 11500000, guid: 4be1980835cd65a4d9b41781a380c243, type: 3}
+  m_Name: PistolAmmoData
   m_EditorClassIdentifier: 
-  dialogueLines:
-  - This is very bloody medkit
-  - Is this safe to use?
-  - Would i get infection of it?
+  ammoCount: 10
