@@ -11,7 +11,7 @@ public abstract class Entity : MonoBehaviour
     [Header("Basic Setup")]
     [SerializeField] float currentHealth; //Will be overridden by maxHealth on Start()
     [SerializeField] float maxHealth;
-    [SerializeField] MeshRenderer entityGfx;
+    [SerializeField] Renderer entityGfx;
     public EntityMask entityType; //Holds the entity type so we can filter entities based on the type. DON'T SET MULTIPLE TYPES OTHERWISE THIS WONT WORK CORRECTLY
 
 
@@ -45,7 +45,7 @@ public abstract class Entity : MonoBehaviour
         //If mesh renderer is not set. Then try to get it from current gameobject
         if(entityGfx == null)
         {
-            entityGfx = GetComponent<MeshRenderer>();
+            entityGfx = GetComponentInChildren<MeshRenderer>();
         }
     }
 
@@ -62,8 +62,6 @@ public abstract class Entity : MonoBehaviour
             currentHealth = 0;
             Kill();
         }
-
-        
     }
 
     //Kill function. Can be also called by other scripts if we want to kill this entity.

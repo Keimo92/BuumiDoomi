@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.color = Color.red;
         }
         if(groundCheckPosition != null) Gizmos.DrawRay(groundCheckPosition.position, Vector3.down * groundCheckLength);
-        if (roofCheckLength != null) Gizmos.DrawRay(roofCheckPosition.position, Vector3.up * roofCheckLength);
+        if (roofCheckPosition != null) Gizmos.DrawRay(roofCheckPosition.position, Vector3.up * roofCheckLength);
     }
         
 }
