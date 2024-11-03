@@ -22,7 +22,6 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] Material onHitMaterial;
     [SerializeField] private float onHitMaterialTime;
     protected bool OnHitMaterialEnabled = false;
-
     [System.Flags]
     public enum EntityMask
     {

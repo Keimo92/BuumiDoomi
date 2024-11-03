@@ -13,7 +13,7 @@ public class ScreenFlash : MonoBehaviour
 
         float elapsedTime = 0f;
 
-        while (elapsedTime < duration)
+        while ( elapsedTime < duration )
         {
 
             elapsedTime += Time.deltaTime;
@@ -25,6 +25,21 @@ public class ScreenFlash : MonoBehaviour
         }
 
         screenFlashImage.color = new Color(color.r, color.g, color.b, 0f);
+    }
+    IEnumerator FadeToColorRoutine(Color color, float duration)
+    {
+        while ( screenFlashImage.color.a < 1 )
+        {
+            screenFlashImage.color = new Color(0, 0, 0, screenFlashImage.color.a + (Time.deltaTime / duration));
+            yield return null;
+
+        }
+        yield return null;
+    }
+
+    public void FadeToColor(Color color, float duration)
+    {
+        StartCoroutine(FadeToColorRoutine(color, duration));
     }
 
     public void FlashColor(Color color, float duration)
