@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -238,6 +238,46 @@ PrefabInstance:
     - target: {fileID: 264976583994685331, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: shootAction.m_Name
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: reloadAction.m_Name
+      value: Reload
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: reloadAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 334a3f06-d4d1-41c8-be5b-aeda0eda6601
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: reloadAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: aa2a5633-502f-4de8-8131-8b6099567bef
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/leftButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: reloadAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/#(R)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: reloadAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Reload
       objectReference: {fileID: 0}
     - target: {fileID: 5610917267847992446, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
       propertyPath: m_Name
