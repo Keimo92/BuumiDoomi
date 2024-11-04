@@ -1,21 +1,28 @@
 using System.Collections;
-using System.Threading;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
     public GunType gunType;
     public int ammoCount;
-    public int maxAmmo = 50;
+    public int maxAmmo = 100;
     public int ReloadAmount = 20;
-    public float fireRate;
+
+    [Header("Adjust the rate of fire")]
+    [RangeAttribute(1, 10)]
+    public float fireRate; 
+    
     public bool allowButtonHold;
     public bool canShoot = true;
     public Entity.EntityMask entityMask;
 
     public GameObject bulletImpact;
     public Camera playerCam;
-    private float nextShot;
+    private float nextShotTime;
+
+    float minValue;
+    float maxValue;
 
     [SerializeField] private TrailRenderer bulletTracer;
     [SerializeField] private Transform weaponMuzzle;
@@ -34,14 +41,17 @@ public class PlayerWeapon : MonoBehaviour
 
     void Start()
     {
+
         ammoCount = maxAmmo;
         InputManager.Instance.onShootPressed += OnShootPressed;
         InputManager.Instance.onReloadActionPressed += OnReloadPressed;
+
+        nextShotTime = 1f / fireRate; // 1 shot per second for 60 RPM
     }
 
     private void OnShootPressed()
     {
-        if ( canShoot && ammoCount > 0 )
+        if ( canShoot && ammoCount > 0 && timer >= nextShotTime )
         {
             Shoot();
         }
@@ -61,13 +71,11 @@ public class PlayerWeapon : MonoBehaviour
 
         if ( allowButtonHold && InputManager.Instance.shootAction.IsPressed() )
         {
-            if ( timer >= nextShot )
+            if ( timer >= nextShotTime )
             {
                 Shoot();
             }
         }
-
-        nextShot = 1 / fireRate;
     }
 
     private void Shoot()
@@ -121,7 +129,6 @@ public class PlayerWeapon : MonoBehaviour
         Trail.transform.position = hit.point;
         Destroy(Trail.gameObject, Trail.time);
     }
-
     public void AddAmmmo(int ammo)
     {
         if ( ammoCount > ammo)

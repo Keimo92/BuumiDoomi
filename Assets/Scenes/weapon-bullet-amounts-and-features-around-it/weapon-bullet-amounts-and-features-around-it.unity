@@ -239,6 +239,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: shootAction.m_Name
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: reloadAction.m_Name
+      value: Reload
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: reloadAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 9091055c-2d87-49a3-891b-16b2a98b8769
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: reloadAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 3e0e2137-8731-47ce-af4d-ef97908ebb7e
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/leftButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: reloadAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/#(R)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: shootAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102619312545550656, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
+      propertyPath: reloadAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Reload
+      objectReference: {fileID: 0}
     - target: {fileID: 5610917267847992446, guid: 615b3347dd5821442bfcbd09df0476ce, type: 3}
       propertyPath: m_Name
       value: InputManager
@@ -261,6 +301,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3228773717609618987, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      propertyPath: gunType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228773717609618987, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      propertyPath: maxAmmo
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228773717609618987, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+      propertyPath: fireRate
+      value: 6.39
+      objectReference: {fileID: 0}
     - target: {fileID: 3228773717609618987, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
       propertyPath: playerCam
       value: 
@@ -1606,63 +1658,6 @@ PrefabInstance:
       addedObject: {fileID: 1783472554}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c3d70fd0a524244fa23d036e9fd15fb, type: 3}
---- !u!1001 &8827658277056668331
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1181200418067950153, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_Name
-      value: DialogueTrigger
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372557415446385163, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.6825309
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372557415446385163, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372557415446385163, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -14.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372557415446385163, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372557415446385163, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372557415446385163, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372557415446385163, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372557415446385163, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372557415446385163, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372557415446385163, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a50f75c2d5ebe4c47b442413f2875e07, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1677,7 +1672,6 @@ SceneRoots:
   - {fileID: 369332189948874915}
   - {fileID: 8256926852638607236}
   - {fileID: 8695876}
-  - {fileID: 8827658277056668331}
   - {fileID: 1172557231}
   - {fileID: 4586719154827273044}
   - {fileID: 235973896}
