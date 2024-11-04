@@ -44,5 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd4a405c64a01948b842fbb7c04b7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Image: {fileID: 0}
-  fadeDuration: 1
+  screenFlashImage: {fileID: 0}

@@ -23,6 +23,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float groundCheckLength;
     [SerializeField] LayerMask groundLayerMask;
 
+    [Header("Roof Check Settings")]
+    [SerializeField] Transform roofCheckPosition;
+    [SerializeField] float roofCheckLength;
+
     [Header("Input")]
     [SerializeField] float jumpCoyoteTime;
 
@@ -36,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool isJumping;
     [SerializeField] bool coyoteActive;
     [SerializeField] bool isGrounded;
+    [SerializeField] bool roofHit;
 
     private void Start()
     {
@@ -91,6 +96,14 @@ public class PlayerMovement : MonoBehaviour
         //
         //EXIT STATEMENTS
         //
+
+        //Roof Check. If we hit the roof we will zero the verticalVelocity.
+        if (Physics.Raycast(roofCheckPosition.position, Vector3.up, roofCheckLength, groundLayerMask) && !roofHit) //Hitting the roof. Lets zero vertical velocity and block this from happening until we hit the ground again.
+        {
+            roofHit = true;
+            verticalVelocity = 0f;
+        }
+
         if (jumpPressed) //If jump pressed we set velocity to jumpForce. We do not accelerate
         {
             jumpPressed = false;
@@ -100,9 +113,10 @@ public class PlayerMovement : MonoBehaviour
             return;
         } else if(isGrounded && !isJumping) //If at ground. Vertical velocity 0
         {
+            if (roofHit) roofHit = false;
             verticalVelocity = 0f;
             return;
-        } else //Else. We add gravity.
+        } else//Else. We add gravity.
         {   
             verticalVelocity -= playerGravity * Time.deltaTime;
             verticalVelocity = Mathf.Clamp(verticalVelocity, -maxVerticalVelocity, maxVerticalVelocity); //Clamp to max
@@ -154,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.color = Color.red;
         }
         if(groundCheckPosition != null) Gizmos.DrawRay(groundCheckPosition.position, Vector3.down * groundCheckLength);
+        if (roofCheckPosition != null) Gizmos.DrawRay(roofCheckPosition.position, Vector3.up * roofCheckLength);
     }
         
 }

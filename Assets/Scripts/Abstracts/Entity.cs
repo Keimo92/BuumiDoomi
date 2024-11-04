@@ -11,8 +11,9 @@ public abstract class Entity : MonoBehaviour
     [Header("Basic Setup")]
     [SerializeField] float currentHealth; //Will be overridden by maxHealth on Start()
     [SerializeField] float maxHealth;
-    [SerializeField] MeshRenderer entityGfx;
+    [SerializeField] Renderer entityGfx;
     public EntityMask entityType; //Holds the entity type so we can filter entities based on the type. DON'T SET MULTIPLE TYPES OTHERWISE THIS WONT WORK CORRECTLY
+
 
     [Header("On Death Instantiated Prefabs")]
     [SerializeField] List<GameObject> onDeathPrefabs = new List<GameObject>();
@@ -21,7 +22,6 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] Material onHitMaterial;
     [SerializeField] private float onHitMaterialTime;
     protected bool OnHitMaterialEnabled = false;
-
     [System.Flags]
     public enum EntityMask
     {
@@ -44,7 +44,7 @@ public abstract class Entity : MonoBehaviour
         //If mesh renderer is not set. Then try to get it from current gameobject
         if(entityGfx == null)
         {
-            entityGfx = GetComponent<MeshRenderer>();
+            entityGfx = GetComponentInChildren<MeshRenderer>();
         }
     }
 
@@ -61,8 +61,6 @@ public abstract class Entity : MonoBehaviour
             currentHealth = 0;
             Kill();
         }
-
-        
     }
 
     //Kill function. Can be also called by other scripts if we want to kill this entity.
@@ -78,6 +76,15 @@ public abstract class Entity : MonoBehaviour
 
     //Health getter function
     public float GetHealth() { return currentHealth; }
+    public void AddHealth(float amount)
+    {
+        currentHealth += amount;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
 
     IEnumerator HitMaterialEnable()
     {
@@ -90,20 +97,5 @@ public abstract class Entity : MonoBehaviour
         materials.Remove(onHitMaterial);
         OnHitMaterialEnabled = false;
         entityGfx.materials = materials.ToArray();
-    }
-
-    public virtual void AddHealth(float health)
-    {
-        currentHealth += health;
-
-        if ( currentHealth > maxHealth )
-        {
-            currentHealth = 100;
-        }
-    }
-    public float CurrentHealth
-    {
-        get { return currentHealth; }
-        set { currentHealth = value; }
     }
 }

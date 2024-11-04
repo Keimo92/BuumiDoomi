@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UIPlayerStats : MonoBehaviour
 {
-    Shooty Shooty;
+    PlayerWeapon playerWeapon;
     PlayerEntity Player;
 
     [SerializeField] private TextMeshProUGUI Health;
@@ -15,17 +15,16 @@ public class UIPlayerStats : MonoBehaviour
     private void Start()
     {
         Player = FindFirstObjectByType<PlayerEntity>();
-        Shooty = FindFirstObjectByType<Shooty>();
+        playerWeapon = FindFirstObjectByType<PlayerWeapon>();
         
     }
 
     private void Update()
     {
-        // Safely access the health value through the public property
         if (Player != null)
         {
             Health.text = "Health = " + Player.GetHealth().ToString();
-            AmmoText.text = "Ammo = " + Shooty.AmmoCount.ToString();
+            AmmoText.text = "Ammo = " + playerWeapon.ammoCount.ToString();
         }
     }
 }

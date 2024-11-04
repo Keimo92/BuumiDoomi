@@ -8,29 +8,22 @@ public class NavAgentController : MonoBehaviour
 {
     [Header("NavAgent")]
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] GameObject EnemyObj;
-    [SerializeField] float AgentSpeed = 10f;
-    [SerializeField] ExampleEntity ExampleEntity;
-    [SerializeField] private Transform PlayerPosition;
-    [SerializeField] private EntityFov Fov;
 
-    public float AggroTime;
-
-    //public bool HasTakenDamage = false;
 
     private void Start()
     {
-        if (agent == null) agent = GetComponent<NavMeshAgent>();
-        //HasTakenDamage = false;
+        if ( agent == null ) agent = GetComponent<NavMeshAgent>();
     }
-    
+
     public void MoveToPosition(Vector3 position)
     {
+        if (agent.isStopped) agent.isStopped = false;
         agent.SetDestination(position);
     }
 
     public void MoveToRandomPositionInRadius(float radius)
     {
+        if (agent.isStopped) agent.isStopped = false;
         Vector2 randomPosVec2 = Random.insideUnitCircle * radius;
         Vector3 randomPos = new Vector3(randomPosVec2.x, 0, randomPosVec2.y) + transform.position;
         agent.SetDestination(randomPos);
@@ -38,28 +31,18 @@ public class NavAgentController : MonoBehaviour
 
     public void StopMovement()
     {
-        agent.Stop();
-    }
-    public void MoveToPlayer(Transform playerPos)
-    {
-        float step = AgentSpeed * Time.deltaTime; 
-        EnemyObj.transform.position = Vector3.MoveTowards(transform.position, playerPos.position, step);
+        agent.isStopped = true;
     }
 
-    private void Update()
+    public bool IsMoving()
     {
-        if ( ExampleEntity.HasTakenDamage )
+        if(agent.remainingDistance <= agent.stoppingDistance)
         {
-           StartCoroutine(AggroCoroutine());
+            if(agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                return false;
+            }
         }
-    }
-
-    private IEnumerator AggroCoroutine()
-    {
-        //TODO:  Fix Aggro time
-        MoveToPlayer(PlayerPosition);
-        Fov.ShootAtPlayer();
-        yield return new WaitForSeconds(AggroTime);
-        ExampleEntity.HasTakenDamage = false;
+        return true;
     }
 }
