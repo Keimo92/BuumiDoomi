@@ -59,11 +59,6 @@ public class PlayerWeapon : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if( ammoCount > maxAmmo )
-        {
-            ammoCount = maxAmmo;
-        }
-
         if ( allowButtonHold && InputManager.Instance.shootAction.IsPressed() )
         {
             if ( timer >= nextShot )
@@ -125,5 +120,13 @@ public class PlayerWeapon : MonoBehaviour
         }
         Trail.transform.position = hit.point;
         Destroy(Trail.gameObject, Trail.time);
+    }
+
+    public void AddAmmmo(int ammo)
+    {
+        if ( ammoCount > ammo)
+        {
+            ammoCount = maxAmmo;
+        }
     }
 }
