@@ -71,10 +71,17 @@ public class InputManager : MonoBehaviour
         shootAction.performed += ctx => onShootPressed?.Invoke();
         reloadAction.performed += ctx => onReloadActionPressed?.Invoke();
     }
+    private void OnEnable()
+    {
+        shootAction.Enable();
+        reloadAction.Enable();
+    }
+
     private void OnDisable()
     {
      
         shootAction.Disable();
         reloadAction.Disable();
     }
+
 }

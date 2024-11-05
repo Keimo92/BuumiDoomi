@@ -73,7 +73,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             if ( timer >= nextShotTime )
             {
-                Shoot();
+               OnShootPressed();
             }
         }
     }
