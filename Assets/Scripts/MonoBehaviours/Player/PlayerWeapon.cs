@@ -136,4 +136,17 @@ public class PlayerWeapon : MonoBehaviour
             ammoCount = maxAmmo;
         }
     }
+
+    private void OnEnable()
+    {
+        InputManager.Instance.onShootPressed += OnShootPressed;
+        InputManager.Instance.onReloadActionPressed += OnReloadPressed;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.onShootPressed -= OnShootPressed;
+        InputManager.Instance.onReloadActionPressed -= OnReloadPressed;
+
+    }
 }
