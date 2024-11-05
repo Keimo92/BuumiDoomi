@@ -136,3 +136,21 @@ MonoBehaviour:
       m_Action: Jump
       m_Flags: 0
     m_Flags: 0
+  shootAction:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 249ac1f0-b122-4ef6-ae0d-b0e60159c573
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  reloadAction:
+    m_Name: Reload
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: cbe087dd-2dbb-4d8b-822a-24b3e58237ee
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
