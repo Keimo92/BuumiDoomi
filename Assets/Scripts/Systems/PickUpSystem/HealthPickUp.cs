@@ -10,11 +10,15 @@ public class HealthPickUp : Pickupable
 
     public override void OnPickup(Entity entity)
     {
-        if ( entity.GetHealth() < 100 )
+        if(entity.entityType == Entity.EntityMask.Player)
         {
-            base.OnPickup(entity);
-            entity.AddHealth(healthPack.healingAmount);
-            Destroy(gameObject, 0.3f);
+            if ( entity.GetHealth() < entity.GetMaxHealth() )
+            {
+                base.OnPickup(entity);
+                entity.AddHealth(healthPack.healingAmount);
+                Destroy(gameObject);
+            }
         }
+
     }
 }
