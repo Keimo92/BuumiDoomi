@@ -41,7 +41,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.0000000062546133
+  m_ExitTime: 0
   m_HasExitTime: 1
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
@@ -54,7 +54,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DebugGunReload
+  m_Name: Pistol_Reload
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -131,8 +131,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DebugGunAnim
-  m_Speed: 2
+  m_Name: Pistol_Shoot
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4723573598636360109}
@@ -145,7 +145,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 58316a011c7ee8148886f6317480c42d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 43cfbe159ccf8e0408bc830b23320e03, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -157,7 +157,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Weapon
+  m_Name: PlayerPistol
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Fire
@@ -202,7 +202,7 @@ AnimatorStateMachine:
     m_Position: {x: 30, y: -50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2407586210659975107}
-    m_Position: {x: 180, y: -170, z: 0}
+    m_Position: {x: 170, y: -170, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -220,7 +220,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DebugGunIdle
+  m_Name: Pistol_Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -235,7 +235,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a3eef9c84065ae946ad06a7d44d7eedc, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6ea63fdfcb9fe9e4c8e1e344c815ca30, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

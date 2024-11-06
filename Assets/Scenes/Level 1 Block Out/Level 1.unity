@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.023417514, g: 0.015528468, b: 0.010833643, a: 1}
+  m_IndirectSpecularColor: {r: 0.023418117, g: 0.015529977, b: 0.010836666, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -54769,22 +54769,38 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   shootAction:
-    m_Name: 
+    m_Name: Shoot
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: eacc4ffd-af4f-4d0d-8541-78045ffbe736
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 33f13b2c-c11f-49c1-bd89-6b4ccb5dd07e
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
     m_Flags: 0
   reloadAction:
-    m_Name: 
+    m_Name: Reload
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: c68d9ed0-9268-488e-9b19-d0ff73354848
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 6963395b-ba31-4cf0-ac10-feaf6a766e68
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Reload
+      m_Flags: 0
     m_Flags: 0
 --- !u!43 &380038479
 Mesh:
@@ -265538,17 +265554,9 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 41246040}
-    - target: {fileID: 3736393157402188579, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
-      propertyPath: groundLayerMask.m_Bits
-      value: 627
-      objectReference: {fileID: 0}
     - target: {fileID: 4924087106482084766, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4924087106482084766, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5289740977653489239, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
       propertyPath: m_LocalPosition.x
