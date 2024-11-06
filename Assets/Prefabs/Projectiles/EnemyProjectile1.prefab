@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityMask: 2
   DisableShake: 0
+  damage: 15
