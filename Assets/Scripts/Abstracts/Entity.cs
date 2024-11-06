@@ -76,6 +76,7 @@ public abstract class Entity : MonoBehaviour
 
     //Health getter function
     public float GetHealth() { return currentHealth; }
+    public float GetMaxHealth() { return maxHealth; }
     public void AddHealth(float amount)
     {
         currentHealth += amount;

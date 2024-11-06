@@ -9,13 +9,14 @@ public class EnemyBullet : MonoBehaviour
 
     public bool DisableShake = false;
 
+    [SerializeField] float damage;
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Entity>(out Entity entity))
         {
             if(entityMask.HasFlag(entity.entityType))
             {
-                entity.Damage(5);
+                entity.Damage(damage);
                 
                 Destroy(gameObject);
             }
