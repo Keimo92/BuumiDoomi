@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -54,12 +55,16 @@ public class PlayerMovement : MonoBehaviour
     {
         InputManager.Instance.onMoveChanged += OnMoveChanged;
         InputManager.Instance.onJumpPressed += OnJumpPressed;
+        InputManager.Instance.onPauseActionPressed += OnPausePressed;
+        
     }
+
 
     private void OnDisable()
     {
         InputManager.Instance.onMoveChanged -= OnMoveChanged;
         InputManager.Instance.onJumpPressed -= OnJumpPressed;
+        InputManager.Instance.onPauseActionPressed -= OnPausePressed;
     }
 
     private void OnMoveChanged(Vector2 _moveInput)
@@ -199,6 +204,10 @@ public class PlayerMovement : MonoBehaviour
         }
         if(groundCheckPosition != null) Gizmos.DrawRay(groundCheckPosition.position, Vector3.down * groundCheckLength);
         if (roofCheckPosition != null) Gizmos.DrawRay(roofCheckPosition.position, Vector3.up * roofCheckLength);
+    }
+    private void OnPausePressed()
+    {
+       GameManager.Instance.TogglePauseGame();
     }
         
 }

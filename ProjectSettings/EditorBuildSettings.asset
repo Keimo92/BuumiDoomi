@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Game-Manager-Scene/Game-manager-test.unity
+    guid: e5b9d80c7dcf21440a353c964ec674c4
+  - enabled: 1
+    path: Assets/Scenes/Game-Manager-Scene/Level2Test.unity
+    guid: b8932ef3dbb92504b957fb10d59fa28f
+  - enabled: 1
+    path: Assets/Scenes/make-enemies-work-in-playtest-area/make-enemies-work-in-playtest-area.unity
+    guid: 14d38eabdc343ee44960263610c2fe98
   m_configObjects: {}

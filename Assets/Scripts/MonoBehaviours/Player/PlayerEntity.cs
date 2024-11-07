@@ -20,7 +20,7 @@ public class PlayerEntity : Entity
     {
         isAlive = false;
         screenFlash.FadeToColor(onDeathFadeColor,onDeathFadeDuration);
-        StartCoroutine(ResetLevel());
+        GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
     }
 
     private void Start()
@@ -28,13 +28,6 @@ public class PlayerEntity : Entity
         isAlive = true;
         screenFlash = FindAnyObjectByType<ScreenFlash>();
         base.GetHealth();
-    }
-
-    // This just testing purposes only. TODO: GameManager which handles these
-    IEnumerator ResetLevel()
-    {
-        yield return new WaitForSeconds(resetSceneTime);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public override void Damage(float damage)
@@ -45,5 +38,21 @@ public class PlayerEntity : Entity
             base.Damage(damage);
         }
     }
+    private void OnEnable()
+    {
+        GameManager.OnGameStateChanged += HandleGameStateChanged; // Subscribe to the event
+    }
 
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChanged -= HandleGameStateChanged; // Unsubscribe from the event
+    }
+
+    private void HandleGameStateChanged(GameManager.GameState newState)
+    {
+        // Respond to the game state change, for example:
+        Debug.Log("Game State Changed to: " + newState);
+
+        // Update the UI or other elements based on the new game state
+    }
 }

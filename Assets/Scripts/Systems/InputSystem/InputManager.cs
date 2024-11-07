@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     public InputAction jumpAction;
     public InputAction shootAction;
     public InputAction reloadAction;
+    public InputAction pauseAction;
 
     //Delegates
     public delegate void ExampleActionPressed();
@@ -20,6 +21,7 @@ public class InputManager : MonoBehaviour
     public delegate void OnJumpPressed();
     public delegate void OnShootPressed();
     public delegate void OnReloadActionPressed();
+    public delegate void OnPauseActionPressed();
 
 
     public ExampleActionPressed exampleActionPressed;
@@ -28,6 +30,7 @@ public class InputManager : MonoBehaviour
     public OnJumpPressed onJumpPressed;
     public OnShootPressed onShootPressed;
     public OnReloadActionPressed onReloadActionPressed;
+    public OnPauseActionPressed onPauseActionPressed;
 
     //Singleton
     public static InputManager Instance { get; private set; }
@@ -51,6 +54,7 @@ public class InputManager : MonoBehaviour
         jumpAction.Enable();
         shootAction.Enable();
         reloadAction.Enable();
+        pauseAction.Enable();
     }
 
     private void Update()
@@ -70,18 +74,24 @@ public class InputManager : MonoBehaviour
         if(jumpAction.WasPressedThisFrame()) onJumpPressed?.Invoke();
         shootAction.performed += ctx => onShootPressed?.Invoke();
         reloadAction.performed += ctx => onReloadActionPressed?.Invoke();
+
+        if ( pauseAction.WasPressedThisFrame() )
+        {
+            onPauseActionPressed?.Invoke();
+        }
+
     }
     private void OnEnable()
     {
         shootAction.Enable();
         reloadAction.Enable();
+        pauseAction.Enable();
     }
 
     private void OnDisable()
     {
-     
+        pauseAction.Disable();
         shootAction.Disable();
         reloadAction.Disable();
     }
-
 }

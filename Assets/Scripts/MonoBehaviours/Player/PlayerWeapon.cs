@@ -21,9 +21,6 @@ public class PlayerWeapon : MonoBehaviour
     public Camera playerCam;
     private float nextShotTime;
 
-    float minValue;
-    float maxValue;
-
     [SerializeField] private TrailRenderer bulletTracer;
     [SerializeField] private Transform weaponMuzzle;
     [SerializeField] private GameObject muzzleFlash;
@@ -41,7 +38,6 @@ public class PlayerWeapon : MonoBehaviour
 
     void Start()
     {
-
         ammoCount = maxAmmo;
         InputManager.Instance.onShootPressed += OnShootPressed;
         InputManager.Instance.onReloadActionPressed += OnReloadPressed;
