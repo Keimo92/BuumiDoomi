@@ -230990,6 +230990,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3196259086471040159, guid: 4a6c3adebf9eb324886ebf9a0e25c37c, type: 3}
+      propertyPath: onLevelExitFadeDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6955664917932216908, guid: 4a6c3adebf9eb324886ebf9a0e25c37c, type: 3}
       propertyPath: m_Name
       value: NextLevelTrigger

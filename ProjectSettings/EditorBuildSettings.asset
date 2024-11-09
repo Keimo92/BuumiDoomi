@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/make-enemies-work-in-playtest-area/make-enemies-work-in-playtest-area.unity
     guid: 14d38eabdc343ee44960263610c2fe98
+  - enabled: 1
+    path: Assets/Scenes/Medkit obj test/Medkit obj test.unity
+    guid: d830d3bae1774a84a8ef9b1cedf79e05
   m_configObjects: {}

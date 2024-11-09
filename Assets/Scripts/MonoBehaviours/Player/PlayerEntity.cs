@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
 
 public class PlayerEntity : Entity
 {
@@ -11,16 +9,15 @@ public class PlayerEntity : Entity
     [Header("Screen Flash Colors")]
     [SerializeField] private float onDeathFadeDuration;
     [SerializeField] private float onDamageFlashDuration;
+    [SerializeField] private float onLevelExitFadeDuration;
     [SerializeField] private Color onDeathFadeColor;
     [SerializeField] private Color onDamageFlashColor;
-
-    //Testing purposes only. Will remove this after review.
-    public float resetSceneTime;
     public override void Kill()
     {
         isAlive = false;
         screenFlash.FadeToColor(onDeathFadeColor,onDeathFadeDuration);
         GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
+
     }
 
     private void Start()
@@ -38,21 +35,5 @@ public class PlayerEntity : Entity
             base.Damage(damage);
         }
     }
-    private void OnEnable()
-    {
-        GameManager.OnGameStateChanged += HandleGameStateChanged; // Subscribe to the event
-    }
-
-    private void OnDisable()
-    {
-        GameManager.OnGameStateChanged -= HandleGameStateChanged; // Unsubscribe from the event
-    }
-
-    private void HandleGameStateChanged(GameManager.GameState newState)
-    {
-        // Respond to the game state change, for example:
-        Debug.Log("Game State Changed to: " + newState);
-
-        // Update the UI or other elements based on the new game state
-    }
 }
+

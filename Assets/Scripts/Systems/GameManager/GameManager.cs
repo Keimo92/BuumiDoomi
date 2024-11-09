@@ -2,9 +2,16 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using System.Collections.Generic;
+
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private float timeToReloadScene;
+
+    public List<string> sceneNames; // Scene assets did not work after builded the game. If this string array solution is not good. Lets fix it, for now this should do that we can track what scenes are in the inspector.
+
     public enum GameState
     {
         Playing,
@@ -13,15 +20,12 @@ public class GameManager : MonoBehaviour
         LoadNextLevel
     }
 
-    private bool isPaused;
-
     public static GameManager Instance { get; private set; }
     private GameState currentState;
 
     public static event Action<GameState> OnGameStateChanged;
 
-    private int currentLevelIndex = 0;
-    private int totalLevels = 2; // How many levels we have
+    private int currentLevelIndex;
 
     private void Awake()
     {
@@ -33,10 +37,9 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        currentState = GameState.Playing;
     }
 
-    //Setting the GameState here. GameManager.Instance.SetGameState(GameState.LoadNextLevel); Or if Dying GameManager.Instance.SetGameState(GameState.GameOver); You got the point. <3
+    //Set the game state here from other classes
     public void SetGameState(GameState newState)
     {
         if ( currentState == newState ) return;
@@ -47,20 +50,31 @@ public class GameManager : MonoBehaviour
         switch ( newState )
         {
             case GameState.LoadNextLevel:
-                LoadNextLevel();
+                StartCoroutine(WaitAndLoadNextLevel());
                 break;
 
             case GameState.GameOver:
-                ReturnToLevel();
+                StartCoroutine(ReturnToLevelAfterDeathRoutine());
                 break;
 
             case GameState.Paused:
                 PauseGame();
                 break;
+
             case GameState.Playing:
                 UnpauseGame();
                 break;
         }
+    }
+
+    private void OnEnable()
+    {
+        InputManager.Instance.onPauseActionPressed += OnPausePressed;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.onPauseActionPressed -= OnPausePressed;
     }
 
     private void OnLevelLoaded(AsyncOperation asyncOperation)
@@ -69,27 +83,24 @@ public class GameManager : MonoBehaviour
         asyncOperation.completed -= OnLevelLoaded;
     }
 
-    public void LoadNextLevel()
+
+    //When we exit the level this is called;
+    private IEnumerator WaitAndLoadNextLevel()
     {
-        if ( currentLevelIndex < totalLevels ) 
+        yield return new WaitForSeconds(timeToReloadScene);
+
+        if ( currentLevelIndex < sceneNames.Count - 1 )
         {
             currentLevelIndex++;
-            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(currentLevelIndex);
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneNames[currentLevelIndex]);
             loadOperation.completed += OnLevelLoaded;
         }
         else
         {
             Debug.Log("No more levels to load. Game Over or restart game.");
-            //GameState MainMenu?
-            SetGameState(GameState.GameOver); 
+            SetGameState(GameState.GameOver);
         }
     }
-
-    public void ReturnToLevel()
-    {
-        StartCoroutine(WaitForLoadingScene());
-    }
-
     public GameState GetCurrentState()
     {
         return currentState;
@@ -106,6 +117,7 @@ public class GameManager : MonoBehaviour
             SetGameState(GameState.Playing);
         }
     }
+
     private void PauseGame()
     {
         Time.timeScale = 0f;
@@ -115,13 +127,20 @@ public class GameManager : MonoBehaviour
     private void UnpauseGame()
     {
         Time.timeScale = 1f;
-        Debug.Log("Game Resumed");
+        Debug.Log("UnPause");
     }
 
-    private IEnumerator WaitForLoadingScene()
+    //Return the current scene after player is dead
+    private IEnumerator ReturnToLevelAfterDeathRoutine()
     {
-        yield return new WaitForSeconds(3);
+
+        yield return new WaitForSeconds(timeToReloadScene);
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         loadOperation.completed += OnLevelLoaded;
+    }
+
+    private void OnPausePressed()
+    {
+        GameManager.Instance.TogglePauseGame();
     }
 }

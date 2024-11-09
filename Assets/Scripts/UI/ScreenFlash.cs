@@ -30,7 +30,7 @@ public class ScreenFlash : MonoBehaviour
     {
         while ( screenFlashImage.color.a < 1 )
         {
-            screenFlashImage.color = new Color(0, 0, 0, screenFlashImage.color.a + (Time.deltaTime / duration));
+            screenFlashImage.color = new Color(0, 0, 0 , screenFlashImage.color.a + (Time.deltaTime / duration));
             yield return null;
 
         }

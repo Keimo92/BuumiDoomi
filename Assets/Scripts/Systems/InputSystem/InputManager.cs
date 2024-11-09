@@ -43,6 +43,7 @@ public class InputManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 
@@ -72,26 +73,22 @@ public class InputManager : MonoBehaviour
         onLookChanged?.Invoke(lookAction.ReadValue<Vector2>());     
         onMoveChanged?.Invoke(moveAction.ReadValue<Vector2>());
         if(jumpAction.WasPressedThisFrame()) onJumpPressed?.Invoke();
-        shootAction.performed += ctx => onShootPressed?.Invoke();
-        reloadAction.performed += ctx => onReloadActionPressed?.Invoke();
-
+       
         if ( pauseAction.WasPressedThisFrame() )
         {
             onPauseActionPressed?.Invoke();
         }
 
     }
+
     private void OnEnable()
     {
-        shootAction.Enable();
-        reloadAction.Enable();
         pauseAction.Enable();
     }
-
     private void OnDisable()
     {
-        pauseAction.Disable();
         shootAction.Disable();
         reloadAction.Disable();
     }
 }
+
