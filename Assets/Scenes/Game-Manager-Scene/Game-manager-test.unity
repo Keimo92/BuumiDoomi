@@ -55295,7 +55295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7033691762434821950, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
       propertyPath: maxHealth
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7033691762434821950, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
       propertyPath: onDeathFadeColor.b

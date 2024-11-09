@@ -9,7 +9,6 @@ public class PlayerEntity : Entity
     [Header("Screen Flash Colors")]
     [SerializeField] private float onDeathFadeDuration;
     [SerializeField] private float onDamageFlashDuration;
-    [SerializeField] private float onLevelExitFadeDuration;
     [SerializeField] private Color onDeathFadeColor;
     [SerializeField] private Color onDamageFlashColor;
     public override void Kill()
