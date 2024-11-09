@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
                 UnpauseGame();
                 break;
         }
+        Debug.Log(currentState);
     }
 
     private void OnEnable()
@@ -121,13 +122,11 @@ public class GameManager : MonoBehaviour
     private void PauseGame()
     {
         Time.timeScale = 0f;
-        Debug.Log("Game Paused");
     }
 
     private void UnpauseGame()
     {
         Time.timeScale = 1f;
-        Debug.Log("UnPause");
     }
 
     //Return the current scene after player is dead
