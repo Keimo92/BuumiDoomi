@@ -5,6 +5,7 @@ using UnityEditor;
 using System.Collections;
 using System.Linq;
 
+#if (UNITY_EDITOR)
 public class CreateMaterialsForTextures : Editor
 {
 	[MenuItem("Tools/CreateMaterialsForTextures")]
@@ -35,3 +36,4 @@ public class CreateMaterialsForTextures : Editor
 		}
 	}
 }
+#endif

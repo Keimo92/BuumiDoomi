@@ -27799,7 +27799,7 @@ GameObject:
   - component: {fileID: 157819903}
   - component: {fileID: 157819902}
   - component: {fileID: 157819901}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DEATHBOX (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27821,7 +27821,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -56677,7 +56677,7 @@ GameObject:
   - component: {fileID: 328393935}
   - component: {fileID: 328393934}
   - component: {fileID: 328393933}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DEATHBOX (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56699,7 +56699,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -150028,7 +150028,7 @@ GameObject:
   - component: {fileID: 774945052}
   - component: {fileID: 774945051}
   - component: {fileID: 774945050}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DEATHBOX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150050,7 +150050,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -150492,7 +150492,7 @@ GameObject:
   - component: {fileID: 780299669}
   - component: {fileID: 780299668}
   - component: {fileID: 780299667}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DEATHBOX (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150514,7 +150514,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -157364,7 +157364,7 @@ GameObject:
   - component: {fileID: 828783494}
   - component: {fileID: 828783493}
   - component: {fileID: 828783492}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DEATHBOX (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157386,7 +157386,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -233219,7 +233219,7 @@ GameObject:
   - component: {fileID: 1267147175}
   - component: {fileID: 1267147174}
   - component: {fileID: 1267147173}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DEATHBOX (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233241,7 +233241,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
