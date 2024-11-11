@@ -28,6 +28,8 @@ public class PlayerWeapon : MonoBehaviour
 
     private RaycastHit target;
     private float timer;
+    public float mouseButtonHoldTime;
+    private const float holdDuration = 1.5f;
 
     public enum GunType
     {
@@ -67,10 +69,22 @@ public class PlayerWeapon : MonoBehaviour
 
         if ( allowButtonHold && InputManager.Instance.shootAction.IsPressed() )
         {
+            
+            mouseButtonHoldTime += Time.deltaTime;
+            if ( mouseButtonHoldTime >= holdDuration )
+            {
+                PlayerAnimationManager.instance.SetPlayerFaceState(PlayerAnimationManager.PlayerFaceState.Hurt);
+            }
+
             if ( timer >= nextShotTime )
             {
-               OnShootPressed();
+                OnShootPressed();
             }
+        }
+        else if ( allowButtonHold && !InputManager.Instance.shootAction.IsPressed() )
+        {
+            mouseButtonHoldTime = 0f;
+            PlayerAnimationManager.instance.SetPlayerFaceState(PlayerAnimationManager.PlayerFaceState.Idle);
         }
     }
 

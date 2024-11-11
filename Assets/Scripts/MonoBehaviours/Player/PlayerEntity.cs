@@ -31,7 +31,9 @@ public class PlayerEntity : Entity
         if ( isAlive )
         {
             screenFlash.FlashColor(onDamageFlashColor, onDamageFlashDuration);
+            PlayerAnimationManager.instance.SetPlayerFaceState(PlayerAnimationManager.PlayerFaceState.Hurt);
             base.Damage(damage);
+            PlayerAnimationManager.instance.SetPlayerFaceState(PlayerAnimationManager.PlayerFaceState.Idle);
         }
     }
 }
