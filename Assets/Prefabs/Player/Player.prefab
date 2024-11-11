@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245db7b595dcc7448b58c837cc25f439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSensitivity: 16.09
+  lookSensitivity: 0.05
   playerBody: {fileID: 5289740977653489239}
 --- !u!114 &5530785384343609233
 MonoBehaviour:
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 0
   ammoCount: 0
-  maxAmmo: 50
+  maxAmmo: 900
   ReloadAmount: 20
   fireRate: 5
   allowButtonHold: 1
@@ -364,9 +364,9 @@ MonoBehaviour:
   onHitMaterialTime: 0.1
   isAlive: 0
   onDeathFadeDuration: 0
-  onDamageFlashDuration: 0
+  onDamageFlashDuration: 0.2
   onDeathFadeColor: {r: 0, g: 0, b: 0, a: 0}
-  onDamageFlashColor: {r: 0, g: 0, b: 0, a: 0}
+  onDamageFlashColor: {r: 0.9056604, g: 0, b: 0.20469464, a: 0}
   resetSceneTime: 0
 --- !u!1 &5431913496525201725
 GameObject:

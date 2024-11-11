@@ -24,7 +24,7 @@ public class PlayerLook : MonoBehaviour
     private void Update()
     {
         // Calculate the mouse input for look sensitivity and delta time
-        Vector2 input = mouseInput * lookSensitivity * Time.deltaTime;
+        Vector2 input = mouseInput * lookSensitivity;
 
         // Update xRotation based on mouse input, clamped to avoid flipping
         xRotation -= input.y;
