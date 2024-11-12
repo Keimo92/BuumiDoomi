@@ -22,13 +22,11 @@ public class CollectibleDataPersistence : MonoBehaviour
     private void OnEnable()
     {
         GameManager.OnLevelLoaded += PopulateCollectiblesList;
-        Collectible.OnCollectiblePickedUp += RemoveCollectible;
     }
 
     private void OnDisable()
     {
         GameManager.OnLevelLoaded -= PopulateCollectiblesList;
-        Collectible.OnCollectiblePickedUp -= RemoveCollectible;
     }
 
     public void PopulateCollectiblesList()
@@ -40,7 +38,7 @@ public class CollectibleDataPersistence : MonoBehaviour
 
         foreach ( Collectible collectible in collectibles )
         {
-            Collectible.OnCollectiblePickedUp += RemoveCollectible;
+            collectible.OnCollectiblePickedUp += RemoveCollectible;
         }
     }
 
@@ -48,6 +46,7 @@ public class CollectibleDataPersistence : MonoBehaviour
     {
         if ( collectibles.Contains(collectible) )
         {
+            collectible.OnCollectiblePickedUp -= RemoveCollectible;
             collectibles.Remove(collectible);
             Debug.Log($"Collectible removed. Remaining: {collectibles.Count}");
         }

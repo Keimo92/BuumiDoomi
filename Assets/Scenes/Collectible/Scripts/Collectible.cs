@@ -6,7 +6,7 @@ using UnityEngine;
 public class Collectible : Pickupable
 {
 
-    public static event Action<Collectible> OnCollectiblePickedUp;
+    public event Action<Collectible> OnCollectiblePickedUp;
 
     public override void OnPickup(Entity entity)
     {
