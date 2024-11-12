@@ -188,16 +188,24 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7392041258565390954, guid: ab1d15619983974439230dd7941622b3, type: 3}
+      propertyPath: sceneNames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392041258565390954, guid: ab1d15619983974439230dd7941622b3, type: 3}
       propertyPath: collectibleTextShowTime
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7392041258565390954, guid: ab1d15619983974439230dd7941622b3, type: 3}
       propertyPath: sceneNames.Array.data[0]
-      value: Ui-manager-Animated-Player-face
+      value: Collectible
       objectReference: {fileID: 0}
     - target: {fileID: 7392041258565390954, guid: ab1d15619983974439230dd7941622b3, type: 3}
       propertyPath: sceneNames.Array.data[1]
-      value: Level 1 PLAYTEST
+      value: Collectible2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7392041258565390954, guid: ab1d15619983974439230dd7941622b3, type: 3}
+      propertyPath: sceneNames.Array.data[2]
+      value: Collectible
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -138458,7 +138466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &722472628
 Transform:
   m_ObjectHideFlags: 0

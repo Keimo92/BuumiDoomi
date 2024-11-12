@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeToReloadScene;
     [SerializeField] private float collectibleTextShowTime = 8f;
 
-    //Make a newGame enum for collectibles to work properly. Call initialize from start and after that update collectibles for next scene.
+    public static event System.Action OnLevelLoaded;
     public enum GameState
     {
         Playing,
@@ -33,11 +33,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeCollectiblesCount();
+        collectibleObj.SetActive(false);
+        OnLevelLoaded?.Invoke();
     }
     private void Awake()
     {
-        collectibleObj.SetActive(false);
 
         if ( Instance != null && Instance != this )
         {
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(CollectibleDataPersistence.CollectiblesLeft);
+
     }
 
     //Set the game state here from other classes
@@ -91,30 +91,44 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         InputManager.Instance.onPauseActionPressed -= OnPausePressed;
+
     }
-    private void OnLevelLoaded(AsyncOperation asyncOperation)
+    private void OnLevelLoadedHandler(AsyncOperation asyncOperation)
     {
         SetGameState(GameState.Playing);
-        asyncOperation.completed -= OnLevelLoaded;
+        asyncOperation.completed -= OnLevelLoadedHandler;
+        OnLevelLoaded?.Invoke();
+
+        collectibleObj = GameObject.Find("CollectiblePlaceHolder");
+        collectiblesText = GameObject.Find("CollectibleText")?.GetComponent<TextMeshProUGUI>();
+        collectibleObj.SetActive(false);
     }
+
 
 
     //When we exit the level this is called;
     private IEnumerator WaitAndLoadNextLevel()
     {
-        collectibleObj.SetActive(true);
+        if ( collectibleObj != null )
+        {
+            collectibleObj.SetActive(true);
 
-        int collectiblesLeft = CollectibleDataPersistence.CollectiblesLeft;
-        collectiblesText.text = $"You missed total of {collectiblesLeft} collectibles ";
-        yield return new WaitForSeconds(collectibleTextShowTime);
-        collectibleObj.SetActive(false);
+            int collectiblesLeft = CollectibleDataPersistence.instance.GetCollectiblesLeft();
+            if ( collectiblesText != null )
+            {
+                collectiblesText.text = $"You missed total of : {collectiblesLeft} collectibles";
+            }
+
+            yield return new WaitForSeconds(collectibleTextShowTime);
+        }
+
         yield return new WaitForSeconds(timeToReloadScene);
 
         if ( currentLevelIndex < sceneNames.Count - 1 )
         {
             currentLevelIndex++;
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneNames[currentLevelIndex]);
-            loadOperation.completed += OnLevelLoaded;
+            loadOperation.completed += OnLevelLoadedHandler;
         }
         else
         {
@@ -122,6 +136,7 @@ public class GameManager : MonoBehaviour
             SetGameState(GameState.GameOver);
         }
     }
+
     public GameState GetCurrentState()
     {
         return currentState;
@@ -152,24 +167,17 @@ public class GameManager : MonoBehaviour
     //Return the current scene after player is dead
     private IEnumerator ReturnToLevelAfterDeathRoutine()
     {
-
+        int collectiblesLeft = CollectibleDataPersistence.instance.GetCollectiblesLeft();
+        collectiblesText.text = $"You missed total of : {collectiblesLeft} collectibles";
+        collectibleObj.SetActive(true);
         yield return new WaitForSeconds(timeToReloadScene);
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-        loadOperation.completed += OnLevelLoaded;
+        loadOperation.completed += OnLevelLoadedHandler;
     }
 
     private void OnPausePressed()
     {
         GameManager.Instance.TogglePauseGame();
-    }
-
-    //How many collectibles are in the game.
-    private void InitializeCollectiblesCount()
-    {
-        Collectible[] collectibles = FindObjectsOfType<Collectible>();
-        int totalCollectibles = collectibles.Length;
-
-        CollectibleDataPersistence.instance.UpdateCollectiblesLeft(totalCollectibles);
     }
 }
 

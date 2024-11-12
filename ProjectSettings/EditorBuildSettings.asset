@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 1 Block Out/Level 1 PLAYTEST.unity
     guid: 839a868142dc14c488d918a84883441a
+  - enabled: 1
+    path: Assets/Scenes/Collectible/Collectible2.unity
+    guid: bf873c9bb2e60fd418b82be544efbf70
   m_configObjects: {}

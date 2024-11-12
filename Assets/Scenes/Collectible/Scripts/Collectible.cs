@@ -8,11 +8,8 @@ public class Collectible : Pickupable
     {
         if ( entity.entityType == Entity.EntityMask.Player )
         {
-            CollectibleDataPersistence.CollectiblesLeft--;
-
-            Destroy(gameObject);
-
             base.OnPickup(entity);
+            Destroy(gameObject);
         }
     }
 }
