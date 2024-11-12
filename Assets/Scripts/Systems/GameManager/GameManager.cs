@@ -2,16 +2,19 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using TMPro;
 
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private float timeToReloadScene;
-
+    [SerializeField] private TextMeshProUGUI collectiblesText;
+    [SerializeField] private GameObject collectibleObj; //Place holder which will be set to false after the level finish.
     public List<string> sceneNames; // Scene assets did not work after builded the game. If this string array solution is not good. Lets fix it, for now this should do that we can track what scenes are in the inspector.
+    [SerializeField] private float timeToReloadScene;
+    [SerializeField] private float collectibleTextShowTime = 8f;
 
+    //Make a newGame enum for collectibles to work properly. Call initialize from start and after that update collectibles for next scene.
     public enum GameState
     {
         Playing,
@@ -27,8 +30,15 @@ public class GameManager : MonoBehaviour
 
     private int currentLevelIndex;
 
+
+    private void Start()
+    {
+        InitializeCollectiblesCount();
+    }
     private void Awake()
     {
+        collectibleObj.SetActive(false);
+
         if ( Instance != null && Instance != this )
         {
             Destroy(gameObject);
@@ -37,6 +47,11 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        Debug.Log(CollectibleDataPersistence.CollectiblesLeft);
     }
 
     //Set the game state here from other classes
@@ -77,7 +92,6 @@ public class GameManager : MonoBehaviour
     {
         InputManager.Instance.onPauseActionPressed -= OnPausePressed;
     }
-
     private void OnLevelLoaded(AsyncOperation asyncOperation)
     {
         SetGameState(GameState.Playing);
@@ -88,6 +102,12 @@ public class GameManager : MonoBehaviour
     //When we exit the level this is called;
     private IEnumerator WaitAndLoadNextLevel()
     {
+        collectibleObj.SetActive(true);
+
+        int collectiblesLeft = CollectibleDataPersistence.CollectiblesLeft;
+        collectiblesText.text = $"You missed total of {collectiblesLeft} collectibles ";
+        yield return new WaitForSeconds(collectibleTextShowTime);
+        collectibleObj.SetActive(false);
         yield return new WaitForSeconds(timeToReloadScene);
 
         if ( currentLevelIndex < sceneNames.Count - 1 )
@@ -142,4 +162,15 @@ public class GameManager : MonoBehaviour
     {
         GameManager.Instance.TogglePauseGame();
     }
+
+    //How many collectibles are in the game.
+    private void InitializeCollectiblesCount()
+    {
+        Collectible[] collectibles = FindObjectsOfType<Collectible>();
+        int totalCollectibles = collectibles.Length;
+
+        CollectibleDataPersistence.instance.UpdateCollectiblesLeft(totalCollectibles);
+    }
 }
+
+
