@@ -19,26 +19,42 @@ public class CollectibleDataPersistence : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Called to update each collectible in the scene.
-    public void UpdateCollectiblesList()
-    {
-        collectibles.Clear(); // Clear previous collectibles from previous scene
-        collectibles.AddRange(FindObjectsOfType<Collectible>());
-        Debug.Log($"Collectibles found: {collectibles.Count}");
-    }
-
-    // Returns the number of remaining collectibles
-    public int GetCollectiblesLeft()
-    {
-        return collectibles.FindAll(c => c != null && c.gameObject.activeInHierarchy).Count;
-    }
     private void OnEnable()
     {
-        GameManager.OnLevelLoaded += UpdateCollectiblesList;
+        GameManager.OnLevelLoaded += PopulateCollectiblesList;
+        Collectible.OnCollectiblePickedUp += RemoveCollectible;
     }
 
     private void OnDisable()
     {
-        GameManager.OnLevelLoaded -= UpdateCollectiblesList;
+        GameManager.OnLevelLoaded -= PopulateCollectiblesList;
+        Collectible.OnCollectiblePickedUp -= RemoveCollectible;
+    }
+
+    public void PopulateCollectiblesList()
+    {
+        collectibles.Clear();
+        collectibles.AddRange(FindObjectsOfType<Collectible>());
+
+        Debug.Log($"There is total of :  {collectibles.Count} collectibles remaining ");
+
+        foreach ( Collectible collectible in collectibles )
+        {
+            Collectible.OnCollectiblePickedUp += RemoveCollectible;
+        }
+    }
+
+    private void RemoveCollectible(Collectible collectible)
+    {
+        if ( collectibles.Contains(collectible) )
+        {
+            collectibles.Remove(collectible);
+            Debug.Log($"Collectible removed. Remaining: {collectibles.Count}");
+        }
+    }
+
+    public int GetCollectiblesLeft()
+    {
+        return collectibles.Count;
     }
 }
