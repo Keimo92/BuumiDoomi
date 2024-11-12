@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AmmoPickUpDialogue
   m_EditorClassIdentifier: 
   dialogueLines:
-  - You got 10 bullets in your pistol
+  - Picked up 10 ammo
   autoSkip: 1

@@ -15,7 +15,7 @@ public class AmmoPickup : Pickupable
         {
             weapon.AddAmmmo(ammoData.ammoCount);  
             base.OnPickup(entity);
-            Destroy(gameObject, 0.3f);
+            Destroy(gameObject);
         }
     }
 }
