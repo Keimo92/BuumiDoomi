@@ -6,13 +6,16 @@ public class PlayerEntity : Entity
 {
     ScreenFlash screenFlash;
     public bool isAlive;
-    public event Action<PlayerAnimationManager.PlayerFaceState> OnPlayerFaceChange;
     
     [Header("Screen Flash Colors")]
     [SerializeField] private float onDeathFadeDuration;
     [SerializeField] private float onDamageFlashDuration;
     [SerializeField] private Color onDeathFadeColor;
     [SerializeField] private Color onDamageFlashColor;
+
+    [Header("Events")]
+    [SerializeField] private GameEvent onPlayerTakeDamageEvent;
+
     public override void Kill()
     {
         isAlive = false;
@@ -32,10 +35,9 @@ public class PlayerEntity : Entity
     {
         if ( isAlive )
         {
+            onPlayerTakeDamageEvent.Raise(this, null);
             screenFlash.FlashColor(onDamageFlashColor, onDamageFlashDuration);
-            PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.Hurt);
             base.Damage(damage);
-            PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.Idle);
         }
     }
 }

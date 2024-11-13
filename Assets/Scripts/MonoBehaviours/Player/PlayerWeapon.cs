@@ -70,13 +70,6 @@ public class PlayerWeapon : MonoBehaviour
 
         if ( allowButtonHold && InputManager.Instance.shootAction.IsPressed() )
         {
-            
-            mouseButtonHoldTime += Time.deltaTime;
-            if ( mouseButtonHoldTime >= holdDuration )
-            {
-                PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.Hurt);
-            }
-
             if ( timer >= nextShotTime )
             {
                 OnShootPressed();
@@ -85,7 +78,6 @@ public class PlayerWeapon : MonoBehaviour
         else if ( allowButtonHold && !InputManager.Instance.shootAction.IsPressed() )
         {
             mouseButtonHoldTime = 0f;
-            PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.Idle);
         }
     }
 

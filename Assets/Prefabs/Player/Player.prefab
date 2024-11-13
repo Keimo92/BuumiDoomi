@@ -343,6 +343,7 @@ MonoBehaviour:
   weaponMuzzle: {fileID: 8899333698044201520}
   muzzleFlash: {fileID: 5530413171097351562, guid: a51926c8157180f48870b3b07ec7a5e5, type: 3}
   gunAnimator: {fileID: 2302607194425964921}
+  mouseButtonHoldTime: 0
 --- !u!114 &7033691762434821950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +368,7 @@ MonoBehaviour:
   onDamageFlashDuration: 0.2
   onDeathFadeColor: {r: 0, g: 0, b: 0, a: 0}
   onDamageFlashColor: {r: 0.9056604, g: 0, b: 0.20469464, a: 0}
-  resetSceneTime: 0
+  onPlayerTakeDamageEvent: {fileID: 0}
 --- !u!1 &5431913496525201725
 GameObject:
   m_ObjectHideFlags: 0

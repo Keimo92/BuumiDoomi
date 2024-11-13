@@ -100,6 +100,7 @@ MonoBehaviour:
   screenFlashDuration: 0.1
   pickupDialogue: 1
   onPickupDialogueData: {fileID: 11400000, guid: 7fd935aa9be02314e8382973885ea9e8, type: 2}
+  onPickupablePickedUpEvent: {fileID: 11400000, guid: 04cb19f7874b305479250dcbef2e7a13, type: 2}
   healthPack: {fileID: 11400000, guid: fbd6d63648336714ca6d86cbc6a3f52f, type: 2}
 --- !u!1001 &7212923049950142615
 PrefabInstance:

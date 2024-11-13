@@ -17,6 +17,10 @@ public abstract class Pickupable : MonoBehaviour
     [SerializeField] bool pickupDialogue;
     [SerializeField] DialogueData onPickupDialogueData;
 
+    [Header("Events")]
+    [SerializeField] GameEvent onPickupablePickedUpEvent;
+
+
     private void Start()
     {
         //Find the dialogue manager and screenflash components from the scene. This could be refactored later.
@@ -38,6 +42,9 @@ public abstract class Pickupable : MonoBehaviour
 
     public virtual void OnPickup(Entity entity)
     {
+        onPickupablePickedUpEvent.Raise(this, null);
+
+
         if (pickupDialogue)
         {
             dialogueManager.StartDialogue(onPickupDialogueData);

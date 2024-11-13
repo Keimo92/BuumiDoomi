@@ -151,4 +151,5 @@ MonoBehaviour:
   screenFlashDuration: 0.2
   pickupDialogue: 1
   onPickupDialogueData: {fileID: 11400000, guid: d5409f73690672941b9f9f5dae2b67a8, type: 2}
+  onPickupablePickedUpEvent: {fileID: 11400000, guid: 04cb19f7874b305479250dcbef2e7a13, type: 2}
   ammoData: {fileID: 11400000, guid: 817350b2780d0ce4fb14a88c50f10a2f, type: 2}
