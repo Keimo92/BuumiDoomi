@@ -1,30 +1,13 @@
-using System;
 using System.Collections;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using UnityEngine.InputSystem.XInput;
+using System;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
-    Animator animator;
-    public static event Action <PlayerFaceState> PlayerAnimationChanged;
-
-    public static PlayerAnimationManager instance;
-
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-
-        if ( instance != null && instance != this )
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
+    public static event Action<PlayerFaceState> OnPlayerFaceChange; 
 
     public enum PlayerFaceState
     {
@@ -35,49 +18,48 @@ public class PlayerAnimationManager : MonoBehaviour
 
     public PlayerFaceState currentState;
 
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+    public static void ChangeFaceState(PlayerFaceState newFaceState)
+    {
+        OnPlayerFaceChange?.Invoke(newFaceState);
+    }
+    private void OnEnable()
+    {
+        OnPlayerFaceChange += SetPlayerFaceState;
+    }
+
+    private void OnDisable()
+    {
+        OnPlayerFaceChange -= SetPlayerFaceState;
+    }
 
     public void SetPlayerFaceState(PlayerFaceState newFaceState)
     {
-        if ( currentState == newFaceState) return;
-
         currentState = newFaceState;
 
-        PlayerAnimationChanged?.Invoke(currentState);
-        switch (newFaceState)
+        switch ( newFaceState )
         {
             case PlayerFaceState.Idle:
-                PlayerIdle();
+                animator.SetTrigger("Idle");
+                break;
+            case PlayerFaceState.Hurt:
+                animator.SetTrigger("Hurt");
                 break;
             case PlayerFaceState.PickUp:
                 StartCoroutine(FaceRoutineForPickUp());
                 break;
-            case PlayerFaceState.Hurt:
-                Playerhurt();
-                break;
         }
     }
 
-    void Playerhurt()
-    {
-        animator.SetTrigger("Hurt");
-    }
-
-    void PlayerIdle()
-    {
-        animator.SetTrigger("Idle");
-    }
-
-    void PlayerPickUp()
+    private IEnumerator FaceRoutineForPickUp()
     {
         animator.SetTrigger("Pickup");
-    }
-
-    //Fixing this later
-    IEnumerator FaceRoutineForPickUp()
-    {
-        PlayerPickUp();
         yield return new WaitForSeconds(1.5f);
-        
+        animator.SetTrigger("Idle");
     }
 }
-

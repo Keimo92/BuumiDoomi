@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -73,7 +74,7 @@ public class PlayerWeapon : MonoBehaviour
             mouseButtonHoldTime += Time.deltaTime;
             if ( mouseButtonHoldTime >= holdDuration )
             {
-                PlayerAnimationManager.instance.SetPlayerFaceState(PlayerAnimationManager.PlayerFaceState.Hurt);
+                PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.Hurt);
             }
 
             if ( timer >= nextShotTime )
@@ -84,7 +85,7 @@ public class PlayerWeapon : MonoBehaviour
         else if ( allowButtonHold && !InputManager.Instance.shootAction.IsPressed() )
         {
             mouseButtonHoldTime = 0f;
-            PlayerAnimationManager.instance.SetPlayerFaceState(PlayerAnimationManager.PlayerFaceState.Idle);
+            PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.Idle);
         }
     }
 

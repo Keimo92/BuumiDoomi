@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -5,7 +6,8 @@ public class PlayerEntity : Entity
 {
     ScreenFlash screenFlash;
     public bool isAlive;
-
+    public event Action<PlayerAnimationManager.PlayerFaceState> OnPlayerFaceChange;
+    
     [Header("Screen Flash Colors")]
     [SerializeField] private float onDeathFadeDuration;
     [SerializeField] private float onDamageFlashDuration;
@@ -31,9 +33,9 @@ public class PlayerEntity : Entity
         if ( isAlive )
         {
             screenFlash.FlashColor(onDamageFlashColor, onDamageFlashDuration);
-            PlayerAnimationManager.instance.SetPlayerFaceState(PlayerAnimationManager.PlayerFaceState.Hurt);
+            PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.Hurt);
             base.Damage(damage);
-            PlayerAnimationManager.instance.SetPlayerFaceState(PlayerAnimationManager.PlayerFaceState.Idle);
+            PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.Idle);
         }
     }
 }
