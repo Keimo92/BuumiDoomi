@@ -2,19 +2,16 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using System.Collections.Generic;
-using TMPro;
 
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI collectiblesText;
-    [SerializeField] private GameObject collectibleObj; //Place holder which will be set to false after the level finish.
-    public List<string> sceneNames; // Scene assets did not work after builded the game. If this string array solution is not good. Lets fix it, for now this should do that we can track what scenes are in the inspector.
     [SerializeField] private float timeToReloadScene;
-    [SerializeField] private float collectibleTextShowTime = 8f;
 
-    public static event System.Action OnLevelLoaded;
+    public List<string> sceneNames; // Scene assets did not work after builded the game. If this string array solution is not good. Lets fix it, for now this should do that we can track what scenes are in the inspector.
+
     public enum GameState
     {
         Playing,
@@ -30,15 +27,8 @@ public class GameManager : MonoBehaviour
 
     private int currentLevelIndex;
 
-
-    private void Start()
-    {
-        collectibleObj.SetActive(false);
-        OnLevelLoaded?.Invoke();
-    }
     private void Awake()
     {
-
         if ( Instance != null && Instance != this )
         {
             Destroy(gameObject);
@@ -47,11 +37,6 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Update()
-    {
-
     }
 
     //Set the game state here from other classes
@@ -91,44 +76,25 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         InputManager.Instance.onPauseActionPressed -= OnPausePressed;
-
     }
-    private void OnLevelLoadedHandler(AsyncOperation asyncOperation)
+
+    private void OnLevelLoaded(AsyncOperation asyncOperation)
     {
         SetGameState(GameState.Playing);
-        asyncOperation.completed -= OnLevelLoadedHandler;
-        OnLevelLoaded?.Invoke();
-
-        collectibleObj = GameObject.Find("CollectiblePlaceHolder");
-        collectiblesText = GameObject.Find("CollectibleText")?.GetComponent<TextMeshProUGUI>();
-        collectibleObj.SetActive(false);
+        asyncOperation.completed -= OnLevelLoaded;
     }
-
 
 
     //When we exit the level this is called;
     private IEnumerator WaitAndLoadNextLevel()
     {
-        if ( collectibleObj != null )
-        {
-            collectibleObj.SetActive(true);
-
-            int collectiblesLeft = CollectibleDataPersistence.instance.GetCollectiblesLeft();
-            if ( collectiblesText != null )
-            {
-                collectiblesText.text = $"You missed total of : {collectiblesLeft} collectibles";
-            }
-
-            yield return new WaitForSeconds(collectibleTextShowTime);
-        }
-
         yield return new WaitForSeconds(timeToReloadScene);
 
         if ( currentLevelIndex < sceneNames.Count - 1 )
         {
             currentLevelIndex++;
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneNames[currentLevelIndex]);
-            loadOperation.completed += OnLevelLoadedHandler;
+            loadOperation.completed += OnLevelLoaded;
         }
         else
         {
@@ -136,7 +102,6 @@ public class GameManager : MonoBehaviour
             SetGameState(GameState.GameOver);
         }
     }
-
     public GameState GetCurrentState()
     {
         return currentState;
@@ -167,12 +132,10 @@ public class GameManager : MonoBehaviour
     //Return the current scene after player is dead
     private IEnumerator ReturnToLevelAfterDeathRoutine()
     {
-        int collectiblesLeft = CollectibleDataPersistence.instance.GetCollectiblesLeft();
-        collectiblesText.text = $"You missed total of : {collectiblesLeft} collectibles";
-        collectibleObj.SetActive(true);
+
         yield return new WaitForSeconds(timeToReloadScene);
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-        loadOperation.completed += OnLevelLoadedHandler;
+        loadOperation.completed += OnLevelLoaded;
     }
 
     private void OnPausePressed()
@@ -180,5 +143,3 @@ public class GameManager : MonoBehaviour
         GameManager.Instance.TogglePauseGame();
     }
 }
-
-
