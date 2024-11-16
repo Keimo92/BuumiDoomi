@@ -4,23 +4,19 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [Header("Door ID")]
-    public string doorUniqueId;
+    [SerializeField] string doorId;
 
     [Header("Settings for opening speed and position")] //This is just testing only that they open. We can use better mechanics here, but did not wanna use time for it that much. <3
-    public float openingSpeed; 
-    public Vector3 offset;
-    private Vector3 initialPosition;
-    private Vector3 targetPosition;
+    [SerializeField] float openingSpeed;
+    [SerializeField] Vector3 openedOffset; //Offset after the door is opened. 
 
-    private static Dictionary<string, List<Door>> doorId = new Dictionary<string, List<Door>>();
+    //Private vars
+    private Vector3 targetPosition;
     private bool isOpening = false;
 
     private void Start()
     {
-        initialPosition = transform.position;
-        targetPosition = initialPosition + offset;
-
-        RegisterDoor(doorUniqueId, this);
+        targetPosition = transform.position + openedOffset;
     }
 
     private void Update()
@@ -36,34 +32,17 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void OpenDoor(Component sender, object data)
+    //This is called by the OnButtonPressed event (SO Event System)
+    public void OnButtonPressed(Component sender, object data)
     {
-        if ( data is GameEventData.OnDoorButtonPressed eventData && eventData.id == doorUniqueId )
+        if ( data is GameEventData.OnButtonPressed eventData )
         {
-            OpenAllDoorsWithId(eventData.id);
-            Debug.Log("These doors opened" + doorUniqueId); 
-        }
-    }
-
-    //Register doors with id
-    public void RegisterDoor(string id, Door door)
-    {
-        if ( !doorId.ContainsKey(id) )
-        {
-            doorId[id] = new List<Door>();
-        }
-        doorId[id].Add(door);
-    }
-
-    //If door has same id as the button it will open all, otherwise only that what is assigned.
-    public void OpenAllDoorsWithId(string id)
-    {
-        if ( doorId.TryGetValue(id, out List<Door> doors) )
-        {
-            foreach ( Door door in doors )
+            if(eventData.id == doorId) //If the id matches this doors id -> Open
             {
-                door.isOpening = true;
+                isOpening = true; // -> Update loop
+                Debug.Log("Door opened: " + transform); 
             }
+            
         }
     }
 }

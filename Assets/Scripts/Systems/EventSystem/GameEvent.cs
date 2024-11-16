@@ -44,7 +44,7 @@ public class GameEventData
         public string Data;
     }
 
-    public struct OnDoorButtonPressed
+    public struct OnButtonPressed
     {
         public string id;
     }

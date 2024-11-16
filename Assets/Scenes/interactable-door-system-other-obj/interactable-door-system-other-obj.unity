@@ -805,9 +805,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8568ded32138b4b9cd58768249111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorUniqueId: Door1
-  offset: {x: 0, y: 5, z: 0}
+  doorId: 1
   openingSpeed: 2
+  openedOffset: {x: 0, y: 5, z: 0}
 --- !u!114 &688542933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,7 +826,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 688542932}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: OpenDoor
+        m_MethodName: OnButtonPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1267,9 +1267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8568ded32138b4b9cd58768249111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorUniqueId: Door1
-  offset: {x: 0, y: 5, z: 0}
+  doorId: 1
   openingSpeed: 2
+  openedOffset: {x: 0, y: 5, z: 0}
 --- !u!114 &1209186003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,7 +1288,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1209186002}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: OpenDoor
+        m_MethodName: OnButtonPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1331,9 +1331,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8568ded32138b4b9cd58768249111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorUniqueId: Door2
-  offset: {x: 0, y: 5, z: 0}
+  doorId: 2
   openingSpeed: 2
+  openedOffset: {x: 0, y: -5, z: 0}
 --- !u!65 &1258434567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1438,7 +1438,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1258434566}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: OpenDoor
+        m_MethodName: OnButtonPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2236,9 +2236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8568ded32138b4b9cd58768249111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorUniqueId: Door2
-  offset: {x: 0, y: 5, z: 0}
+  doorId: 2
   openingSpeed: 2
+  openedOffset: {x: 0, y: -5, z: 0}
 --- !u!65 &1828186249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2343,7 +2343,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1828186248}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: OpenDoor
+        m_MethodName: OnButtonPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2575,6 +2575,10 @@ PrefabInstance:
       value: Door1
       objectReference: {fileID: 0}
     - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: buttonId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: doorOpen
       value: 
       objectReference: {fileID: 11400000, guid: ba341ad7dda1cd84894abb7ffb6efbcc, type: 2}
@@ -2582,6 +2586,10 @@ PrefabInstance:
       propertyPath: doorToOpenId
       value: Door2
       objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: onButtonPressed
+      value: 
+      objectReference: {fileID: 11400000, guid: dec101bf742e37f41a92662596d7509b, type: 2}
     - target: {fileID: 8394915008911855654, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: m_Name
       value: Button (1)
@@ -2710,6 +2718,10 @@ PrefabInstance:
       value: Door1
       objectReference: {fileID: 0}
     - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: buttonId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: doorOpen
       value: 
       objectReference: {fileID: 11400000, guid: ba341ad7dda1cd84894abb7ffb6efbcc, type: 2}
@@ -2717,6 +2729,10 @@ PrefabInstance:
       propertyPath: doorToOpenId
       value: Door1
       objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: onButtonPressed
+      value: 
+      objectReference: {fileID: 11400000, guid: dec101bf742e37f41a92662596d7509b, type: 2}
     - target: {fileID: 8394915008911855654, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: m_Name
       value: Button
