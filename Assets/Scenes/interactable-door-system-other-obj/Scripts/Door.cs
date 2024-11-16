@@ -21,6 +21,7 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
+        //Does not run by default but can change in OnButtonPressed event
         if ( isOpening )
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, openingSpeed * Time.deltaTime);
@@ -39,7 +40,7 @@ public class Door : MonoBehaviour
         {
             if(eventData.id == doorId) //If the id matches this doors id -> Open
             {
-                isOpening = true; // -> Update loop
+                isOpening = true; // -> Opens in Update()
                 Debug.Log("Door opened: " + transform); 
             }
             
