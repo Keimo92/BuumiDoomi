@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheckPosition;
     [SerializeField] float groundCheckLength;
     [SerializeField] LayerMask groundLayerMask;
-
+    [SerializeField] float groundCheckRadius;
     [Header("Roof Check Settings")]
     [SerializeField] Transform roofCheckPosition;
     [SerializeField] float roofCheckLength;
@@ -157,9 +157,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck()
     {
-        if(Physics.Raycast(groundCheckPosition.position, Vector3.down, groundCheckLength, groundLayerMask))
+        if ( Physics.SphereCast(groundCheckPosition.position, groundCheckRadius, Vector3.down, out RaycastHit hit, groundCheckLength, groundLayerMask) )
         {
-            if (isJumping && !isGrounded) //We have landed after jumping
+            if ( isJumping && !isGrounded ) 
             {
                 isGrounded = true;
                 isJumping = false;
@@ -169,11 +169,14 @@ public class PlayerMovement : MonoBehaviour
                 isGrounded = true;
             }
         }
-        else if(isGrounded) //If we were previously grounded we set isgrounded false and start coyote time
+        else if ( isGrounded )
         {
             isGrounded = false;
-            if(!isJumping) StartCoroutine(CoyoteTimeRoutine()); //If we have left the ground and we have not jumped -> Coyote time
 
+            if ( !isJumping )
+            {
+                StartCoroutine(CoyoteTimeRoutine());
+            }
         }
     }
 
@@ -201,5 +204,15 @@ public class PlayerMovement : MonoBehaviour
         }
         if(groundCheckPosition != null) Gizmos.DrawRay(groundCheckPosition.position, Vector3.down * groundCheckLength);
         if (roofCheckPosition != null) Gizmos.DrawRay(roofCheckPosition.position, Vector3.up * roofCheckLength);
-    }     
+
+    }
+    private void OnDrawGizmos()
+    {
+        if ( groundCheckPosition != null )
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheckPosition.position, groundCheckRadius);
+        }
+    }
 }
+
