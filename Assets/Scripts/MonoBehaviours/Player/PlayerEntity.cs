@@ -28,7 +28,7 @@ public class PlayerEntity : Entity
     {
         isAlive = true;
         screenFlash = FindAnyObjectByType<ScreenFlash>();
-        base.GetHealth();
+        base.GetMaxHealth();
     }
 
     public override void Damage(float damage)

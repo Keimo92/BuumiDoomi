@@ -14,7 +14,7 @@ public class HealthPickUp : Pickupable
     {
         if(entity.entityType == Entity.EntityMask.Player)
         {
-            if ( entity.GetHealth() < entity.GetMaxHealth() )
+            if ( entity.GetHealth < entity.GetMaxHealth() )
             {
                 //PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.PickUp);
                 base.OnPickup(entity);
