@@ -25,10 +25,10 @@ public abstract class Entity : MonoBehaviour
     [System.Flags]
     public enum EntityMask
     {
-        None    = 0,
-        Enemy   = 1,
-        Player  = 2,
-        Object  = 4
+        None = 0,
+        Enemy = 1,
+        Player = 2,
+        Object = 4
     }
 
     private void Awake()
@@ -39,10 +39,10 @@ public abstract class Entity : MonoBehaviour
     private void Start()
     {
         //Set current health
-        currentHealth = maxHealth;
+        GetMaxHealth();
 
         //If mesh renderer is not set. Then try to get it from current gameobject
-        if(entityGfx == null)
+        if ( entityGfx == null )
         {
             entityGfx = GetComponentInChildren<MeshRenderer>();
         }
@@ -52,11 +52,11 @@ public abstract class Entity : MonoBehaviour
     public virtual void Damage(float damage)
     {
         //Add the onhitmaterial to the object if we have access to mesh renderer and onHitMaterial
-        if(onHitMaterial && entityGfx && !OnHitMaterialEnabled) StartCoroutine(HitMaterialEnable());
-        
+        if ( onHitMaterial && entityGfx && !OnHitMaterialEnabled ) StartCoroutine(HitMaterialEnable());
+
         //If current health reaches 0 or below we kill this entity
         currentHealth -= damage;
-        if(currentHealth <= 0)
+        if ( currentHealth <= 0 )
         {
             currentHealth = 0;
             Kill();
@@ -67,7 +67,7 @@ public abstract class Entity : MonoBehaviour
     public virtual void Kill()
     {
         //Instantiate OnDeath prefabs
-        foreach(GameObject prefab in onDeathPrefabs)
+        foreach ( GameObject prefab in onDeathPrefabs )
         {
             Instantiate(prefab, transform.position, Quaternion.identity);
         }
@@ -75,13 +75,26 @@ public abstract class Entity : MonoBehaviour
     }
 
     //Health getter function
-    public float GetHealth() { return currentHealth; }
-    public float GetMaxHealth() { return maxHealth; }
+    public float GetHealth
+    {
+        get { return currentHealth; }
+        set { currentHealth = value; }
+
+    }
+    public float SetHealth
+    {
+        get { return currentHealth; } 
+        set { currentHealth = Mathf.Clamp(value, 0, maxHealth); }
+    }
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
     public void AddHealth(float amount)
     {
         currentHealth += amount;
 
-        if (currentHealth > maxHealth)
+        if ( currentHealth > maxHealth )
         {
             currentHealth = maxHealth;
         }

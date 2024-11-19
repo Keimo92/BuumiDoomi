@@ -364,7 +364,7 @@ MonoBehaviour:
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
   onHitMaterialTime: 0.1
   isAlive: 0
-  onDeathFadeDuration: 0.5
+  onDeathFadeDuration: 1
   onDamageFlashDuration: 0.2
   onDeathFadeColor: {r: 0, g: 0, b: 0, a: 0}
   onDamageFlashColor: {r: 0.9056604, g: 0, b: 0.20469464, a: 0}
