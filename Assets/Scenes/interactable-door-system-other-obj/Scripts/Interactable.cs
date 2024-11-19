@@ -10,12 +10,14 @@ public abstract class Interactable : MonoBehaviour
     [Header("Settings")]
     [SerializeField] bool interactDialogue;
     [SerializeField] DialogueData onInteractDialogueData;
+    [SerializeField] DialogueData hasBeenInteractedDialogueData;
     [SerializeField] bool isForDoor;
     [SerializeField] string doorUniqueId;
 
     [Header("Events")]
     [SerializeField] GameEvent onInteractedEvent;
 
+    public bool Interacted { get; set; }
 
     private void Start()
     {
@@ -37,12 +39,21 @@ public abstract class Interactable : MonoBehaviour
         if ( isForDoor )
         {
             onInteractedEvent?.Raise(this, new GameEventData.OnButtonPressed { id = doorUniqueId });
+
         }
 
         if ( interactDialogue )
         {
             dialogueManager.StartDialogue(onInteractDialogueData);
+
         }
     }
 
+    public virtual void HasbeenInteracted(Entity entity)
+    {
+        if ( Interacted )
+        {
+            dialogueManager.StartDialogue(hasBeenInteractedDialogueData);
+        }
+    }
 }
