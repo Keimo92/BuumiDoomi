@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AmmoPickup : Pickupable
 {
+    [Header("Data")]
     public AmmoData ammoData;
 
     public override void OnPickup(Entity entity)

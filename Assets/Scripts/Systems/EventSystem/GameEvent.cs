@@ -43,4 +43,9 @@ public class GameEventData
     {
         public string Data;
     }
+
+    public struct OnButtonPressed
+    {
+        public string id;
+    }
 }
