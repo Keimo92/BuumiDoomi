@@ -787,7 +787,7 @@ Transform:
   m_GameObject: {fileID: 688542927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.94, y: 1.07, z: 14.1904}
+  m_LocalPosition: {x: 0.94, y: 1.49, z: 14.1904}
   m_LocalScale: {x: 1, y: 4.8864, z: 3.3606353}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -805,7 +805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8568ded32138b4b9cd58768249111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorId: 1
+  doorId: Door1
   openingSpeed: 2
   openedOffset: {x: 0, y: 5, z: 0}
 --- !u!114 &688542933
@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8568ded32138b4b9cd58768249111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorId: 1
+  doorId: Door1
   openingSpeed: 2
   openedOffset: {x: 0, y: 5, z: 0}
 --- !u!114 &1209186003
@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8568ded32138b4b9cd58768249111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorId: 2
+  doorId: Door2
   openingSpeed: 2
   openedOffset: {x: 0, y: -5, z: 0}
 --- !u!65 &1258434567
@@ -1448,6 +1448,63 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1001 &1321107834
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6622541651219932635, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.699369
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622541651219932635, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622541651219932635, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.524665
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622541651219932635, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622541651219932635, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622541651219932635, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622541651219932635, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622541651219932635, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622541651219932635, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622541651219932635, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7799779430522601275, guid: fed3b760573afd74793ba946ece772e4, type: 3}
+      propertyPath: m_Name
+      value: HealthPackFinal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fed3b760573afd74793ba946ece772e4, type: 3}
 --- !u!1 &1330275212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,7 +2293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8568ded32138b4b9cd58768249111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorId: 2
+  doorId: Door2
   openingSpeed: 2
   openedOffset: {x: 0, y: -5, z: 0}
 --- !u!65 &1828186249
@@ -2576,20 +2633,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: buttonId
-      value: 2
+      value: Door1
       objectReference: {fileID: 0}
     - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: doorOpen
       value: 
       objectReference: {fileID: 11400000, guid: ba341ad7dda1cd84894abb7ffb6efbcc, type: 2}
     - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: isForDoor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: doorToOpenId
       value: Door2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: doorUniqueId
+      value: Door2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: intractDialogue
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: onButtonPressed
       value: 
       objectReference: {fileID: 11400000, guid: dec101bf742e37f41a92662596d7509b, type: 2}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: interactDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: onInteractedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: dec101bf742e37f41a92662596d7509b, type: 2}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: onPickupDialogueData
+      value: 
+      objectReference: {fileID: 11400000, guid: ac281e74332343843891211802b74db2, type: 2}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: onInteractDialogueData
+      value: 
+      objectReference: {fileID: 11400000, guid: ac281e74332343843891211802b74db2, type: 2}
     - target: {fileID: 8394915008911855654, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: m_Name
       value: Button (1)
@@ -2718,21 +2803,53 @@ PrefabInstance:
       value: Door1
       objectReference: {fileID: 0}
     - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: isDoor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: buttonId
-      value: 1
+      value: Door1
       objectReference: {fileID: 0}
     - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: doorOpen
       value: 
       objectReference: {fileID: 11400000, guid: ba341ad7dda1cd84894abb7ffb6efbcc, type: 2}
     - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: isForDoor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: doorToOpenId
       value: Door1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: doorUniqueId
+      value: Door1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: intractDialogue
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: onButtonPressed
       value: 
       objectReference: {fileID: 11400000, guid: dec101bf742e37f41a92662596d7509b, type: 2}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: interactDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: onInteractedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: dec101bf742e37f41a92662596d7509b, type: 2}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: onPickupDialogueData
+      value: 
+      objectReference: {fileID: 11400000, guid: ac281e74332343843891211802b74db2, type: 2}
+    - target: {fileID: 4256833987208937103, guid: 41336ef591198ad4194e62117692fab8, type: 3}
+      propertyPath: onInteractDialogueData
+      value: 
+      objectReference: {fileID: 11400000, guid: ac281e74332343843891211802b74db2, type: 2}
     - target: {fileID: 8394915008911855654, guid: 41336ef591198ad4194e62117692fab8, type: 3}
       propertyPath: m_Name
       value: Button
@@ -2965,6 +3082,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5712865173983630357, guid: 0c3d70fd0a524244fa23d036e9fd15fb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 176
+      objectReference: {fileID: 0}
     - target: {fileID: 7458449881312452724, guid: 0c3d70fd0a524244fa23d036e9fd15fb, type: 3}
       propertyPath: m_Name
       value: DialogueCanvas
@@ -3111,3 +3232,4 @@ SceneRoots:
   - {fileID: 1828186252}
   - {fileID: 4402649135161571691}
   - {fileID: 2057796386}
+  - {fileID: 1321107834}

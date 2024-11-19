@@ -1,21 +1,13 @@
 using UnityEngine;
 
-public class Button : MonoBehaviour
+public class Button : Interactable
 {
-    [Header("Button Door ID")]
-    [SerializeField] private string buttonId;
 
-    [Header("Events")]
-    [SerializeField] private GameEvent onButtonPressed;
-
-    private void OnTriggerEnter(Collider other)
+    public override void Interact(Entity entity)
     {
-        if ( other.TryGetComponent<Entity>(out Entity entity) )
+        if ( entity.entityType == Entity.EntityMask.Player )
         {
-            if ( entity.entityType == Entity.EntityMask.Player )
-            {
-                onButtonPressed?.Raise(this, new GameEventData.OnButtonPressed { id = buttonId });
-            }
+            base.Interact(entity);
         }
     }
 }
