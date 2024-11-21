@@ -3017,6 +3017,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 59235427884348471, guid: 0c3d70fd0a524244fa23d036e9fd15fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954740211331600478, guid: 0c3d70fd0a524244fa23d036e9fd15fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5152162156856427516, guid: 0c3d70fd0a524244fa23d036e9fd15fb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -43841,6 +43849,10 @@ PrefabInstance:
     - target: {fileID: 59235427884348471, guid: f43c5bb0ac8ef3e41a814576b09da577, type: 3}
       propertyPath: m_Name
       value: PlayerAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 59235427884348471, guid: f43c5bb0ac8ef3e41a814576b09da577, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7656287270411088619, guid: f43c5bb0ac8ef3e41a814576b09da577, type: 3}
       propertyPath: m_Pivot.x
