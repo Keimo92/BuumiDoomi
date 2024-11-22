@@ -58,7 +58,7 @@ public abstract class Entity : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //Damage function. Called by other scripts when they want to deal damage to entity.
+    //Damage function. Called by other scripts when they want to deal damage to entity or subtract HP.
     public virtual void Damage(float damage)
     {
         //Add the onhitmaterial to the object if we have access to mesh renderer and onHitMaterial
@@ -76,13 +76,13 @@ public abstract class Entity : MonoBehaviour
     #region Health Functions
         #region CurrentHealth
     public float GetCurrentHealth() { return currentHealth; }
-    public void SetCurrentHealth(float _health)
+    public void SetCurrentHealth(float _health) //This function will be used to set the CurrentHealth. This function canno't be used to kill the entity. Use Damage() for that. 
     {
-        currentHealth = Mathf.Clamp(Mathf.Abs(_health), 1, Mathf.Infinity); //Can't set to zero
+        currentHealth = Mathf.Clamp(_health, 1, Mathf.Infinity); //Can't set to zero.
     }
     public void AddCurrentHealth(float amount)
     {
-        currentHealth += Mathf.Abs(amount);
+        currentHealth += Mathf.Abs(amount); //We make the amount absolute so this function will always ADD to the current health. Not subtract. Use Damage() for subtracting.
 
         if (currentHealth > maxHealth)
         {
@@ -93,15 +93,15 @@ public abstract class Entity : MonoBehaviour
 
         #region MaxHealth
     public float GetMaxHealth() { return maxHealth; }
-    public void SetMaxHealth(float _maxHealth)
+    public void SetMaxHealth(float _maxHealth) //This can be used to set the max health. Cannot be used to kill the player (thus the clamp there).
     {
         maxHealth = Mathf.Clamp(_maxHealth, 1, Mathf.Infinity); //Can't set to zero
 
         if(currentHealth > maxHealth) currentHealth = maxHealth; //If the current health is above max health after changing the maxHealth -> We set it to maxHp
     }
-    public void AddMaxHealth(float amount)
+    public void AddMaxHealth(float amount) 
     {
-        maxHealth += Mathf.Abs(amount);
+        maxHealth += Mathf.Abs(amount); //We make the amount absolute so this function will always ADD to the maxHealth.
     }
         #endregion
     #endregion
