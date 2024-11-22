@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Ground Check Settings")]
     [SerializeField] Transform groundCheckPosition;
-    [SerializeField] float groundCheckLength;
+    [SerializeField] float groundCheckRadius;
     [SerializeField] LayerMask groundLayerMask;
 
     [Header("Roof Check Settings")]
@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
             if (roofHit) roofHit = false;
             verticalVelocity = 0f;
             return;
-        } else//Else. We add gravity.
+        } else //Else. We add gravity.
         {   
             verticalVelocity -= playerGravity * Time.deltaTime;
             verticalVelocity = Mathf.Clamp(verticalVelocity, -maxVerticalVelocity, maxVerticalVelocity); //Clamp to max
@@ -157,23 +157,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck()
     {
-        if(Physics.Raycast(groundCheckPosition.position, Vector3.down, groundCheckLength, groundLayerMask))
+        if ( Physics.CheckSphere(groundCheckPosition.position, groundCheckRadius, groundLayerMask)) //We do a ground check using CheckSphere
         {
-            if (isJumping && !isGrounded) //We have landed after jumping
-            {
+            if ( isJumping && !isGrounded )  
+            {                                
+                //We have landed after jumping. isJumping is true the whole time we are in the air after jumping.                             
+                //So if isJumping is true and isGrounded is false and we have now hit the ground we know that we have landed after jumping.
+
                 isGrounded = true;
                 isJumping = false;
             }
             else
             {
+                //Normal case we are just grounded and we set it to true
                 isGrounded = true;
             }
         }
-        else if(isGrounded) //If we were previously grounded we set isgrounded false and start coyote time
+        else if ( isGrounded ) //This will be triggered if we were previously grounded and on this frame we are not. If we were previously grounded we set isGrounded false and start coyote time if we did not trigger a jump.
         {
             isGrounded = false;
-            if(!isJumping) StartCoroutine(CoyoteTimeRoutine()); //If we have left the ground and we have not jumped -> Coyote time
 
+            if ( !isJumping ) //If we have left the ground and we have not jumped -> Coyote time
+            {
+                StartCoroutine(CoyoteTimeRoutine());
+            }
         }
     }
 
@@ -199,7 +206,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Gizmos.color = Color.red;
         }
-        if(groundCheckPosition != null) Gizmos.DrawRay(groundCheckPosition.position, Vector3.down * groundCheckLength);
+        if(groundCheckPosition != null) Gizmos.DrawWireSphere(groundCheckPosition.position, groundCheckRadius);
         if (roofCheckPosition != null) Gizmos.DrawRay(roofCheckPosition.position, Vector3.up * roofCheckLength);
-    }     
+
+    }
 }
+

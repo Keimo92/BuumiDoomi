@@ -299,7 +299,7 @@ MonoBehaviour:
   maxVerticalVelocity: 70.6
   jumpForce: 9.81
   groundCheckPosition: {fileID: 5533676409635225428}
-  groundCheckLength: 0.2
+  groundCheckRadius: 0.5
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 627
@@ -333,6 +333,7 @@ MonoBehaviour:
   ammoCount: 0
   maxAmmo: 900
   ReloadAmount: 20
+  shootingDistance: 200
   fireRate: 5
   allowButtonHold: 1
   canShoot: 1
@@ -364,7 +365,7 @@ MonoBehaviour:
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
   onHitMaterialTime: 0.1
   isAlive: 0
-  onDeathFadeDuration: 0.5
+  onDeathFadeDuration: 1
   onDamageFlashDuration: 0.2
   onDeathFadeColor: {r: 0, g: 0, b: 0, a: 0}
   onDamageFlashColor: {r: 0.9056604, g: 0, b: 0.20469464, a: 0}
@@ -394,7 +395,7 @@ Transform:
   m_GameObject: {fileID: 5431913496525201725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.712, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
