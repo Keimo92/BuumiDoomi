@@ -11,9 +11,9 @@ public abstract class Entity : MonoBehaviour
     [Header("Basic Setup")]
     [SerializeField] float currentHealth; //Will be overridden by maxHealth on Start()
     [SerializeField] float maxHealth;
+
     [SerializeField] Renderer entityGfx;
     public EntityMask entityType; //Holds the entity type so we can filter entities based on the type. DON'T SET MULTIPLE TYPES OTHERWISE THIS WONT WORK CORRECTLY
-
 
     [Header("On Death Instantiated Prefabs")]
     [SerializeField] List<GameObject> onDeathPrefabs = new List<GameObject>();
@@ -21,14 +21,15 @@ public abstract class Entity : MonoBehaviour
     [Header("On Hit Material")]
     [SerializeField] Material onHitMaterial;
     [SerializeField] private float onHitMaterialTime;
-    protected bool OnHitMaterialEnabled = false;
+    bool OnHitMaterialEnabled = false;
+
     [System.Flags]
     public enum EntityMask
     {
-        None    = 0,
-        Enemy   = 1,
-        Player  = 2,
-        Object  = 4
+        None = 0,
+        Enemy = 1,
+        Player = 2,
+        Object = 4
     }
 
     private void Awake()
@@ -36,30 +37,13 @@ public abstract class Entity : MonoBehaviour
         OnHitMaterialEnabled = false;
         currentHealth = maxHealth;
     }
+
     private void Start()
     {
-        //Set current health
-        currentHealth = maxHealth;
-
         //If mesh renderer is not set. Then try to get it from current gameobject
-        if(entityGfx == null)
+        if ( entityGfx == null )
         {
             entityGfx = GetComponentInChildren<MeshRenderer>();
-        }
-    }
-
-    //Damage function. Called by other scripts when they want to deal damage to entity.
-    public virtual void Damage(float damage)
-    {
-        //Add the onhitmaterial to the object if we have access to mesh renderer and onHitMaterial
-        if(onHitMaterial && entityGfx && !OnHitMaterialEnabled) StartCoroutine(HitMaterialEnable());
-        
-        //If current health reaches 0 or below we kill this entity
-        currentHealth -= damage;
-        if(currentHealth <= 0)
-        {
-            currentHealth = 0;
-            Kill();
         }
     }
 
@@ -67,25 +51,60 @@ public abstract class Entity : MonoBehaviour
     public virtual void Kill()
     {
         //Instantiate OnDeath prefabs
-        foreach(GameObject prefab in onDeathPrefabs)
+        foreach (GameObject prefab in onDeathPrefabs)
         {
             Instantiate(prefab, transform.position, Quaternion.identity);
         }
         Destroy(gameObject);
     }
 
-    //Health getter function
-    public float GetHealth() { return currentHealth; }
-    public float GetMaxHealth() { return maxHealth; }
-    public void AddHealth(float amount)
+    //Damage function. Called by other scripts when they want to deal damage to entity or subtract HP.
+    public virtual void Damage(float damage)
     {
-        currentHealth += amount;
+        //Add the onhitmaterial to the object if we have access to mesh renderer and onHitMaterial
+        if ( onHitMaterial && entityGfx && !OnHitMaterialEnabled ) StartCoroutine(HitMaterialEnable());
+
+        //If current health reaches 0 or below we kill this entity
+        currentHealth -= damage;
+        if ( currentHealth <= 0 )
+        {
+            currentHealth = 0;
+            Kill();
+        }
+    }
+
+    #region Health Functions
+        #region CurrentHealth
+    public float GetCurrentHealth() { return currentHealth; }
+    public void SetCurrentHealth(float _health) //This function will be used to set the CurrentHealth. This function canno't be used to kill the entity. Use Damage() for that. 
+    {
+        currentHealth = Mathf.Clamp(_health, 1, Mathf.Infinity); //Can't set to zero.
+    }
+    public void AddCurrentHealth(float amount)
+    {
+        currentHealth += Mathf.Abs(amount); //We make the amount absolute so this function will always ADD to the current health. Not subtract. Use Damage() for subtracting.
 
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
     }
+        #endregion
+
+        #region MaxHealth
+    public float GetMaxHealth() { return maxHealth; }
+    public void SetMaxHealth(float _maxHealth) //This can be used to set the max health. Cannot be used to kill the player (thus the clamp there).
+    {
+        maxHealth = Mathf.Clamp(_maxHealth, 1, Mathf.Infinity); //Can't set to zero
+
+        if(currentHealth > maxHealth) currentHealth = maxHealth; //If the current health is above max health after changing the maxHealth -> We set it to maxHp
+    }
+    public void AddMaxHealth(float amount) 
+    {
+        maxHealth += Mathf.Abs(amount); //We make the amount absolute so this function will always ADD to the maxHealth.
+    }
+        #endregion
+    #endregion
 
     IEnumerator HitMaterialEnable()
     {

@@ -9,6 +9,7 @@ public class PlayerWeapon : MonoBehaviour
     public int ammoCount;
     public int maxAmmo = 100;
     public int ReloadAmount = 20;
+    public int shootingDistance = 200;
 
     [Header("Adjust the rate of fire")]
     [RangeAttribute(1, 10)]
@@ -87,23 +88,36 @@ public class PlayerWeapon : MonoBehaviour
         {
             gunAnimator.SetTrigger("Fire");
             Vector3 shootDirection = playerCam.transform.forward;
-
-            if ( Physics.Raycast(playerCam.transform.position, shootDirection, out target, 200f) )
+            if ( Physics.Raycast(playerCam.transform.position, shootDirection, out RaycastHit target, shootingDistance) )
             {
                 ammoCount--;
 
-                // Instantiate bullet impact and other effects
                 GameObject bulletImpactLocation = Instantiate(bulletImpact, target.point, Quaternion.LookRotation(Vector3.up, target.normal));
                 Destroy(bulletImpactLocation, 1f);
+
                 GameObject flash = Instantiate(muzzleFlash, weaponMuzzle);
                 Destroy(flash, 0.1f);
+
                 TrailRenderer trail = Instantiate(bulletTracer, weaponMuzzle.transform.position, Quaternion.identity);
-                StartCoroutine(SpawnTrail(trail, target));
+                StartCoroutine(SpawnTrail(trail, target.point));
 
                 if ( target.transform.TryGetComponent<Entity>(out Entity entity) )
                 {
-                    if ( entityMask.HasFlag(entity.entityType) ) entity.Damage(5f);
+                    if ( entityMask.HasFlag(entity.entityType) )
+                    {
+                        entity.Damage(5f);
+                    }
                 }
+            }
+            else
+            {
+                Vector3 endPosition = playerCam.transform.position + shootDirection * shootingDistance;
+
+                GameObject flash = Instantiate(muzzleFlash, weaponMuzzle);
+                Destroy(flash, 0.1f);
+
+                TrailRenderer trail = Instantiate(bulletTracer, weaponMuzzle.transform.position, Quaternion.identity);
+                StartCoroutine(SpawnTrail(trail, endPosition));
             }
 
             timer = 0;
@@ -119,19 +133,22 @@ public class PlayerWeapon : MonoBehaviour
         canShoot = true;
     }
 
-    private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit hit)
+    private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 endPosition)
     {
-        float time = 0;
-        Vector3 startPosition = Trail.transform.position;
+        float time = 0f;
+        Vector3 startPosition = trail.transform.position;
+
         while ( time < 1f )
         {
-            Trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
-            time += Time.deltaTime / Trail.time;
+            time += Time.deltaTime / trail.time;
+            trail.transform.position = Vector3.Lerp(startPosition, endPosition, time);
             yield return null;
         }
-        Trail.transform.position = hit.point;
-        Destroy(Trail.gameObject, Trail.time);
+
+        trail.transform.position = endPosition;
+        Destroy(trail.gameObject, trail.time);
     }
+
     public void AddAmmmo(int ammo)
     {
         if ( ammoCount > ammo)
