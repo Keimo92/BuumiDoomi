@@ -11,9 +11,9 @@ public abstract class Entity : MonoBehaviour
     [Header("Basic Setup")]
     [SerializeField] float currentHealth; //Will be overridden by maxHealth on Start()
     [SerializeField] float maxHealth;
+
     [SerializeField] Renderer entityGfx;
     public EntityMask entityType; //Holds the entity type so we can filter entities based on the type. DON'T SET MULTIPLE TYPES OTHERWISE THIS WONT WORK CORRECTLY
-
 
     [Header("On Death Instantiated Prefabs")]
     [SerializeField] List<GameObject> onDeathPrefabs = new List<GameObject>();
@@ -21,7 +21,8 @@ public abstract class Entity : MonoBehaviour
     [Header("On Hit Material")]
     [SerializeField] Material onHitMaterial;
     [SerializeField] private float onHitMaterialTime;
-    protected bool OnHitMaterialEnabled = false;
+    bool OnHitMaterialEnabled = false;
+
     [System.Flags]
     public enum EntityMask
     {
@@ -36,16 +37,25 @@ public abstract class Entity : MonoBehaviour
         OnHitMaterialEnabled = false;
         currentHealth = maxHealth;
     }
+
     private void Start()
     {
-        //Set current health
-        GetMaxHealth();
-
         //If mesh renderer is not set. Then try to get it from current gameobject
         if ( entityGfx == null )
         {
             entityGfx = GetComponentInChildren<MeshRenderer>();
         }
+    }
+
+    //Kill function. Can be also called by other scripts if we want to kill this entity.
+    public virtual void Kill()
+    {
+        //Instantiate OnDeath prefabs
+        foreach (GameObject prefab in onDeathPrefabs)
+        {
+            Instantiate(prefab, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
     }
 
     //Damage function. Called by other scripts when they want to deal damage to entity.
@@ -63,42 +73,38 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
-    //Kill function. Can be also called by other scripts if we want to kill this entity.
-    public virtual void Kill()
+    #region Health Functions
+        #region CurrentHealth
+    public float GetCurrentHealth() { return currentHealth; }
+    public void SetCurrentHealth(float _health)
     {
-        //Instantiate OnDeath prefabs
-        foreach ( GameObject prefab in onDeathPrefabs )
-        {
-            Instantiate(prefab, transform.position, Quaternion.identity);
-        }
-        Destroy(gameObject);
+        currentHealth = Mathf.Clamp(Mathf.Abs(_health), 1, Mathf.Infinity); //Can't set to zero
     }
+    public void AddCurrentHealth(float amount)
+    {
+        currentHealth += Mathf.Abs(amount);
 
-    //Health getter function
-    public float GetHealth
-    {
-        get { return currentHealth; }
-        set { currentHealth = value; }
-
-    }
-    public float SetHealth
-    {
-        get { return currentHealth; } 
-        set { currentHealth = Mathf.Clamp(value, 0, maxHealth); }
-    }
-    public float GetMaxHealth()
-    {
-        return maxHealth;
-    }
-    public void AddHealth(float amount)
-    {
-        currentHealth += amount;
-
-        if ( currentHealth > maxHealth )
+        if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
     }
+        #endregion
+
+        #region MaxHealth
+    public float GetMaxHealth() { return maxHealth; }
+    public void SetMaxHealth(float _maxHealth)
+    {
+        maxHealth = Mathf.Clamp(_maxHealth, 1, Mathf.Infinity); //Can't set to zero
+
+        if(currentHealth > maxHealth) currentHealth = maxHealth; //If the current health is above max health after changing the maxHealth -> We set it to maxHp
+    }
+    public void AddMaxHealth(float amount)
+    {
+        maxHealth += Mathf.Abs(amount);
+    }
+        #endregion
+    #endregion
 
     IEnumerator HitMaterialEnable()
     {
