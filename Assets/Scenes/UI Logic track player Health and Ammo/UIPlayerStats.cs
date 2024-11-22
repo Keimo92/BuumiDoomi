@@ -23,7 +23,7 @@ public class UIPlayerStats : MonoBehaviour
     {
         if (Player != null)
         {
-            Health.text = "Health = " + Player.GetHealth.ToString();
+            Health.text = "Health = " + Player.GetCurrentHealth().ToString();
             AmmoText.text = "Ammo = " + playerWeapon.ammoCount.ToString();
         }
     }
