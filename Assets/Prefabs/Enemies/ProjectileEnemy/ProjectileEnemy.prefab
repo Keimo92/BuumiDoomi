@@ -168,12 +168,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f60dc7ac3e96346bb85e89552a416e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 35
+  currentHealth: 20
+  maxHealth: 100
   entityGfx: {fileID: 8447415272668309278}
   entityType: 1
   onDeathPrefabs:
-  - {fileID: 4527006242752851873}
+  - {fileID: 821546325029684643, guid: 89982e4ef89a91a489fe2d61ae7dac47, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
   onHitMaterialTime: 0.075
   playerEntity: {fileID: 0}
