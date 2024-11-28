@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 
@@ -7,6 +8,14 @@ public class ScreenFlash : MonoBehaviour
 {
     public Image screenFlashImage;
 
+
+    private void Start()
+    {
+        if ( screenFlashImage == null )
+        {
+            Debug.LogWarning("No image assigned");
+        }
+    }
     public IEnumerator FlashColorRoutine(Color color, float duration)
     {
         screenFlashImage.color = color;
