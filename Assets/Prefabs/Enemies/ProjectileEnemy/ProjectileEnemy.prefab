@@ -153,9 +153,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 2.4696686
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.23483431, z: 0}
 --- !u!114 &3217192648767143981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 20
-  maxHealth: 100
+  maxHealth: 35
   entityGfx: {fileID: 8447415272668309278}
   entityType: 1
   onDeathPrefabs:
