@@ -43,6 +43,7 @@ public class ProjectileEnemyEntity : Entity
     {
         navController = GetComponent<NavAgentController>();
         InvokeRepeating("CheckVisionToPlayer", 0f, 0.1f); //Check vision to player 10 times a sec
+        playerEntity = FindFirstObjectByType<PlayerEntity>();
     }
 
     private void Update()
