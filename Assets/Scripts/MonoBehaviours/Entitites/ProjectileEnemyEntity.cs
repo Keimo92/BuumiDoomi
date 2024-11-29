@@ -43,28 +43,26 @@ public class ProjectileEnemyEntity : Entity
     {
         navController = GetComponent<NavAgentController>();
         InvokeRepeating("CheckVisionToPlayer", 0f, 0.1f); //Check vision to player 10 times a sec
-
-        playerEntity = FindAnyObjectByType<PlayerEntity>();
-
+        playerEntity = FindFirstObjectByType<PlayerEntity>();
     }
 
     private void Update()
     {
         //We change behaviour based on the state of the enemy
-        switch ( enemyState )
+        switch (enemyState)
         {
             case EnemyState.Aggressive:
-                if ( Time.time > lastShootTime + shootDelay && !isShooting )
+                if(Time.time > lastShootTime + shootDelay && !isShooting)
                 {
                     StartShootAnimation();
                 }
-                else if ( !isShooting )
+                else if(!isShooting)
                 {
                     navController.MoveToPosition(playerEntity.transform.position);
                 }
                 break;
             case EnemyState.Roaming: //When roaming we just move to random position in radius
-                if ( !navController.IsMoving() )
+                if (!navController.IsMoving())
                 {
                     navController.MoveToRandomPositionInRadius(10f);
                 }
@@ -78,20 +76,20 @@ public class ProjectileEnemyEntity : Entity
         //if (enemyState == EnemyState.Idle) return;
 
         //For optimization purposes we do raycasts only when the player is close enough
-        if ( Vector3.Distance(playerEntity.transform.position, transform.position) < detectionRadius )
+        if (Vector3.Distance(playerEntity.transform.position, transform.position) < detectionRadius) 
         {
             Vector3 dirToPlayer = (playerEntity.transform.position - transform.position).normalized;
-            if ( Physics.Raycast(eyePosition.position, dirToPlayer, out RaycastHit hitInfo, detectionRadius) )
+            if (Physics.Raycast(eyePosition.position, dirToPlayer, out RaycastHit hitInfo, detectionRadius))
             {
                 //If we see the player we get angery >:( 
-                if ( hitInfo.transform == playerEntity.transform )
+                if (hitInfo.transform == playerEntity.transform) 
                 {
                     SetState(EnemyState.Aggressive);
                     playerLastSeenTime = Time.time;
                 }
                 else
                 {
-                    if ( Time.time > playerLastSeenTime + deAggroTime && enemyState != EnemyState.Idle ) //If the time we have last seen the player exceeds deAggroTime we go back to roaming
+                    if (Time.time > playerLastSeenTime + deAggroTime && enemyState != EnemyState.Idle) //If the time we have last seen the player exceeds deAggroTime we go back to roaming
                     {
                         SetState(EnemyState.Roaming);
                     }
@@ -124,7 +122,7 @@ public class ProjectileEnemyEntity : Entity
         //
         // This is called on a specific frame on the shoot animation so we can time the projectile with the animation
         //
-
+        
         //Shoot logic
         GameObject go = Instantiate(bulletPf, bulletSpawn.position, Quaternion.identity);
         Rigidbody rb = go.GetComponent<Rigidbody>();
@@ -146,14 +144,14 @@ public class ProjectileEnemyEntity : Entity
     public void SetState(EnemyState newState)
     {
         EnemyState previousState = enemyState;
-        switch ( newState )
+        switch (newState)
         {
             case EnemyState.Roaming:
-                if ( previousState is EnemyState.Idle ) animator.SetBool(idleBoolName, false); //if the previous state was idle. Set animator idle -> False
+                if (previousState is EnemyState.Idle) animator.SetBool(idleBoolName, false); //if the previous state was idle. Set animator idle -> False
                 enemyState = newState;
                 break;
             case EnemyState.Aggressive:
-                if ( previousState is EnemyState.Idle ) animator.SetBool(idleBoolName, false); //if the previous state was idle. Set animator idle -> False
+                if (previousState is EnemyState.Idle) animator.SetBool(idleBoolName, false); //if the previous state was idle. Set animator idle -> False
                 enemyState = newState;
                 break;
             case EnemyState.Idle:
@@ -166,7 +164,7 @@ public class ProjectileEnemyEntity : Entity
 
     private void OnDrawGizmos()
     {
-        if ( enemyState == EnemyState.Aggressive )
+        if(enemyState == EnemyState.Aggressive)
         {
             Gizmos.color = Color.red;
         }
@@ -181,13 +179,13 @@ public class ProjectileEnemyEntity : Entity
     public override void Damage(float damage)
     {
         //We need a way to filter on what is the damage source somehow but this will deal for now
-        if ( enemyState != EnemyState.Aggressive ) //If the player shoots at us when we are not aggressive.
+        if(enemyState != EnemyState.Aggressive) //If the player shoots at us when we are not aggressive.
         {
             playerLastSeenTime = Time.time; //We mark up the last time we have seen the player here. Means that we will de aggro after the deAggro time has passed.
             StartShootAnimation(); //We want to shoot back instantly to communicate that we are angery >:(
             SetState(EnemyState.Aggressive); //We start to be aggressive
         }
-
+        
         base.Damage(damage);
     }
 }
