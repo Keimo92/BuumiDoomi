@@ -153,9 +153,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 2.4696686
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.23483431, z: 0}
 --- !u!114 &3217192648767143981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,12 +168,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f60dc7ac3e96346bb85e89552a416e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
+  currentHealth: 20
   maxHealth: 35
   entityGfx: {fileID: 8447415272668309278}
   entityType: 1
   onDeathPrefabs:
-  - {fileID: 4527006242752851873}
+  - {fileID: 821546325029684643, guid: 89982e4ef89a91a489fe2d61ae7dac47, type: 3}
   onHitMaterial: {fileID: 2100000, guid: 2a6edf10e83d18943a758888b845dea7, type: 2}
   onHitMaterialTime: 0.075
   playerEntity: {fileID: 0}
