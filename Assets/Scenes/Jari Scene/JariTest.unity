@@ -401,10 +401,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4924087106482084766, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1148299329}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
 --- !u!1 &220606791
 GameObject:
@@ -1051,16 +1048,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5289740977653489239, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
   m_PrefabInstance: {fileID: 215426247}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1148299329
+--- !u!114 &1148299330 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7033691762434821950, guid: e8fdc0a60ed41f84c9d18b075d434a17, type: 3}
+  m_PrefabInstance: {fileID: 215426247}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148299322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a04cb060ab8c518458555050a86ff17b, type: 3}
+  m_Script: {fileID: 11500000, guid: cc8b77ebcac0f71449dc09af9da23955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1151903477
@@ -2315,6 +2311,10 @@ PrefabInstance:
       propertyPath: fadeDuration
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2695018633163446537, guid: 619729caec595324d91109acd478c73d, type: 3}
+      propertyPath: screenFlashImage
+      value: 
+      objectReference: {fileID: 1742264054}
     - target: {fileID: 6452235701789042465, guid: 619729caec595324d91109acd478c73d, type: 3}
       propertyPath: m_Name
       value: ScreenFlash
@@ -2486,6 +2486,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3217192648767143981, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
+      propertyPath: playerEntity
+      value: 
+      objectReference: {fileID: 1148299330}
     - target: {fileID: 6612501695952020779, guid: eeb50b1650ebdf4428741ca4acd65af3, type: 3}
       propertyPath: PlayerPos
       value: 
