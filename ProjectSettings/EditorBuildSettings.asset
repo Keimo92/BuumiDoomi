@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game-Manager-Scene/Game-manager-test.unity
     guid: e5b9d80c7dcf21440a353c964ec674c4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game-Manager-Scene/Level2Test.unity
     guid: b8932ef3dbb92504b957fb10d59fa28f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/make-enemies-work-in-playtest-area/make-enemies-work-in-playtest-area.unity
     guid: 14d38eabdc343ee44960263610c2fe98
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Medkit obj test/Medkit obj test.unity
     guid: d830d3bae1774a84a8ef9b1cedf79e05
   m_configObjects: {}
