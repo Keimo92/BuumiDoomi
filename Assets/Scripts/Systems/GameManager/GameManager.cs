@@ -5,11 +5,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
-
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private float timeToReloadScene;
-
     public List<string> sceneNames; // Scene assets did not work after builded the game. If this string array solution is not good. Lets fix it, for now this should do that we can track what scenes are in the inspector.
 
     public enum GameState
@@ -34,9 +32,14 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        currentState = GameState.Playing;
     }
 
     //Set the game state here from other classes
@@ -65,6 +68,7 @@ public class GameManager : MonoBehaviour
                 UnpauseGame();
                 break;
         }
+
         Debug.Log(currentState);
     }
 
@@ -89,7 +93,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitAndLoadNextLevel()
     {
         yield return new WaitForSeconds(timeToReloadScene);
-
         if ( currentLevelIndex < sceneNames.Count - 1 )
         {
             currentLevelIndex++;
@@ -132,7 +135,6 @@ public class GameManager : MonoBehaviour
     //Return the current scene after player is dead
     private IEnumerator ReturnToLevelAfterDeathRoutine()
     {
-
         yield return new WaitForSeconds(timeToReloadScene);
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         loadOperation.completed += OnLevelLoaded;
