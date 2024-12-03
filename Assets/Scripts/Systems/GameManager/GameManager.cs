@@ -86,11 +86,15 @@ public class GameManager : MonoBehaviour
     private void OnLevelLoaded(AsyncOperation asyncOperation)
     {
         SetGameState(GameState.Playing);
-        FindObjectOfType<PlayerEntity>().transform.position = spawnPos; //Move player to the current spawn position
         asyncOperation.completed -= OnLevelLoaded;
+        StartCoroutine(TeleportPlayerToSpawnPos());
     }
 
-
+    private IEnumerator TeleportPlayerToSpawnPos()
+    {
+        yield return null;
+        FindObjectOfType<PlayerEntity>().transform.position = spawnPos; //Move player to the current spawn position
+    }
     //When we exit the level this is called;
     private IEnumerator WaitAndLoadNextLevel()
     {
