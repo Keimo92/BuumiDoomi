@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private Vector3 spawnPos;
     [SerializeField] private float timeToReloadScene;
     public List<string> sceneNames; // Scene assets did not work after builded the game. If this string array solution is not good. Lets fix it, for now this should do that we can track what scenes are in the inspector.
 
@@ -85,6 +86,7 @@ public class GameManager : MonoBehaviour
     private void OnLevelLoaded(AsyncOperation asyncOperation)
     {
         SetGameState(GameState.Playing);
+        FindObjectOfType<PlayerEntity>().transform.position = spawnPos; //Move player to the current spawn position
         asyncOperation.completed -= OnLevelLoaded;
     }
 
@@ -143,5 +145,14 @@ public class GameManager : MonoBehaviour
     private void OnPausePressed()
     {
         GameManager.Instance.TogglePauseGame();
+    }
+
+    public void OnCheckpointReached(Component sender, object data)
+    {
+        //Update spawnpos when checkpoint has been reached
+        if(data is GameEventData.OnCheckpointReached eventData)
+        {
+            spawnPos = eventData.position;
+        }
     }
 }

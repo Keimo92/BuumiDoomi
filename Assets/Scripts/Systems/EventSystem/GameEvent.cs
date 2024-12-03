@@ -48,4 +48,9 @@ public class GameEventData
     {
         public string id;
     }
+
+    public struct OnCheckpointReached
+    {
+        public Vector3 position;
+    }
 }
