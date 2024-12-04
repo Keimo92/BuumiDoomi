@@ -4,13 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Vector3 spawnPos;
     [SerializeField] private float timeToReloadScene;
+    [SerializeField] private TextMeshProUGUI collectiblesText;
+    [SerializeField] private GameObject collectibleObj; //Place holder which will be set to false after the level finish.
     public List<string> sceneNames; // Scene assets did not work after builded the game. If this string array solution is not good. Lets fix it, for now this should do that we can track what scenes are in the inspector.
+    public static event Action OnLevelLoaded;
+    [SerializeField] private float collectibleTextShowTime = 8f;
 
+    public bool onLevelFinished = false;
     public enum GameState
     {
         Playing,
@@ -25,7 +31,7 @@ public class GameManager : MonoBehaviour
     public static event Action<GameState> OnGameStateChanged;
 
     private int currentLevelIndex;
-
+    
     private void Awake()
     {
         if ( Instance != null && Instance != this )
@@ -33,14 +39,19 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
+        if ( collectibleObj != null )
+        {
+            collectibleObj.SetActive(false);
+        }
         currentState = GameState.Playing;
+        OnLevelLoaded?.Invoke(); // This can be removed when we have main menu
     }
 
     //Set the game state here from other classes
@@ -83,23 +94,41 @@ public class GameManager : MonoBehaviour
         InputManager.Instance.onPauseActionPressed -= OnPausePressed;
     }
 
-    private void OnLevelLoaded(AsyncOperation asyncOperation)
+    private void OnSceneLoaded(AsyncOperation asyncOperation)
     {
+        OnLevelLoaded?.Invoke();
+        collectibleObj = GameObject.Find("CollectiblePlaceHolder");
+        collectiblesText = GameObject.Find("CollectibleText")?.GetComponent<TextMeshProUGUI>();
+        collectibleObj.SetActive(false);
         SetGameState(GameState.Playing);
         FindObjectOfType<PlayerEntity>().transform.position = spawnPos; //Move player to the current spawn position
-        asyncOperation.completed -= OnLevelLoaded;
+        asyncOperation.completed -= OnSceneLoaded;
     }
 
 
     //When we exit the level this is called;
     private IEnumerator WaitAndLoadNextLevel()
     {
+        if ( collectibleObj != null )
+        {
+            collectibleObj.SetActive(true);
+
+            int collectiblesLeft = CollectibleDataPersistence.instance.GetCollectiblesLeft();
+            if ( collectiblesText != null )
+            {
+                collectiblesText.text = $"You missed total of : {collectiblesLeft} collectibles";
+            }
+            onLevelFinished = true;
+            Debug.Log(onLevelFinished);
+            yield return new WaitForSeconds(collectibleTextShowTime);
+        }
+
         yield return new WaitForSeconds(timeToReloadScene);
         if ( currentLevelIndex < sceneNames.Count - 1 )
         {
             currentLevelIndex++;
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneNames[currentLevelIndex]);
-            loadOperation.completed += OnLevelLoaded;
+            loadOperation.completed += OnSceneLoaded;
         }
         else
         {
@@ -137,9 +166,12 @@ public class GameManager : MonoBehaviour
     //Return the current scene after player is dead
     private IEnumerator ReturnToLevelAfterDeathRoutine()
     {
+        int collectiblesLeft = CollectibleDataPersistence.instance.GetCollectiblesLeft();
+        collectiblesText.text = $"You missed total of : {collectiblesLeft} collectibles";
+        collectibleObj.SetActive(true);
         yield return new WaitForSeconds(timeToReloadScene);
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-        loadOperation.completed += OnLevelLoaded;
+        loadOperation.completed += OnSceneLoaded;
     }
 
     private void OnPausePressed()
@@ -150,7 +182,7 @@ public class GameManager : MonoBehaviour
     public void OnCheckpointReached(Component sender, object data)
     {
         //Update spawnpos when checkpoint has been reached
-        if(data is GameEventData.OnCheckpointReached eventData)
+        if ( data is GameEventData.OnCheckpointReached eventData )
         {
             spawnPos = eventData.position;
         }
