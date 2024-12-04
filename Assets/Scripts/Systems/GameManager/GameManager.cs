@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -158,5 +159,17 @@ public class GameManager : MonoBehaviour
         {
             spawnPos = eventData.position;
         }
+    }
+
+
+    public void OnLevelFinished(Component sender, object data)
+    {
+        StartCoroutine(RestartLevelAfterFinished());
+    }
+    
+    private IEnumerator RestartLevelAfterFinished()
+    {
+        yield return new WaitForSeconds(timeToReloadScene);
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 }

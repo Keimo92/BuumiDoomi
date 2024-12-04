@@ -21,12 +21,12 @@ public class CollectibleDataPersistence : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.OnLevelLoaded += PopulateCollectiblesList;
+        //GameManager.OnLevelLoaded += PopulateCollectiblesList;
     }
 
     private void OnDisable()
     {
-        GameManager.OnLevelLoaded -= PopulateCollectiblesList;
+        //GameManager.OnLevelLoaded -= PopulateCollectiblesList;
     }
 
     public void PopulateCollectiblesList()
