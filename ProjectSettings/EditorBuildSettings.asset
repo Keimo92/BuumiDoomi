@@ -17,7 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Medkit obj test/Medkit obj test.unity
     guid: d830d3bae1774a84a8ef9b1cedf79e05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Jari Scene/JariTest.unity
     guid: 515f3c0836e2e2241904f6100b2bbe67
+  - enabled: 1
+    path: Assets/Scenes/TekkisPajaFinal/TekkisPajaFinal.unity
+    guid: 0f8ff483035f56e45b15a1e0e54023e8
   m_configObjects: {}

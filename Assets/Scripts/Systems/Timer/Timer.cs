@@ -1,9 +1,11 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private float timerResetTime = 5;
     private float startTime;
     private float elapsedTime;
 
@@ -26,6 +28,7 @@ public class Timer : MonoBehaviour
         if ( gameManager.onLevelFinished )
         {
             LevelFinishedTime();
+            StartCoroutine(OnLevelFinishedRoutine());
         }
     }
 
@@ -50,5 +53,11 @@ public class Timer : MonoBehaviour
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
         timerText.text = string.Format($"Time Taken: {minutes:00}:{seconds:00}");
+    }
+
+    private IEnumerator OnLevelFinishedRoutine()
+    {
+        yield return new WaitForSeconds(timerResetTime);
+        ResetTimer();
     }
 }

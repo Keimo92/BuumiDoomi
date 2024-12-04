@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(onLevelFinished);
             yield return new WaitForSeconds(collectibleTextShowTime);
         }
-
+        onLevelFinished = false;
         yield return new WaitForSeconds(timeToReloadScene);
         if ( currentLevelIndex < sceneNames.Count - 1 )
         {
