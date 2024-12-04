@@ -12,7 +12,6 @@ public class Timer : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private float timerResetTime = 5;
-    private float startTime;
     private float elapsedTime;
     private TimerState timerState = TimerState.Running;
 
@@ -21,7 +20,6 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         player = FindAnyObjectByType<PlayerEntity>();
-        ResetTimer();
     }
 
     private void Update()
@@ -34,19 +32,11 @@ public class Timer : MonoBehaviour
 
     private void UpdateTimer()
     {
-        elapsedTime = Time.time - startTime;
+        elapsedTime = Time.time - GameManager.Instance.gameStartTime;
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-
-    private void ResetTimer()
-    {
-        timerState = TimerState.Running;
-        startTime = Time.time;
-        elapsedTime = 0;
-        timerText.text = "00:00";
     }
 
     public void ShowFinishedTime()

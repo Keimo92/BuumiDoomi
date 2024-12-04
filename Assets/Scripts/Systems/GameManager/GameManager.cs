@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Vector3 spawnPos;
     [SerializeField] private float timeToReloadScene;
+    [SerializeField] private GameEvent OnGameStartEvent;
     public List<string> sceneNames; // Scene assets did not work after builded the game. If this string array solution is not good. Lets fix it, for now this should do that we can track what scenes are in the inspector.
+    public float gameStartTime;
 
     public enum GameState
     {
@@ -24,7 +26,7 @@ public class GameManager : MonoBehaviour
     private GameState currentState;
 
     public static event Action<GameState> OnGameStateChanged;
-
+    
     private int currentLevelIndex;
 
     private void Awake()
@@ -42,6 +44,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentState = GameState.Playing;
+        OnGameStartEvent.Raise(this, null);
+        gameStartTime = Time.time;
     }
 
     //Set the game state here from other classes
@@ -169,7 +173,10 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator RestartLevelAfterFinished()
     {
+        
         yield return new WaitForSeconds(timeToReloadScene);
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        OnGameStartEvent.Raise(this, null);
+        gameStartTime = Time.time;
     }
 }
