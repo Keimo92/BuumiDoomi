@@ -1,34 +1,40 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private float timerResetTime = 5;
     private float startTime;
+    private float elapsedTime;
 
     PlayerEntity player;
+    public GameManager gameManager;
 
     private void Start()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
         player = FindAnyObjectByType<PlayerEntity>();
         ResetTimer();
     }
 
     private void Update()
     {
-        if ( player.isAlive)
+        if ( player.isAlive && !gameManager.onLevelFinished )
         {
             RunTimer();
         }
-
-        if ( !player.isAlive ) //After checkpoint system we need to fix this because IsAlive is going to be false after player dies. We dont want to reset the time when respawn from checkpoint :)
+        if ( gameManager.onLevelFinished )
         {
-            ResetTimer();
+            LevelFinishedTime();
+            StartCoroutine(OnLevelFinishedRoutine());
         }
     }
+
     private void RunTimer()
     {
-        float elapsedTime = Time.time - startTime;
+        elapsedTime = Time.time - startTime;
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
 
@@ -38,6 +44,20 @@ public class Timer : MonoBehaviour
     private void ResetTimer()
     {
         startTime = Time.time;
-        timerText.text = "00:00"; 
+        elapsedTime = 0;
+        timerText.text = "00:00";
+    }
+
+    public void LevelFinishedTime()
+    {
+        int minutes = Mathf.FloorToInt(elapsedTime / 60);
+        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+        timerText.text = string.Format($"Time Taken: {minutes:00}:{seconds:00}");
+    }
+
+    private IEnumerator OnLevelFinishedRoutine()
+    {
+        yield return new WaitForSeconds(timerResetTime);
+        ResetTimer();
     }
 }

@@ -16,10 +16,8 @@ public class HealthPickUp : Pickupable
         {
             if ( entity.GetCurrentHealth() < entity.GetMaxHealth() )
             {
-                //PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.PickUp);
                 base.OnPickup(entity);
                 entity.AddCurrentHealth(healthPack.healingAmount);
-                //PlayerAnimationManager.ChangeFaceState(PlayerAnimationManager.PlayerFaceState.Idle);
                 Destroy(gameObject);
             }
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraController : MonoBehaviour, ICameraShaker
+public class CameraController : MonoBehaviour
 {
     public CinemachineVirtualCamera virtualCamera;
     private CinemachineBasicMultiChannelPerlin cinemachinePerlin;
